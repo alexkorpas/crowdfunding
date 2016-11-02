@@ -39,3 +39,11 @@ C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\Syste
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\obj\Debug\Service.dll
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\obj\Debug\Service.pdb
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\BAL.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\DAL.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\EntityFramework.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\BAL.pdb
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\DAL.pdb
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\EntityFramework.xml
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\EntityFramework.SqlServer.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\EntityFramework.SqlServer.xml

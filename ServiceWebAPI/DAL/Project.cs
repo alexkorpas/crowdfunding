@@ -14,7 +14,7 @@ namespace DAL
     
     public partial class Project
     {
-        public System.Guid Id { get; set; }
+        public int Id { get; set; }
         public string Description { get; set; }
     }
 }

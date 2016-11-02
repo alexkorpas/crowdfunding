@@ -1,0 +1,10 @@
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\bin\Debug\DAL.dll.config
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\bin\Debug\DAL.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\bin\Debug\DAL.pdb
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\obj\Debug\DAL.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\DAL\obj\Debug\DAL.pdb

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BAL.DTO
+﻿namespace BAL
 {
-    class ProjectDTO
+    public class ProjectDTO
     {
         public int Id { get; set; }
         public string Description { get; set; }
-    }
-}
+    } // End class
+} // End namespace

@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fe3214e1f4c64fb1b6b5d2f637fa0411" Name="Diagram1">
-        <EntityTypeShape EntityType="CrowdFundingViva1Model.Project" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.Project" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

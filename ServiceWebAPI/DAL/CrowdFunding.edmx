@@ -4,32 +4,31 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CrowdFundingViva1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CrowdFundingViva1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="CrowdFundingViva1ModelStoreContainer">
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CrowdFundingViva1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CrowdFundingViva1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Projects" EntityType="CrowdFundingViva1Model.Project" />
+        </EntityContainer>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="CrowdFundingViva1Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Projects" EntityType="Self.Project" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -39,8 +38,8 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="CrowdFundingViva1Model.Project">
               <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

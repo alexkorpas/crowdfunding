@@ -47,3 +47,6 @@ C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\DAL.p
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\EntityFramework.xml
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\EntityFramework.SqlServer.dll
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\EntityFramework.SqlServer.xml
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\System.Web.Cors.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\System.Web.Http.Cors.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Service\bin\System.Web.Http.Cors.xml

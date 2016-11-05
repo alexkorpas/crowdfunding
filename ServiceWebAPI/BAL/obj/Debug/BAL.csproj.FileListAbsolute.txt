@@ -10,3 +10,15 @@ C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\Ent
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\obj\Debug\BAL.dll
 C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\obj\Debug\BAL.pdb
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\BAL.dll.config
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\BAL.dll
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\BAL.pdb
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\DAL.dll
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\EntityFramework.dll
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\DAL.pdb
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\EntityFramework.xml
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\obj\Debug\BAL.csprojResolveAssemblyReference.cache
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\obj\Debug\BAL.dll
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\BAL\obj\Debug\BAL.pdb

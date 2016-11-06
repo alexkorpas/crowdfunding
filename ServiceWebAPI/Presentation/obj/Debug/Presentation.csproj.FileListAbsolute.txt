@@ -1,0 +1,16 @@
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Presentation.dll.config
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Presentation.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Presentation.pdb
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Newtonsoft.Json.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Newtonsoft.Json.xml
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\obj\Debug\Presentation.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\obj\Debug\Presentation.dll
+C:\Users\Alex\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\obj\Debug\Presentation.pdb
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Presentation.dll.config
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Presentation.dll
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Presentation.pdb
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Newtonsoft.Json.dll
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\bin\Newtonsoft.Json.xml
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\obj\Debug\Presentation.csprojResolveAssemblyReference.cache
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\obj\Debug\Presentation.dll
+C:\Users\Connie\Source\Repos\CrowdFundingVivaTeam1\ServiceWebAPI\Presentation\obj\Debug\Presentation.pdb

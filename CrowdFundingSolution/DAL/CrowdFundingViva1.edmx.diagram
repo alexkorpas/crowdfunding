@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ff82618c33654607bc3fe24cf30e81d7" Name="Diagram1">
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.payment" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.project" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.project_category" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.project_funding_level" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.project_photo" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.project_state" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.user" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.user_address" Width="1.5" PointX="1.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.user_photo" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_payments_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_payments_users" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_project_funding_levels_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_project_photos_projects" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_project_categories" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_project_photos" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_project_states" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_users" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_user_addresses_users" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_user_photos_users" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_users_user_addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_users_user_photos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

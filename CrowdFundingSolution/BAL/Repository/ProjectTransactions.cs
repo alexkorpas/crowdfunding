@@ -14,10 +14,10 @@ namespace BAL
         {
             var db = new CrowdFundingViva1Entities();
             List<ProjectDTO> resultList = new List<ProjectDTO>();
-            resultList = db.Projects.Select(s => new ProjectDTO
+            resultList = db.project.Select(s => new ProjectDTO
             {
-               Id = s.Id,
-               Description = s.Description
+               Id = s.project_id,
+               Description = s.description
             }).ToList();
 
             return resultList;

@@ -51,53 +51,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrowdFunding.Context.cs">
+    <Compile Include="CrowdFundingViva1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrowdFunding.Context.tt</DependentUpon>
+      <DependentUpon>CrowdFundingViva1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CrowdFunding.cs">
+    <Compile Include="CrowdFundingViva1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrowdFunding.tt</DependentUpon>
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
     </Compile>
-    <Compile Include="CrowdFunding.Designer.cs">
+    <Compile Include="CrowdFundingViva1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrowdFunding.edmx</DependentUpon>
+      <DependentUpon>CrowdFundingViva1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Project.cs">
-      <DependentUpon>CrowdFunding.tt</DependentUpon>
+    <Compile Include="payment.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="project.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="project_category.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="project_funding_level.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="project_photo.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="project_state.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="CrowdFunding.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CrowdFunding.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="user.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_address.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user_photo.cs">
+      <DependentUpon>CrowdFundingViva1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="CrowdFunding.edmx.diagram">
-      <DependentUpon>CrowdFunding.edmx</DependentUpon>
+    <EntityDeploy Include="CrowdFundingViva1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CrowdFundingViva1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CrowdFundingViva1.edmx.diagram">
+      <DependentUpon>CrowdFundingViva1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CrowdFunding.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CrowdFunding.edmx</DependentUpon>
-      <LastGenOutput>CrowdFunding.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CrowdFunding.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CrowdFunding.edmx</DependentUpon>
-      <LastGenOutput>CrowdFunding.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="CrowdFundingViva1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CrowdFundingViva1.edmx</DependentUpon>
+      <LastGenOutput>CrowdFundingViva1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CrowdFundingViva1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CrowdFundingViva1.edmx</DependentUpon>
+      <LastGenOutput>CrowdFundingViva1.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

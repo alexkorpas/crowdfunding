@@ -8,7 +8,7 @@ namespace BAL
     {
         /// <summary>
         /// Returns a list of all available Projects
-        /// </summary>
+        /// </summary>  
         /// <returns>List<ProjectDTO></returns>
         public List<ProjectDTO> ReadProjects()
         {

@@ -49,8 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\ProjectCategoryDTO.cs" />
     <Compile Include="DTO\ProjectDTO.cs" />
+    <Compile Include="DTO\ProjectFundingLevelDTO.cs" />
+    <Compile Include="DTO\ProjectPhotoDTO.cs" />
+    <Compile Include="DTO\ProjectStateDTO.cs" />
+    <Compile Include="DTO\UserAddressDTO.cs" />
+    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DTO\PaymentDTO.cs" />
     <Compile Include="Repository\ProjectTransactions.cs" />
   </ItemGroup>
   <ItemGroup>

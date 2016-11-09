@@ -10,7 +10,7 @@ namespace BAL
         /// Returns a list of all available Projects
         /// </summary>  
         /// <returns>List<ProjectDTO></returns>
-        public List<ProjectDTO> ReadProjects()
+        public List<ProjectDTO> ReadProjects(int ?id=null)
         {
             var db = new CrowdFundingViva1Entities();
             List<ProjectDTO> resultList = new List<ProjectDTO>();

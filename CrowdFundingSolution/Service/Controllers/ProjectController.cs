@@ -13,12 +13,12 @@ namespace Service
         /// </summary>
         /// <returns>List<ProjectDTO></returns>
         [HttpGet]
-        public HttpResponseMessage GetProjects()
+        public HttpResponseMessage GetProjects(int ?id=null)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjects();
+                var result = repository.ReadProjects(id);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }

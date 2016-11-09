@@ -64,11 +64,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Config\Config.js" />
     <Content Include="App\Controllers\HomeController.js" />
+    <Content Include="App\Controllers\Login\LoginController.js" />
     <Content Include="App\Controllers\Projects\ProjectsController.js" />
     <Content Include="App\CrowdFundingApp.js" />
+    <Content Include="App\Services\AuthService.js" />
     <Content Include="App\Services\RequestServices.js" />
     <Content Include="App\Views\HomeView.html" />
+    <Content Include="App\Views\Login\LoginView.html" />
     <Content Include="App\Views\Projects\ProjectsView.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

@@ -24,6 +24,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                     displayName: 'Projects'
                 }
             }
+        })
+        .state('Home.Login', {
+            url: "/Login",
+            templateUrl: "/App/Views/Login/LoginView.html",
+            controller: "LoginController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Login'
+                }
+            }
         });
 });
 CrowdFundingApp.run(function ($rootScope, $state, $location) {

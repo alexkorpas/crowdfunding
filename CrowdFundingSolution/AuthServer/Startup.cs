@@ -1,11 +1,15 @@
 ﻿using AuthServer.Infrastructure;
 using AuthServer.Providers;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataHandler.Encoder;
+using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using Owin;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web;
@@ -20,6 +24,7 @@ namespace AuthServer
             HttpConfiguration httpConfig = new HttpConfiguration();
 
             ConfigureOAuthTokenGeneration(app);
+            ConfigureOAuthTokenConsumption(app);
 
             ConfigureWebApi(httpConfig);
 
@@ -43,7 +48,7 @@ namespace AuthServer
                 TokenEndpointPath = new PathString("/oauth/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat("http://localhost:59822")
+                AccessTokenFormat = new CustomJwtFormat("http://localhost:59602")
             };
 
             // OAuth 2.0 Bearer Access Token Generation
@@ -58,24 +63,24 @@ namespace AuthServer
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
 
-        //private void ConfigureOAuthTokenGeneration(IAppBuilder app)
-        //{
-        //    // Configure the db context and user manager to use a single instance per request
-        //    app.CreatePerOwinContext(ApplicationDbContext.Create);
-        //    app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+        private void ConfigureOAuthTokenConsumption(IAppBuilder app)
+        {
 
-        //    OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
-        //    {
-        //        //For Dev enviroment only (on production should be AllowInsecureHttp = false)
-        //        AllowInsecureHttp = true,
-        //        TokenEndpointPath = new PathString("/oauth/token"),
-        //        AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-        //        Provider = new CustomOAuthProvider(),
-        //        AccessTokenFormat = new CustomJwtFormat("http://localhost:59822")
-        //    };
+            var issuer = "http://localhost:59602";
+            string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
+            byte[] audienceSecret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["as:AudienceSecret"]);
 
-        //    // OAuth 2.0 Bearer Access Token Generation
-        //    app.UseOAuthAuthorizationServer(OAuthServerOptions);
-        //}
+            // Api controllers with an [Authorize] attribute will be validated with JWT
+            app.UseJwtBearerAuthentication(
+                new JwtBearerAuthenticationOptions
+                {
+                    AuthenticationMode = AuthenticationMode.Active,
+                    AllowedAudiences = new[] { audienceId },
+                    IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
+                    {
+                        new SymmetricKeyIssuerSecurityTokenProvider(issuer, audienceSecret)
+                    }
+                });
+        }
     }
 }

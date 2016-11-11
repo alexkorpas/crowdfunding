@@ -1,4 +1,33 @@
-﻿<div>
-    This is the Projects View
-    <div ng-repeat="x in Projects">{{x.Description}}</div>
+﻿
+    <div>
+    
+    
+       
+            <div class="container">
+                <div class="col-md-4" ng-repeat='row in rows'>
+                    <div class="card">
+                        <img class="card-img-top" src="Assets/post03.jpg" />
+                        <div class="card-block">
+
+
+
+                            <h1 ng-show="sometext">
+                                Hello {{ row.title }}
+                            </h1>
+                            <p class="card-text">{{row.Plot}}</p>
+
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:{{row.Progress}}%;">
+                                    <span class="sr-only">70% Complete</span>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
+    
 </div>

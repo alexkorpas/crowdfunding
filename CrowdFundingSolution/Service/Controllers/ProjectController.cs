@@ -18,7 +18,7 @@ namespace Service
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjectsByUserId(5);
+                var result = repository.ReadProjects();
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }

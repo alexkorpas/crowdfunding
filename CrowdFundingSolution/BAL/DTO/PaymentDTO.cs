@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Repository
 {
-    class PaymentDTO
+    public class PaymentDTO
     {
 
         public int Payment_Id { get; set; }

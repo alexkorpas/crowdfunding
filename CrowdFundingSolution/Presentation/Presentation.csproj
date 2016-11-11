@@ -70,6 +70,7 @@
     <Content Include="App\Controllers\Projects\ProjectsController.js" />
     <Content Include="App\CrowdFundingApp.js" />
     <Content Include="App\Services\AuthService.js" />
+    <Content Include="App\Services\CFHelpers.js" />
     <Content Include="App\Services\RequestServices.js" />
     <Content Include="App\Views\HomeView.html" />
     <Content Include="App\Views\Login\LoginView.html" />

@@ -1,6 +1,6 @@
 ﻿'use strict';
-CrowdFundingApp.controller('LoginController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService) {
+CrowdFundingApp.controller('LoginController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService',
+    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService) {
         //$scope.login = function () {
         //    alert("asds");
         //}
@@ -15,12 +15,12 @@ CrowdFundingApp.controller('LoginController', ['$scope', '$state', 'ngDialog', '
             //$scope.loginLoading = true;
             var promise = authService.token($scope.user);
             promise.then(function (data) {
-                iMaintHelpers.saveToken(data);
+                CFHelpers.saveToken(data);
                 //save was successfull and take loggedin use details//
                 var logUserpromise = baseService.httpGet('api/User/GetLoggedInUser');
                 logUserpromise.then(function (data) {
                     //$scope.loginLoading = false;
-                    iMaintHelpers.setLogUser(data);
+                    CFHelpers.setLogUser(data);
                     $state.go('Home.Projects');
                 }, function (er) {
                     //$scope.loginLoading = false;

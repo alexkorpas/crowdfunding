@@ -1,6 +1,6 @@
 ﻿CrowdFundingApp.constant('servers', {
     CF_SERVER: 'http://localhost:12555/',
-    AUTHENTICATION_SERVER: 'http://95.129.41.62:51647/iMaintAuthApi/',
+    AUTHENTICATION_SERVER: 'http://localhost:59602/',
 });
 CrowdFundingApp.constant('CFAuthUris', {
     GET_TOKEN: 'token'

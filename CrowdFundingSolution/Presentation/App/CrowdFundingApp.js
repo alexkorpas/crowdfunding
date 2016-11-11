@@ -17,7 +17,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
         .state('Home.Projects', {
             url: "/Projects",
             templateUrl: "/App/Views/Projects/ProjectsView.html",
-            controller: "ProjectsController",
+            controller: "TestController",
             data: {
                 requireLogin: _requiresLogin,
                 settings: {
@@ -36,6 +36,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         });
+    
 });
 CrowdFundingApp.run(function ($rootScope, $state, $location) {
     $rootScope.$on('$stateChangeStart', function (e, to, params, from) { // On state change (page change)

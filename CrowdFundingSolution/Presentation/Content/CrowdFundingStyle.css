@@ -3,7 +3,7 @@
 }
 
 #contentUI {
-    padding: 50px 0;
+    padding: 0px 0;
     min-height: 100%;
     background-color: azure;
 }
@@ -114,10 +114,8 @@ a {
 
 /* Footer */
 #footerwrap {
-    position: relative;
-    margin-top: -170px;
-    height: 220px;
-    padding-top: 20px;
+     padding-top: 60px;
+    padding-bottom: 60px;
     background: #384452;
 }
 
@@ -142,4 +140,35 @@ a {
 .hline-w {
 	border-bottom: 2px solid #ffffff;
 	margin-bottom: 25px;
+}
+.card {
+    position: relative;
+    display: block;
+    margin-bottom: .75rem;
+    background-color: #fff;
+    border-radius: .25rem;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.card-block {
+    padding: 1.25rem;
+}
+
+.card-title {
+    margin-bottom: .75rem;
+}
+.card-img-top {
+    border-top-right-radius: calc(.25rem - 1px);
+    border-top-left-radius: calc(.25rem - 1px);
+    max-width:100%
+}
+#blue {
+    background: #00b3fe;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    
+}
+#blueh {
+    color:#fff;
 }

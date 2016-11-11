@@ -5,3 +5,18 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
             $scope.Projects = res;
         });
     }]);
+
+
+CrowdFundingApp.controller('TestController', function ($scope, $http) {
+    // create a message to display in our view
+    $scope.message = 'contacts';
+    $http.get("call_queue.json")
+    .success(function (response) {
+        var $obj = JSON.stringify(response);
+        $scope.rows = response
+        var count = Object.keys(response).length;
+
+
+        console.log('scope is ' + count);
+    });
+});

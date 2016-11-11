@@ -1,9 +1,65 @@
-﻿<div>
-    This is the master page<br/> {{test}}<br/>
-    <a ui-sref="Home.Projects">
-        <i class="fa fa-folder-open-o"></i>
-        <span> Click here to open the projects</span>
-    </a>
-    <div id="contentUI" ui-view=""></div>
+﻿<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="Home">Our Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="Home"><span class="fa fa-sign-in"></span> Home</a></li>
+                <li><a ui-sref=""><span class="fa fa-compass"></span> Explore</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Guest's Options -->
+                <li><a ui-sref=""><span class="fa fa-user-plus" /> Sign Up</a></li>
+                <li><a ui-sref="Home.Login"><span class="fa fa-sign-in" /> Login</a></li>
+                <!-- User's Options -->
+                <li><a ui-sref=""><span class="fa fa-rocket" /> My Projects</a></li>
+                <li><a ui-sref=""><span class="fa fa-money" /> My funds</a></li>
+                <li><a ui-sref=""><span class="fa fa-user" /> Profile</a></li>
+                <li><a ui-sref=""><span class="fa fa-sign-out" /> Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-</div>
+<div id="contentUI" ui-view=""></div>
+
+<footer id="footerwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <h4>About</h4>
+                <div class="hline-w"></div>
+                <p>This is a project for 1st Coding School. Created by VivaTeam1</p>
+            </div>
+            <div class="col-lg-4">
+                <h4>Social Links</h4>
+                <div class="hline-w"></div>
+                <p>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-tumblr"></i></a>
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <h4>Creators</h4>
+                <div class="hline-w"></div>
+                <p>
+                    Ginakos Alexandros<br />
+                    Kalatzis Thodoris<br />
+                    Korpas-Kamarianos Alexandros<br />
+                    Makantasis Giorgos<br />
+                    Valasidis Dimitris<br />
+                </p>
+            </div>
+
+        </div>
+    </div>
+</footer>

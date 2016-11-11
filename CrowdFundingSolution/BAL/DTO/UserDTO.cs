@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BAL.DTO
 {
-    class UserDTO
+    public class UserDTO
     {
         public int User_Id { get; set; }
         public string Password { get; set; }

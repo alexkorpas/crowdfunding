@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BAL.DTO
 {
-    class ProjectFundingLevelDTO
+    public class ProjectFundingLevelDTO
     {
 
         public int Funding_Level_Id { get; set; }

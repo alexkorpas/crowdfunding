@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BAL.DTO
 {
-    class ProjectCategoryDTO
+    public class ProjectCategoryDTO
     {
 
         public int Category_Id { get; set; }

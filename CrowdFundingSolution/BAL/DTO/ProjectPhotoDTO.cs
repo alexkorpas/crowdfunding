@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace BAL.DTO
 {
-    class ProjectPhotoDTO
+    public class ProjectPhotoDTO
     {
         public int Photo_Id { get; set; }
         public int Project_Id { get; set; }

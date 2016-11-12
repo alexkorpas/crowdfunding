@@ -7,11 +7,14 @@
     <p style="margin:4px 0px 2px 0px">
         <input type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Email Address" ng-model="user.username" />
     </p>
-    <p style="margin:0px 0px 30px 0px">
+    <p style="margin:0px 0px 2px 0px">
         <input type="password" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Password" ng-model="user.password" />
+    </p>
+    <p style="margin:0px 0px 30px 0px">
+        <a ui-sref="Home.Register">Forgot password</a>
     </p>
     <p>
         <button class="btn btn-theme" ng-click="login()" style="width:300px; height:40px">Log in</button>
     </p>
-    <a href="">Don't have an account</a>
+    <a ui-sref="Home.Register">Don't have an account</a>
 </div>

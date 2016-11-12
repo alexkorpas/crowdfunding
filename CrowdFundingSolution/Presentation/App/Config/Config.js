@@ -1,4 +1,5 @@
-﻿CrowdFundingApp.constant('servers', {
+﻿/// <reference path="Config.js" />
+CrowdFundingApp.constant('servers', {
     CF_SERVER: 'http://localhost:52188/',
     AUTHENTICATION_SERVER: 'http://localhost:59602/oauth/',
 });

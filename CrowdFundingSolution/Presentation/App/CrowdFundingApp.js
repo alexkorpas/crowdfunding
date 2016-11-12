@@ -35,6 +35,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                     displayName: 'Login'
                 }
             }
+        })
+        .state('Home.Register', {
+            url: "/Register",
+            templateUrl: "/App/Views/Register/RegisterView.html",
+            controller: "RegisterController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Register'
+                }
+            }
         });
     
 });

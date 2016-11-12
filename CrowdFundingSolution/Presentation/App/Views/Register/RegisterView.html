@@ -1,0 +1,26 @@
+﻿<div id="headerwrap">
+    <div class="container">
+        <h1 style="font-size:26px; font-weight:100">Sign Up</h1>
+    </div> <!-- /container -->
+</div><!-- /headerwrap -->
+<div id="main-content" class="centered">
+    <p style="margin:4px 0px 2px 0px">
+        <input type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Name" ng-model="user.firstname" />
+    </p>
+    <p style="margin:4px 0px 2px 0px">
+        <input type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Email" ng-model="user.username" />
+    </p>
+    <p style="margin:4px 0px 2px 0px">
+        <input type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Re-enter email" ng-model="user.usernameChk" />
+    </p>
+    <p style="margin:0px 0px 2px 0px">
+        <input type="password" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Password" ng-model="user.password" />
+    </p>
+    <p style="margin:0px 0px 30px 0px">
+        <input type="password" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Re-enter password" ng-model="user.passwordChk" />
+    </p>
+    <p>
+        <button class="btn btn-theme" ng-click="singUp()" style="width:300px; height:40px">Sign me up!</button>
+    </p>
+    <a ui-sref="Home.Login">Already have an account</a>
+</div>

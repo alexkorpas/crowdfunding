@@ -68,6 +68,7 @@
     <Content Include="App\Controllers\HomeController.js" />
     <Content Include="App\Controllers\Login\LoginController.js" />
     <Content Include="App\Controllers\Projects\ProjectsController.js" />
+    <Content Include="App\Controllers\Register\RegisterController.js" />
     <Content Include="App\CrowdFundingApp.js" />
     <Content Include="App\Services\AuthService.js" />
     <Content Include="App\Services\CFHelpers.js" />
@@ -75,6 +76,7 @@
     <Content Include="App\Views\HomeView.html" />
     <Content Include="App\Views\Login\LoginView.html" />
     <Content Include="App\Views\Projects\ProjectsView.html" />
+    <Content Include="App\Views\Register\RegisterView.html" />
     <Content Include="Assets\post03.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

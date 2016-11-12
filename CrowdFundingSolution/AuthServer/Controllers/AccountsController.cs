@@ -75,7 +75,7 @@ namespace AuthServer.Controllers
             if (!addUserResult.Succeeded)
             {
                 return GetErrorResult(addUserResult);
-            }
+            }            
 
             string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 

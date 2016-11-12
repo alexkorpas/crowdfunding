@@ -15,16 +15,16 @@ namespace BAL.DTO
         public string Username { get; set; }
         public string Email_Primary { get; set; }
         public string Email_Secondary { get; set; }
-        public int Telephone { get; set; }
-        public int Mobile { get; set; }
+        public string Telephone { get; set; }
+        public string Mobile { get; set; }
         public string About { get; set; }
         public int Photo_Main_Id { get; set; }
-        public DateTime Date_Of_Birth { get; set; }
+        public DateTime? Date_Of_Birth { get; set; }
         public int Points { get; set; }
         public bool Is_Active { get; set; }
-        public DateTime Registration_Date { get; set; }
-        public DateTime Deletion_Date { get; set; }
-        public DateTime Blocked_Date { get; set; }
+        public DateTime? Registration_Date { get; set; }
+        public DateTime? Deletion_Date { get; set; }
+        public DateTime? Blocked_Date { get; set; }
         public bool Is_Admin { get; set; }
         public int Address_Id_Main { get; set; }
     }

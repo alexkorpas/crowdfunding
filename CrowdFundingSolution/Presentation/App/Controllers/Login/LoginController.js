@@ -1,6 +1,6 @@
 ﻿'use strict';
-CrowdFundingApp.controller('LoginController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService) {
+CrowdFundingApp.controller('LoginController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers',
+    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers) {
         //$scope.login = function () {
         //    alert("asds");
         //}

@@ -20,7 +20,7 @@ namespace AuthServer
                                 {
                                     ClientId = "099153c2625149bc8ecb3e85e03f0022",
                                     Base64Secret = "IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw",
-                                    Name = "ResourceServer.Api 1"
+                                    Name = "CrowdFundingClient"
                                 });
         }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Service
@@ -13,12 +14,12 @@ namespace Service
         /// </summary>
         /// <returns>List<ProjectDTO></returns>
         [HttpGet]
-        public HttpResponseMessage GetProjects(int ?id=null)
+        public async Task<HttpResponseMessage> GetProjects(int ?id=null)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjects(id);
+                var result = await repository.ReadProjects();
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -26,12 +27,12 @@ namespace Service
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProjectsByUser(int id)
+        public async Task<HttpResponseMessage> GetProjectsByUser(int id)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjectsByUserId(3);
+                var result =await repository.ReadProjectsByUserId(id);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -39,12 +40,12 @@ namespace Service
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProjectCategories()
+        public async Task<HttpResponseMessage> GetProjectCategories()
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjectCategories();
+                var result =await repository.ReadProjectCategories();
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -52,12 +53,12 @@ namespace Service
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProjectByCategory(int id)
+        public async Task<HttpResponseMessage> GetProjectByCategory(int id)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjectByCategory(id);
+                var result = await repository.ReadProjectByCategory(id);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -65,12 +66,12 @@ namespace Service
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProjectByState(int id)
+        public async Task<HttpResponseMessage> GetProjectByState(int id)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjectByState(id);
+                var result = await repository.ReadProjectByState(id);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -78,12 +79,12 @@ namespace Service
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProjectStates()
+        public async Task<HttpResponseMessage> GetProjectStates()
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjectStates();
+                var result = await repository.ReadProjectStates();
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -91,12 +92,12 @@ namespace Service
         }
 
         [HttpGet]
-        public HttpResponseMessage GetProjectPhotoById(int id)
+        public async Task<HttpResponseMessage> GetProjectPhotoById(int id)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = repository.ReadProjectPhotoById(id);
+                var result = await repository.ReadProjectPhotoById(id);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }

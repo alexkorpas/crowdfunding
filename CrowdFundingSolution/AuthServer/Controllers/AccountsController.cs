@@ -72,7 +72,7 @@ namespace AuthServer.Controllers
 
             IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, createUserModel.Password);
 
-            if (!addUserResult)
+            if (!addUserResult.Succeeded)
             {
                 return GetErrorResult(addUserResult);
             }            

@@ -17,7 +17,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
         .state('Home.Projects', {
             url: "/Projects",
             templateUrl: "/App/Views/Projects/ProjectsView.html",
-            controller: "TestController",
+            controller: "ProjectsController",
             data: {
                 requireLogin: _requiresLogin,
                 settings: {

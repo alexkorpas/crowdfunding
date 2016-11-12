@@ -75,6 +75,7 @@
     <Content Include="App\Services\RequestServices.js" />
     <Content Include="App\Views\HomeView.html" />
     <Content Include="App\Views\Login\LoginView.html" />
+    <Content Include="App\Views\Projects\ProjectPage.html" />
     <Content Include="App\Views\Projects\ProjectsView.html" />
     <Content Include="App\Views\Register\RegisterView.html" />
     <Content Include="Assets\post03.jpg" />

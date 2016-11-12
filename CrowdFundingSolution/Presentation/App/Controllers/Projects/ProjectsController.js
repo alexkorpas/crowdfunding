@@ -7,7 +7,14 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
             console.log(JSON.stringify(res));
         });
     }]);
-
+CrowdFundingApp.controller('ProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService',
+    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService) {
+        baseService.httpGetAnonymous("api/Project/GetProjects?id=" + $stateParams.ProjectId, null).then(function (res) {
+            $scope.ProjectId = $stateParams.ProjectId;
+            
+            console.log('Mpikame sto project me id' + $scope.ProjectId);
+        });
+    }]);
 
 //CrowdFundingApp.controller('TestController', function ($scope, $http) {
 //    // create a message to display in our view

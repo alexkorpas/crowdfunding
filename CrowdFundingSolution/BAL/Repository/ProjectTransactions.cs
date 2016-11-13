@@ -17,6 +17,7 @@ namespace BAL
         public async Task<List<ProjectDTO>> ReadProjects(int ?id=null)
         {
             if (id.Equals(null))
+                
             {
                 var db = new CrowdFundingViva1Entities();
                 List<ProjectDTO> resultList = new List<ProjectDTO>();
@@ -33,6 +34,7 @@ namespace BAL
                     Video = s.video,
                     Category_Id = s.category_id,
                     CategoryDesc = s.project_category != null ? s.project_category.description : null,
+                    CategotyName=s.project_category.title,
                     Due_Date = s.due_date,
                     Is_Active = s.is_active,
                     Created_Date = s.created_date,
@@ -48,6 +50,7 @@ namespace BAL
             else
             {
                 var db = new CrowdFundingViva1Entities();
+                Console.Write("Mpike");
                 List<ProjectDTO> resultList = new List<ProjectDTO>();
                 resultList = await db.project.Select(s => new ProjectDTO
                 {

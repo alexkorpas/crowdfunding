@@ -11,9 +11,11 @@ CrowdFundingApp.controller('ProjectController', ['$scope', '$state', 'ngDialog',
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService) {
         baseService.httpGetAnonymous("api/Project/GetProjects?id=" + $stateParams.ProjectId, null).then(function (res) {
             $scope.ProjectId = $stateParams.ProjectId;
-            
+            $scope.Project = res;
+            var obj = JSON.stringify(res);
             console.log('Mpikame sto project me id' + $scope.ProjectId);
         });
+        
     }]);
 
 //CrowdFundingApp.controller('TestController', function ($scope, $http) {

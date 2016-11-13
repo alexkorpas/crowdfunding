@@ -5,25 +5,27 @@
 </div><!-- /headerwrap -->
 <div id="main-content" class="centered">
     <p style="margin:4px 0px 2px 0px">
-        <input type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="First name" ng-model="user.firstname" />
+        <input id="firstNameTxt" type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="First name" ng-model="user.firstname" />
     </p>
     <p style="margin:4px 0px 2px 0px">
-        <input type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Last name" ng-model="user.lastname" />
+        <input id="lastNameTxt" type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Last name" ng-model="user.lastname" />
     </p>
     <p style="margin:4px 0px 2px 0px">
-        <input type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Email" ng-model="user.username" />
+        <input id="userNameTxt" type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Email" ng-model="user.username" />
     </p>
     <p style="margin:4px 0px 2px 0px">
-        <input type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Re-enter email" ng-model="user.usernameChk" />
+        <input id="userNameChkTxt" type="text" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Re-enter email" ng-model="user.usernameChk" />
     </p>
     <p style="margin:0px 0px 2px 0px">
-        <input type="password" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Password" ng-model="user.password" />
+        <input id="passwordTxt" type="password" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Password" ng-model="user.password" />
     </p>
     <p style="margin:0px 0px 30px 0px">
-        <input type="password" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Re-enter password" ng-model="user.passwordChk" />
+        <input id="passwordChkTxt" type="password" class="form-control" style="width:300px; height:40px; margin:0 auto;" placeholder="Re-enter password" ng-model="user.passwordChk" />
     </p>
     <p>
-        <button class="btn btn-theme" ng-click="singUp()" style="width:300px; height:40px">Sign me up!</button>
+        <button class="btn btn-theme" ng-click="singUp(true)" style="width:300px; height:40px">Sign me up!</button>
     </p>
     <a ui-sref="Home.Login">Already have an account</a>
+    <p ng-show="loading" style="margin-top:20px;"><img src="../../../Content/Images/spin.gif" style="height:50px; width:50px;" /></p>    
+    <p id="resultTxt" style="margin-top:20px; color:red"></p>
 </div>

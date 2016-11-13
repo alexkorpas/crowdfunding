@@ -52,6 +52,10 @@ a {
     border-color: #00b3fe;
 }
 
+.validator {
+    border-color: red;
+}
+
 /* Navigation Bar Style*/
 .navbar {
     min-height: 70px;

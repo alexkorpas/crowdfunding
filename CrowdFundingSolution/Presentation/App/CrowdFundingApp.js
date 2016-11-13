@@ -17,7 +17,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
         .state('Home.Projects', {
             url: "/Projects",
             templateUrl: "/App/Views/Projects/ProjectsView.html",
-            controller: "TestController",
+            controller: "ProjectsController",
             data: {
                 requireLogin: _requiresLogin,
                 settings: {
@@ -46,7 +46,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                     displayName: 'Register'
                 }
             }
-        });
+        })
+    //.state('new-qs', {
+    .state('Home.Project',{
+       // url: '/Project?portfolioId',
+        url: '/Project/:ProjectId',
+        templateUrl: "/App/Views/Projects/ProjectPage.html",
+        controller:'ProjectController'
+            //function ($scope, $stateParams) {
+            //$scope.portfolioId = $stateParams.portfolioId;
+      //  }
+    });
     
 });
 CrowdFundingApp.run(function ($rootScope, $state, $location) {

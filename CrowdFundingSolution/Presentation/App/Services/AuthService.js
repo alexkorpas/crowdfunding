@@ -25,7 +25,27 @@
             return deferred.promise;
         };
 
+        _httpPost = function (user) {
+            var urlData = null;
+            if (user != null && user != undefined)
+                if (user.username != null && user.password != null)
+                    urlData = "username=" + user.username + "&password=" + user.password + "&email=" + user.username + "&confirmpassword=" + user.passwordChk + "&firstname=" + user.firstname + "&lastname=" + user.lastname;
+
+            var deferred = $q.defer();
+
+            $http.post(
+                servers.AUTHENTICATION_SERVER_BASE + 'api/accounts/create', urlData, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, skipAuthorization: true }
+                ).success(function (data) {
+                    deferred.resolve(data)
+                }).error(function (err, status) {
+                    deferred.reject(err);
+                });
+
+            return deferred.promise;
+        }
+
         authServiceRes.token = _token;
+        authServiceRes.httpPost = _httpPost;
 
         return authServiceRes;
 

@@ -2,6 +2,7 @@
 CrowdFundingApp.constant('servers', {
     CF_SERVER: 'http://localhost:52188/',
     AUTHENTICATION_SERVER: 'http://localhost:59602/oauth/',
+    AUTHENTICATION_SERVER_BASE: 'http://localhost:59602/',
 });
 CrowdFundingApp.constant('CFAuthUris', {
     GET_TOKEN: 'token'

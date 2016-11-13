@@ -47,6 +47,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('Home.EmailConfirmed', {
+            url: "/EmailConfirmed",
+            templateUrl: "/App/Views/Email/EmailConfirmed.html",
+            controller: "EmailController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Email Confirmed'
+                }
+            }
+        })
     //.state('new-qs', {
     .state('Home.Project',{
        // url: '/Project?portfolioId',

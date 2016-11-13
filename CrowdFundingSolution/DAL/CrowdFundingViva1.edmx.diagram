@@ -11,22 +11,22 @@
         <EntityTypeShape EntityType="CrowdFundingViva1Model.project_funding_level" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CrowdFundingViva1Model.project_photo" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CrowdFundingViva1Model.project_state" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CrowdFundingViva1Model.user" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CrowdFundingViva1Model.user_address" Width="1.5" PointX="1.5" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CrowdFundingViva1Model.user_photo" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
         <AssociationConnector Association="CrowdFundingViva1Model.FK_payments_projects" ManuallyRouted="false" />
-        <AssociationConnector Association="CrowdFundingViva1Model.FK_payments_users" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingViva1Model.FK_project_funding_levels_projects" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingViva1Model.FK_project_photos_projects" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_project_categories" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_project_photos" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_project_states" ManuallyRouted="false" />
-        <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_users" ManuallyRouted="false" />
-        <AssociationConnector Association="CrowdFundingViva1Model.FK_user_addresses_users" ManuallyRouted="false" />
-        <AssociationConnector Association="CrowdFundingViva1Model.FK_user_photos_users" ManuallyRouted="false" />
-        <AssociationConnector Association="CrowdFundingViva1Model.FK_users_user_addresses" ManuallyRouted="false" />
-        <AssociationConnector Association="CrowdFundingViva1Model.FK_users_user_photos" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="CrowdFundingViva1Model.user" Width="1.5" PointX="0.625" PointY="7.75" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_payments_users" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_projects_users" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_user_addresses_users" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_user_photos_users" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_users_user_addresses" />
+        <AssociationConnector Association="CrowdFundingViva1Model.FK_users_user_photos" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

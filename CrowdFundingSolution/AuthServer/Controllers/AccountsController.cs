@@ -79,7 +79,7 @@ namespace AuthServer.Controllers
 
             string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 
-            var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = user.Id, code = code }));
+            var callbackUrl = "http://localhost:52298/#/Home/EmailConfirmed?userId=" + user.Id + "&code=" + code;//new Uri(Url.Link("ConfirmEmailRoute", new { userId = user.Id, code = code }));
 
             await this.AppUserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
            

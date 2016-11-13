@@ -15,6 +15,7 @@ namespace BAL
         public int? Photo_Id_Main { get; set; }
         public string Video { get; set; }
         public int? Category_Id { get; set; }
+        public string CategoryDesc { get; set; }
         public DateTime? Due_Date { get; set; }
         public bool Is_Active { get; set; }
         public DateTime Created_Date { get; set; }

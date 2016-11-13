@@ -75,7 +75,7 @@ namespace BAL
             
         }
 
-        public List<ProjectDTO> ReadProjectsByUserId(int id)
+        public async Task<List<ProjectDTO>> ReadProjectsByUserId(int id)
         {
             var db = new CrowdFundingViva1Entities();
             List<ProjectDTO> resultList = new List<ProjectDTO>();

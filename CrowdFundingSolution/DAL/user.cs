@@ -42,6 +42,7 @@ namespace DAL
         public Nullable<System.DateTime> blocked_date { get; set; }
         public bool is_admin { get; set; }
         public Nullable<int> address_id_main { get; set; }
+        public string IdentityFK { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<payment> payment { get; set; }

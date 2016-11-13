@@ -52,6 +52,10 @@ a {
     border-color: #00b3fe;
 }
 
+.validator {
+    border-color: red;
+}
+
 /* Navigation Bar Style*/
 .navbar {
     min-height: 70px;
@@ -148,6 +152,8 @@ a {
     background-color: #fff;
     border-radius: .25rem;
     border: 1px solid rgba(0,0,0,.125);
+    max-height: 400px;
+    min-height: 400px;
 }
 .card-block {
     padding: 1.25rem;
@@ -171,4 +177,8 @@ a {
 }
 #blueh {
     color:#fff;
+}
+.mtb {
+    margin-top: 80px;
+    margin-bottom: 80px;
 }

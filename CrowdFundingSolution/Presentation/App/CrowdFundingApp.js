@@ -17,7 +17,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
         .state('Home.Projects', {
             url: "/Projects",
             templateUrl: "/App/Views/Projects/ProjectsView.html",
-            controller: "TestController",
+            controller: "ProjectsController",
             data: {
                 requireLogin: _requiresLogin,
                 settings: {
@@ -46,11 +46,46 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                     displayName: 'Register'
                 }
             }
-        });
+        })
+        .state('Home.RegistrationSubmitted', {
+            url: "/RegistrationSubmitted",
+            templateUrl: "/App/Views/Register/RegistrationSubmitted.html",
+            //controller: "EmailController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Email Confirmed'
+                }
+            }
+        })
+        .state('Home.EmailConfirmed', {
+            url: "/EmailConfirmed/:userId/*code",
+            templateUrl: "/App/Views/Email/EmailConfirmed.html",
+            controller: "EmailController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Email Confirmed'
+                }
+            }
+        })
+    //.state('new-qs', {
+    .state('Home.Project',{
+       // url: '/Project?portfolioId',
+        url: '/Project/:ProjectId',
+        templateUrl: "/App/Views/Projects/ProjectPage.html",
+        controller:'ProjectController'
+            //function ($scope, $stateParams) {
+            //$scope.portfolioId = $stateParams.portfolioId;
+      //  }
+    });
     
 });
-CrowdFundingApp.run(function ($rootScope, $state, $location) {
+CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers) {
     $rootScope.$on('$stateChangeStart', function (e, to, params, from) { // On state change (page change)
-
+        if (CFHelpers.getToken() == null)
+            $rootScope.isLogged = false;
+        else
+            $rootScope.isLogged = true;
     });
 });

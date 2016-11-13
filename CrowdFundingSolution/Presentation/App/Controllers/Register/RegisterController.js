@@ -17,8 +17,7 @@ CrowdFundingApp.controller('RegisterController', ['$scope', '$state', 'ngDialog'
             //promise.then(function (data) {
                 //CFHelpers.saveToken(data);
                 //save was successfull and take loggedin use details//
-                var logUserpromise = baseService.httpGet('api/User/GetLoggedInUser');
-                logUserpromise.then(function (data) {
+            authService.httpPost($scope.user).then(function (data) {
                     //$scope.loginLoading = false;
                     //CFHelpers.setLogUser(data);
                     $state.go('Home.Projects');
@@ -26,7 +25,7 @@ CrowdFundingApp.controller('RegisterController', ['$scope', '$state', 'ngDialog'
                     //$scope.loginLoading = false;
                 });
 
-            }, function (err) {
+            //}, function (err) {
                 //$scope.loginLoading = false;
                 //$scope.invalid = true;
             //});

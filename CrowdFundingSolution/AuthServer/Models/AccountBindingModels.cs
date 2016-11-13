@@ -17,11 +17,11 @@ namespace AuthServer.Models
         [Display(Name = "Username")]
         public string Username { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
@@ -34,7 +34,7 @@ namespace AuthServer.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Required]
+        //[Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]

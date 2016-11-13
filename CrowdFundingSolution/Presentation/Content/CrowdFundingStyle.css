@@ -148,6 +148,8 @@ a {
     background-color: #fff;
     border-radius: .25rem;
     border: 1px solid rgba(0,0,0,.125);
+    max-height: 400px;
+    min-height: 400px;
 }
 .card-block {
     padding: 1.25rem;

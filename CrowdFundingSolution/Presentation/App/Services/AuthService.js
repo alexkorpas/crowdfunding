@@ -29,7 +29,7 @@
             var urlData = null;
             if (user != null && user != undefined)
                 if (user.username != null && user.password != null)
-                    urlData = "username=alex&password=" + user.password + "&email=" + user.username + "&confirmpassword=" + user.passwordChk + "&firstname=fuck&lastname=fuck2";
+                    urlData = "username=" + user.username + "&password=" + user.password + "&email=" + user.username + "&confirmpassword=" + user.passwordChk + "&firstname=" + user.firstname + "&lastname=" + user.lastname;
 
             var deferred = $q.defer();
 

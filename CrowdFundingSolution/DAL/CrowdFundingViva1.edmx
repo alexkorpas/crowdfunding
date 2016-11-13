@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CrowdFundingViva1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CrowdFundingViva1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="payment">
           <Key>
             <PropertyRef Name="payment_id" />
@@ -100,6 +100,7 @@
           <Property Name="blocked_date" Type="datetime" />
           <Property Name="is_admin" Type="bit" Nullable="false" />
           <Property Name="address_id_main" Type="int" />
+          <Property Name="IdentityFK" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="user_address">
           <Key>
@@ -326,8 +327,7 @@
             <End Role="user" EntitySet="user" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CrowdFundingViva1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -345,7 +345,7 @@
           <Property Name="refunded_amount" Type="DateTime" Precision="3" />
           <Property Name="refunded_date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="project" Relationship="Self.FK_payments_projects" FromRole="payment" ToRole="project" />
-          <NavigationProperty Name="user" Relationship="Self.FK_payments_users" FromRole="payment" ToRole="user" />
+          <NavigationProperty Name="user" Relationship="CrowdFundingViva1Model.FK_payments_users" FromRole="payment" ToRole="user" />
         </EntityType>
         <EntityType Name="project">
           <Key>
@@ -375,7 +375,7 @@
           <NavigationProperty Name="project_category" Relationship="Self.FK_projects_project_categories" FromRole="project" ToRole="project_category" />
           <NavigationProperty Name="project_photo1" Relationship="Self.FK_projects_project_photos" FromRole="project" ToRole="project_photo" />
           <NavigationProperty Name="project_state" Relationship="Self.FK_projects_project_states" FromRole="project" ToRole="project_state" />
-          <NavigationProperty Name="user" Relationship="Self.FK_projects_users" FromRole="project" ToRole="user" />
+          <NavigationProperty Name="user" Relationship="CrowdFundingViva1Model.FK_projects_users" FromRole="project" ToRole="user" />
         </EntityType>
         <EntityType Name="project_category">
           <Key>
@@ -417,36 +417,6 @@
           <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="project" Relationship="Self.FK_projects_project_states" FromRole="project_state" ToRole="project" />
         </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email_primary" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email_secondary" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="about" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="photo_main_id" Type="Int32" />
-          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="points" Type="Int32" Nullable="false" />
-          <Property Name="is_active" Type="Boolean" Nullable="false" />
-          <Property Name="registration_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="deletion_date" Type="DateTime" Precision="3" />
-          <Property Name="blocked_date" Type="DateTime" Precision="3" />
-          <Property Name="is_admin" Type="Boolean" Nullable="false" />
-          <Property Name="address_id_main" Type="Int32" />
-          <NavigationProperty Name="payment" Relationship="Self.FK_payments_users" FromRole="user" ToRole="payment" />
-          <NavigationProperty Name="project" Relationship="Self.FK_projects_users" FromRole="user" ToRole="project" />
-          <NavigationProperty Name="user_address" Relationship="Self.FK_user_addresses_users" FromRole="user" ToRole="user_address" />
-          <NavigationProperty Name="user_photo" Relationship="Self.FK_user_photos_users" FromRole="user" ToRole="user_photo" />
-          <NavigationProperty Name="user_address1" Relationship="Self.FK_users_user_addresses" FromRole="user" ToRole="user_address" />
-          <NavigationProperty Name="user_photo1" Relationship="Self.FK_users_user_photos" FromRole="user" ToRole="user_photo" />
-        </EntityType>
         <EntityType Name="user_address">
           <Key>
             <PropertyRef Name="address_id" />
@@ -460,8 +430,8 @@
           <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="postal_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK_user_addresses_users" FromRole="user_address" ToRole="user" />
-          <NavigationProperty Name="user1" Relationship="Self.FK_users_user_addresses" FromRole="user_address" ToRole="user" />
+          <NavigationProperty Name="user" Relationship="CrowdFundingViva1Model.FK_user_addresses_users" FromRole="user_address" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="CrowdFundingViva1Model.FK_users_user_addresses" FromRole="user_address" ToRole="user" />
         </EntityType>
         <EntityType Name="user_photo">
           <Key>
@@ -470,9 +440,9 @@
           <Property Name="user_photo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK_user_photos_users" FromRole="user_photo" ToRole="user" />
-          <NavigationProperty Name="user1" Relationship="Self.FK_users_user_photos" FromRole="user_photo" ToRole="user" />
-        </EntityType>
+          <NavigationProperty Name="user" Relationship="CrowdFundingViva1Model.FK_user_photos_users" FromRole="user_photo" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="CrowdFundingViva1Model.FK_users_user_photos" FromRole="user_photo" ToRole="user" />
+          </EntityType>
         <Association Name="FK_payments_projects">
           <End Role="project" Type="Self.project" Multiplicity="1" />
           <End Role="payment" Type="Self.payment" Multiplicity="*" />
@@ -482,18 +452,6 @@
             </Principal>
             <Dependent Role="payment">
               <PropertyRef Name="project_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_payments_users">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="payment" Type="Self.payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="payment">
-              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -557,82 +515,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_projects_users">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="project" Type="Self.project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="project">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_user_addresses_users">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_address" Type="Self.user_address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="user_address">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_user_photos_users">
-          <End Role="user" Type="Self.user" Multiplicity="1" />
-          <End Role="user_photo" Type="Self.user_photo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="user_photo">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_user_addresses">
-          <End Role="user_address" Type="Self.user_address" Multiplicity="0..1" />
-          <End Role="user" Type="Self.user" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user_address">
-              <PropertyRef Name="address_id" />
-            </Principal>
-            <Dependent Role="user">
-              <PropertyRef Name="address_id_main" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_user_photos">
-          <End Role="user_photo" Type="Self.user_photo" Multiplicity="0..1" />
-          <End Role="user" Type="Self.user" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user_photo">
-              <PropertyRef Name="user_photo_id" />
-            </Principal>
-            <Dependent Role="user">
-              <PropertyRef Name="photo_main_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="CrowdFundingViva1Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CrowdFundingViva1Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="payment" EntityType="Self.payment" />
           <EntitySet Name="project" EntityType="Self.project" />
           <EntitySet Name="project_category" EntityType="Self.project_category" />
           <EntitySet Name="project_funding_level" EntityType="Self.project_funding_level" />
           <EntitySet Name="project_photo" EntityType="Self.project_photo" />
           <EntitySet Name="project_state" EntityType="Self.project_state" />
-          <EntitySet Name="user" EntityType="Self.user" />
           <EntitySet Name="user_address" EntityType="Self.user_address" />
           <EntitySet Name="user_photo" EntityType="Self.user_photo" />
           <AssociationSet Name="FK_payments_projects" Association="Self.FK_payments_projects">
             <End Role="project" EntitySet="project" />
-            <End Role="payment" EntitySet="payment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_payments_users" Association="Self.FK_payments_users">
-            <End Role="user" EntitySet="user" />
             <End Role="payment" EntitySet="payment" />
           </AssociationSet>
           <AssociationSet Name="FK_project_funding_levels_projects" Association="Self.FK_project_funding_levels_projects">
@@ -655,33 +548,141 @@
             <End Role="project_state" EntitySet="project_state" />
             <End Role="project" EntitySet="project" />
           </AssociationSet>
-          <AssociationSet Name="FK_projects_users" Association="Self.FK_projects_users">
+          <EntitySet Name="user" EntityType="CrowdFundingViva1Model.user" />
+          <AssociationSet Name="FK_payments_users" Association="CrowdFundingViva1Model.FK_payments_users">
+            <End Role="user" EntitySet="user" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_projects_users" Association="CrowdFundingViva1Model.FK_projects_users">
             <End Role="user" EntitySet="user" />
             <End Role="project" EntitySet="project" />
           </AssociationSet>
-          <AssociationSet Name="FK_user_addresses_users" Association="Self.FK_user_addresses_users">
+          <AssociationSet Name="FK_user_addresses_users" Association="CrowdFundingViva1Model.FK_user_addresses_users">
             <End Role="user" EntitySet="user" />
             <End Role="user_address" EntitySet="user_address" />
           </AssociationSet>
-          <AssociationSet Name="FK_user_photos_users" Association="Self.FK_user_photos_users">
+          <AssociationSet Name="FK_user_photos_users" Association="CrowdFundingViva1Model.FK_user_photos_users">
             <End Role="user" EntitySet="user" />
             <End Role="user_photo" EntitySet="user_photo" />
           </AssociationSet>
-          <AssociationSet Name="FK_users_user_addresses" Association="Self.FK_users_user_addresses">
+          <AssociationSet Name="FK_users_user_addresses" Association="CrowdFundingViva1Model.FK_users_user_addresses">
             <End Role="user_address" EntitySet="user_address" />
             <End Role="user" EntitySet="user" />
           </AssociationSet>
-          <AssociationSet Name="FK_users_user_photos" Association="Self.FK_users_user_photos">
+          <AssociationSet Name="FK_users_user_photos" Association="CrowdFundingViva1Model.FK_users_user_photos">
             <End Role="user_photo" EntitySet="user_photo" />
             <End Role="user" EntitySet="user" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email_primary" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="email_secondary" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="about" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="photo_main_id" Type="Int32" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="points" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <Property Name="registration_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="deletion_date" Type="DateTime" Precision="3" />
+          <Property Name="blocked_date" Type="DateTime" Precision="3" />
+          <Property Name="is_admin" Type="Boolean" Nullable="false" />
+          <Property Name="address_id_main" Type="Int32" />
+          <Property Name="IdentityFK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="payment" Relationship="CrowdFundingViva1Model.FK_payments_users" FromRole="user" ToRole="payment" />
+          <NavigationProperty Name="project" Relationship="CrowdFundingViva1Model.FK_projects_users" FromRole="user" ToRole="project" />
+          <NavigationProperty Name="user_address" Relationship="CrowdFundingViva1Model.FK_user_addresses_users" FromRole="user" ToRole="user_address" />
+          <NavigationProperty Name="user_photo" Relationship="CrowdFundingViva1Model.FK_user_photos_users" FromRole="user" ToRole="user_photo" />
+          <NavigationProperty Name="user_address1" Relationship="CrowdFundingViva1Model.FK_users_user_addresses" FromRole="user" ToRole="user_address" />
+          <NavigationProperty Name="user_photo1" Relationship="CrowdFundingViva1Model.FK_users_user_photos" FromRole="user" ToRole="user_photo" />
+        </EntityType>
+        <Association Name="FK_payments_users">
+          <End Type="CrowdFundingViva1Model.user" Role="user" Multiplicity="1" />
+          <End Type="CrowdFundingViva1Model.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_projects_users">
+          <End Type="CrowdFundingViva1Model.user" Role="user" Multiplicity="1" />
+          <End Type="CrowdFundingViva1Model.project" Role="project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_addresses_users">
+          <End Type="CrowdFundingViva1Model.user" Role="user" Multiplicity="1" />
+          <End Type="CrowdFundingViva1Model.user_address" Role="user_address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="user_address">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_photos_users">
+          <End Type="CrowdFundingViva1Model.user" Role="user" Multiplicity="1" />
+          <End Type="CrowdFundingViva1Model.user_photo" Role="user_photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="user_photo">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_user_addresses">
+          <End Type="CrowdFundingViva1Model.user_address" Role="user_address" Multiplicity="0..1" />
+          <End Type="CrowdFundingViva1Model.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_address">
+              <PropertyRef Name="address_id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="address_id_main" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_user_photos">
+          <End Type="CrowdFundingViva1Model.user_photo" Role="user_photo" Multiplicity="0..1" />
+          <End Type="CrowdFundingViva1Model.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_photo">
+              <PropertyRef Name="user_photo_id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="photo_main_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CrowdFundingViva1ModelStoreContainer" CdmEntityContainer="CrowdFundingViva1Entities1">
+        <EntityContainerMapping StorageEntityContainer="CrowdFundingViva1ModelStoreContainer" CdmEntityContainer="CrowdFundingViva1Entities">
           <EntitySetMapping Name="payment">
             <EntityTypeMapping TypeName="CrowdFundingViva1Model.payment">
               <MappingFragment StoreEntitySet="payment">
@@ -760,31 +761,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="user">
-            <EntityTypeMapping TypeName="CrowdFundingViva1Model.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="firstname" ColumnName="firstname" />
-                <ScalarProperty Name="lastname" ColumnName="lastname" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="email_primary" ColumnName="email_primary" />
-                <ScalarProperty Name="email_secondary" ColumnName="email_secondary" />
-                <ScalarProperty Name="telephone" ColumnName="telephone" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="about" ColumnName="about" />
-                <ScalarProperty Name="photo_main_id" ColumnName="photo_main_id" />
-                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
-                <ScalarProperty Name="points" ColumnName="points" />
-                <ScalarProperty Name="is_active" ColumnName="is_active" />
-                <ScalarProperty Name="registration_date" ColumnName="registration_date" />
-                <ScalarProperty Name="deletion_date" ColumnName="deletion_date" />
-                <ScalarProperty Name="blocked_date" ColumnName="blocked_date" />
-                <ScalarProperty Name="is_admin" ColumnName="is_admin" />
-                <ScalarProperty Name="address_id_main" ColumnName="address_id_main" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="user_address">
             <EntityTypeMapping TypeName="CrowdFundingViva1Model.user_address">
               <MappingFragment StoreEntitySet="user_address">
@@ -806,6 +782,32 @@
                 <ScalarProperty Name="user_photo_id" ColumnName="user_photo_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="CrowdFundingViva1Model.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="IdentityFK" ColumnName="IdentityFK" />
+                <ScalarProperty Name="address_id_main" ColumnName="address_id_main" />
+                <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+                <ScalarProperty Name="blocked_date" ColumnName="blocked_date" />
+                <ScalarProperty Name="deletion_date" ColumnName="deletion_date" />
+                <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="points" ColumnName="points" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="photo_main_id" ColumnName="photo_main_id" />
+                <ScalarProperty Name="about" ColumnName="about" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="email_secondary" ColumnName="email_secondary" />
+                <ScalarProperty Name="email_primary" ColumnName="email_primary" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

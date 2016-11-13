@@ -47,8 +47,19 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('Home.RegistrationSubmitted', {
+            url: "/RegistrationSubmitted",
+            templateUrl: "/App/Views/Register/RegistrationSubmitted.html",
+            //controller: "EmailController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Email Confirmed'
+                }
+            }
+        })
         .state('Home.EmailConfirmed', {
-            url: "/EmailConfirmed",
+            url: "/EmailConfirmed/:userId/*code",
             templateUrl: "/App/Views/Email/EmailConfirmed.html",
             controller: "EmailController",
             data: {
@@ -70,8 +81,11 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
     });
     
 });
-CrowdFundingApp.run(function ($rootScope, $state, $location) {
+CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers) {
     $rootScope.$on('$stateChangeStart', function (e, to, params, from) { // On state change (page change)
-
+        if (CFHelpers.getToken() == null)
+            $rootScope.isLogged = false;
+        else
+            $rootScope.isLogged = true;
     });
 });

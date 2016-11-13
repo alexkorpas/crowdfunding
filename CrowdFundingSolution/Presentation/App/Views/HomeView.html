@@ -15,13 +15,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!-- Guest's Options -->
-                <li ><a ui-sref="Home.Register"><span class="fa fa-user-plus" /> Sign Up</a></li>
-                <li><a ui-sref="Home.Login"><span class="fa fa-sign-in" /> Login</a></li>
+                <li ng-show="!isLogged"><a ui-sref="Home.Register"><span class="fa fa-user-plus" /> Sign Up</a></li>
+                <li ng-show="!isLogged"><a ui-sref="Home.Login"><span class="fa fa-sign-in" /> Login</a></li>
                 <!-- User's Options -->
-                <li><a href=""><span class="fa fa-rocket" /> My Projects</a></li>
-                <li><a href=""><span class="fa fa-money" /> My funds</a></li>
-                <li><a href=""><span class="fa fa-user" /> Profile</a></li>
-                <li><a href=""><span class="fa fa-sign-out" /> Sign Out</a></li>
+                <li ng-show="isLogged"><a href=""><span class="fa fa-rocket" /> My Projects</a></li>
+                <li ng-show="isLogged"><a href=""><span class="fa fa-money" /> My funds</a></li>
+                <li ng-show="isLogged"><a href=""><span class="fa fa-user" /> Profile</a></li>
+                <li ng-show="isLogged"><a href="" ng-click="logout()"><span class="fa fa-sign-out" /> Sign Out</a></li>
             </ul>
         </div>
     </div>

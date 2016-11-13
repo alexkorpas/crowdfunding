@@ -1,11 +1,11 @@
 ﻿'use strict';
-CrowdFundingApp.controller('EmailController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', '$q', 'servers',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, $q, servers) {
+CrowdFundingApp.controller('EmailController', ['$scope', '$state', '$filter', '$element', '$http', '$stateParams', 'authService', '$q', 'servers',
+    function ($scope, $state, $filter, $element, $http, $stateParams, authService, $q, servers) {
         var _confirm = function () {
-            var urlData = $stateParams;
+            //var urlData = "userId=" + $stateParams.userId + "&code=" + $stateParams.code;
             var deferred = $q.defer();
             $http.get(
-                servers.AUTHENTICATION_SERVER_BASE + 'api/accounts/ConfirmEmail', urlData, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, skipAuthorization: true }
+                servers.AUTHENTICATION_SERVER_BASE + 'api/accounts/confirmemail?userId=' + $stateParams.userId + "&code=" + $stateParams.code, null, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, skipAuthorization: true }
                 ).success(function (data) {
                     deferred.resolve(data)
                 }).error(function (err, status) {

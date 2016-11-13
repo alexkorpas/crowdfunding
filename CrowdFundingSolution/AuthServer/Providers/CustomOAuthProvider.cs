@@ -39,7 +39,7 @@ namespace AuthServer.Providers
 
             if (!user.EmailConfirmed)
             {
-                context.SetError("invalid_grant", "User did not confirm email.");
+                context.SetError("invalid_grant", "This email address has not been confirmed.");
                 return;
             }
 

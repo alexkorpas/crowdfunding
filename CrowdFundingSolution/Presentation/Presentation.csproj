@@ -82,6 +82,7 @@
     <Content Include="App\Views\Register\RegisterView.html" />
     <Content Include="Assets\post01.jpg" />
     <Content Include="Assets\post02.jpg" />
+    <Content Include="App\Views\Register\RegistrationSubmitted.html" />
     <Content Include="Assets\post03.jpg" />
     <Content Include="Assets\t-back.jpg" />
     <Content Include="Assets\thumb01.jpg" />
@@ -95,6 +96,7 @@
     <Content Include="Content\CrowdFundingStyle.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\spin.gif" />
     <Content Include="Content\loading-bar.css" />
     <Content Include="Content\loading-bar.min.css" />
     <Content Include="Content\ngDialog-theme-default.css" />

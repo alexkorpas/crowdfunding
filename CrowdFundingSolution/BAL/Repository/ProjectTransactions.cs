@@ -34,7 +34,7 @@ namespace BAL
                     Video = s.video,
                     Category_Id = s.category_id,
                     CategoryDesc = s.project_category != null ? s.project_category.description : null,
-                    CategotyName=s.project_category.title,
+                    CategoryName = s.project_category.title,
                     Due_Date = s.due_date,
                     Is_Active = s.is_active,
                     Created_Date = s.created_date,
@@ -50,9 +50,11 @@ namespace BAL
             else
             {
                 var db = new CrowdFundingViva1Entities();
-                Console.Write("Mpike");
+                //Console.Write("Mpike");
                 List<ProjectDTO> resultList = new List<ProjectDTO>();
-                resultList = await db.project.Select(s => new ProjectDTO
+                resultList = await db.project
+                    .Where(s => s.project_id == id)
+                    .Select(s => new ProjectDTO
                 {
                     Project_Id = s.project_id,
                     Description = s.description,
@@ -73,7 +75,7 @@ namespace BAL
                     Blocked_Date = s.blocked_date,
                     State_Id = s.state_id,
                     Website = s.website
-                }).Where(s => s.Project_Id==id).ToListAsync();
+                }).ToListAsync();
 
                 return resultList;
             }
@@ -84,7 +86,9 @@ namespace BAL
         {
             var db = new CrowdFundingViva1Entities();
             List<ProjectDTO> resultList = new List<ProjectDTO>();
-            resultList = await db.project.Select(s => new ProjectDTO
+            resultList = await db.project
+                .Where(s => s.user_id == id)
+                .Select(s => new ProjectDTO
             {
                 Project_Id = s.project_id,
                 Description = s.description,
@@ -104,7 +108,7 @@ namespace BAL
                 Blocked_Date = s.blocked_date,
                 State_Id = s.state_id,
                 Website = s.website
-            }).Where(s => s.User_Id == id).ToListAsync();
+            }).ToListAsync();
 
             return resultList;
         }
@@ -113,7 +117,9 @@ namespace BAL
         {
             var db = new CrowdFundingViva1Entities();
             List<ProjectDTO> resultList = new List<ProjectDTO>();
-            resultList = await db.project.Select(s => new ProjectDTO
+            resultList = await db.project
+                .Where(s => s.state_id.Equals(id))
+                .Select(s => new ProjectDTO
             {
                 Project_Id = s.project_id,
                 Description = s.description,
@@ -133,7 +139,7 @@ namespace BAL
                 Blocked_Date = s.blocked_date,
                 State_Id = s.state_id,
                 Website = s.website
-            }).Where(s => s.State_Id.Equals(id)).ToListAsync();
+            }).ToListAsync();
 
             return resultList;
         }
@@ -142,11 +148,13 @@ namespace BAL
         {
             var db = new CrowdFundingViva1Entities();
             List<ProjectPhotoDTO> resultList = new List<ProjectPhotoDTO>();
-            resultList = await db.project_photo.Select(s => new ProjectPhotoDTO
+            resultList = await db.project_photo
+                .Where(s => s.photo_id == id)
+                .Select(s => new ProjectPhotoDTO
             {
                 Photo_Id = s.photo_id,
                 Photo = s.photo
-            }).Where(s=> s.Photo_Id==id).ToListAsync();
+            }).ToListAsync();
 
             return resultList;
         }
@@ -169,7 +177,9 @@ namespace BAL
         {
             var db = new CrowdFundingViva1Entities();
             List<ProjectDTO> resultList = new List<ProjectDTO>();
-            resultList = await db.project.Select(s => new ProjectDTO
+            resultList = await db.project
+                .Where(s => s.category_id.Equals(id))
+                .Select(s => new ProjectDTO
             {
                 Project_Id = s.project_id,
                 Description = s.description,
@@ -189,7 +199,7 @@ namespace BAL
                 Blocked_Date = s.blocked_date,
                 State_Id = s.state_id,
                 Website = s.website
-            }).Where(s => s.Category_Id.Equals(id)).ToListAsync();
+            }).ToListAsync();
 
             return resultList;
         }
@@ -208,11 +218,15 @@ namespace BAL
             return resultList;
         }
 
-        public async Task<List<ProjectDTO>> ReadProjectByKeyword(string keyword)
+        public async Task<List<ProjectDTO>> SearchProjectsByKeyword(string keyword)
         {
             var db = new CrowdFundingViva1Entities();
             List<ProjectDTO> resultList = new List<ProjectDTO>();
-            resultList = await db.project.Select(s => new ProjectDTO
+            resultList = await db.project
+                .Where(s =>     s.title.Contains(keyword) ||
+                                s.short_description.Contains(keyword)
+                )
+                .Select(s => new ProjectDTO
             {
                 Project_Id = s.project_id,
                 Description = s.description,
@@ -232,10 +246,7 @@ namespace BAL
                 Blocked_Date = s.blocked_date,
                 State_Id = s.state_id,
                 Website = s.website
-            }).Where(   s =>    s.Title.Contains(keyword)  || 
-                                s.Description.Contains(keyword) ||
-                                s.Short_Description.Contains(keyword)
-                    ) .ToListAsync();
+            }).ToListAsync();
 
             return resultList;
         }

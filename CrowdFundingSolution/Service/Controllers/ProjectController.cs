@@ -110,7 +110,7 @@ namespace Service
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = await repository.ReadProjectByKeyword(keyword);
+                var result = await repository.SearchProjectsByKeyword(keyword);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }

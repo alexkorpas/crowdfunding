@@ -19,7 +19,7 @@ namespace Service
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = await repository.ReadProjects();
+                var result = await repository.ReadProjects(id);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }
@@ -98,6 +98,19 @@ namespace Service
             {
                 var repository = new CrowdFundingTransactions();
                 var result = await repository.ReadProjectPhotoById(id);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        }
+
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetSearchProjects(string keyword)
+        {
+            try
+            {
+                var repository = new CrowdFundingTransactions();
+                var result = await repository.ReadProjectByKeyword(keyword);
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }

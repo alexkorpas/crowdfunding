@@ -10,19 +10,19 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a ui-sref="Home"><span class="fa fa-sign-in"></span> Home</a></li>
-                <li><a ui-sref="Home.Projects"><span class="fa fa-compass"></span> Explore</a></li>
+                <li><a ui-sref="Home"><i class="fa fa-sign-in" /> Home</a></li>
+                <li><a ui-sref="Home.Projects"><i class="fa fa-compass" /> Explore</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href=""><span class="fa fa-plus" /> Create a Project</a></li>
+                <li><a href=""><i class="fa fa-plus" /> Create a Project</a></li>
                 <!-- Guest's Options -->
-                <li ng-show="!isLogged"><a ui-sref="Home.Register"><span class="fa fa-user-plus" /> Sign Up</a></li>
-                <li ng-show="!isLogged"><a ui-sref="Home.Login"><span class="fa fa-sign-in" /> Login</a></li>
+                <li ng-show="!isLogged"><a ui-sref="Home.Register"><i class="fa fa-user-plus" /> Sign Up</a></li>
+                <li ng-show="!isLogged"><a ui-sref="Home.Login"><i class="fa fa-sign-in" /> Login</a></li>
                 <!-- User's Options -->
-                <li ng-show="isLogged"><a href=""><span class="fa fa-rocket" /> My Projects</a></li>
-                <li ng-show="isLogged"><a href=""><span class="fa fa-money" /> My funds</a></li>
-                <li ng-show="isLogged"><a href=""><span class="fa fa-user" /> Profile</a></li>
-                <li ng-show="isLogged"><a href="" ng-click="logout()"><span class="fa fa-sign-out" /> Sign Out</a></li>
+                <li ng-show="isLogged"><a href=""><i class="fa fa-rocket" /> My Projects</a></li>
+                <li ng-show="isLogged"><a href=""><i class="fa fa-money" /> My funds</a></li>
+                <li ng-show="isLogged"><a href=""><i class="fa fa-user" /> Profile</a></li>
+                <li ng-show="isLogged"><a href="" ng-click="logout()"><i class="fa fa-sign-out" /> Sign Out</a></li>
             </ul>
         </div>
     </div>

@@ -119,6 +119,17 @@ a:focus {
     text-align: center;
 }
 
+.navbar-default .navbar-nav > li > a > i {
+    visibility: hidden;
+}
+
+.navbar-default .navbar-nav > li > a:hover >
+.navbar-default .navbar-nav > .active > a > i,
+.navbar-default .navbar-nav > .active > a:hover > i,
+.navbar-default .navbar-nav > .active > a:focus >i {
+    visibility: visible
+}
+
 /* Header */
 #headerwrap {
     background-color: #00b3fe;

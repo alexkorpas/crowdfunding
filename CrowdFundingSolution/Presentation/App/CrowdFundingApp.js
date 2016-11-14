@@ -59,7 +59,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('Home.EmailConfirmed', {
-            url: "/EmailConfirmed/:userId/*code",
+            url: "/EmailConfirmed/:userId/{code:.*}",//*code",
             templateUrl: "/App/Views/Email/EmailConfirmed.html",
             controller: "EmailController",
             data: {

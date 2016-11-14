@@ -4,9 +4,17 @@ CrowdFundingApp.controller('EmailController', ['$scope', '$state', '$filter', '$
         var _confirm = function () {
             //var urlData = "userId=" + $stateParams.userId + "&code=" + $stateParams.code;
             var deferred = $q.defer();
-            $http.get(
-                servers.AUTHENTICATION_SERVER_BASE + 'api/accounts/confirmemail?userId=' + $stateParams.userId + "&code=" + $stateParams.code, null, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, skipAuthorization: true }
-                ).success(function (data) {
+            //$http.get(
+                //servers.AUTHENTICATION_SERVER_BASE + 'api/accounts/confirmemail', {userId:$stateParams.userId,code: $stateParams.code}, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, skipAuthorization: true } //?userId=' + $stateParams.userId + "&code=" + $stateParams.code
+            //)
+            $http({
+                url: servers.AUTHENTICATION_SERVER_BASE + 'api/accounts/confirmemail',
+                method: "GET",
+                params: { userId: $stateParams.userId, code: $stateParams.code },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                skipAuthorization: true
+            })
+            .success(function (data) {
                     deferred.resolve(data)
                 }).error(function (err, status) {
                     deferred.reject(err);

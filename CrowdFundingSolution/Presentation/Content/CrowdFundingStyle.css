@@ -9,7 +9,7 @@
 }
 
 #main-content {
-    
+    margin: 30px 0;
 }
 
 a {
@@ -31,6 +31,33 @@ a:focus {
 
 .centered {
     text-align: center;
+}
+
+.form-horizontal > .form-group {
+    width: 300px;
+    min-height: 40px;
+    margin: 4px auto 2px;
+}
+
+.form-horizontal > .form-group > .btn,
+.form-horizontal > .form-group > input {
+    width: 100%;
+    min-height: 40px;
+    margin: 0px;
+}
+
+.form-horizontal > .form-group > .btn {
+    margin-top: 30px;
+} 
+
+.form-horizontal > .form-loading > p {
+    margin-top:20px;
+    color:red;
+}
+
+.form-horizontal > .form-loading > p > img {
+    height:50px;
+    width:50px;
 }
 
 .btn-theme {
@@ -95,8 +122,6 @@ a:focus {
 /* Header */
 #headerwrap {
     background-color: #00b3fe;
-    padding-top: 30px;
-    margin-bottom: 30px;
     text-align: center;
 }
 
@@ -106,6 +131,8 @@ a:focus {
 }
 
 #headerwrap h1 {
+    font-size:26px;
+    font-weight:100;
     color: white;
     margin-bottom: 25px;
 }
@@ -176,4 +203,3 @@ a:focus {
     margin-top: 80px;
     margin-bottom: 80px;
 }
-

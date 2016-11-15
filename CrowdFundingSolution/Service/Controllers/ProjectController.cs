@@ -9,9 +9,7 @@ namespace Service
 {
     public class ProjectController : ApiController
     {
-        /// <summary>
-        /// Gets a list of all available Projects
-        /// </summary>
+        /// <summary>Gets a list of all available Projects</summary>
         /// <returns>List<ProjectDTO></returns>
         [HttpGet]
         public async Task<HttpResponseMessage> GetProjects(int ?id=null)
@@ -26,6 +24,8 @@ namespace Service
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
+        ///<summary>Gets a list of all available Projects a user has created, given his id.</summary>
+        ///<returns>List<ProjectDTO></returns>
         [HttpGet]
         public async Task<HttpResponseMessage> GetProjectsByUser(int id)
         {
@@ -91,19 +91,23 @@ namespace Service
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetProjectPhotoById(int id)
-        {
-            try
-            {
-                var repository = new CrowdFundingTransactions();
-                var result = await repository.ReadProjectPhotoById(id);
+        /////<summary>Gets the photo by photo id.</summary>
+        /////<returns>List<ProjectPhotoDTO></returns>
+        //[HttpGet]
+        //public async Task<HttpResponseMessage> GetProjectPhotoById(int id)
+        //{
+        //    try
+        //    {
+        //        var repository = new CrowdFundingTransactions();
+        //        var result = await repository.ReadProjectPhotoById(id);
 
-                return Request.CreateResponse(HttpStatusCode.OK, result);
-            }
-            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
-        }
+        //        return Request.CreateResponse(HttpStatusCode.OK, result);
+        //    }
+        //    catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        //}
 
+        ///<summary>Gets a list of all available Projects that match a keyword-keyphrase.</summary>
+        ///<returns>List<ProjectDTO></returns>
         [HttpGet]
         public async Task<HttpResponseMessage> GetSearchProjects(string keyword)
         {

@@ -45,7 +45,7 @@ namespace BAL
                     Website = s.website
                 }).ToListAsync();
 
-                return resultList;
+                return await PrepareProjects(resultList);
             }
             else
             {
@@ -77,7 +77,7 @@ namespace BAL
                     Website = s.website
                 }).ToListAsync();
 
-                return resultList;
+                return await PrepareProjects(resultList);
             }
             
         }
@@ -110,7 +110,7 @@ namespace BAL
                 Website = s.website
             }).ToListAsync();
 
-            return resultList;
+            return await PrepareProjects(resultList);
         }
 
         public async Task<List<ProjectDTO>> ReadProjectByState(int id)
@@ -141,23 +141,23 @@ namespace BAL
                 Website = s.website
             }).ToListAsync();
 
-            return resultList;
+            return await PrepareProjects(resultList);
         }
 
-        public async Task<List<ProjectPhotoDTO>> ReadProjectPhotoById(int id)
-        {
-            var db = new CrowdFundingViva1Entities();
-            List<ProjectPhotoDTO> resultList = new List<ProjectPhotoDTO>();
-            resultList = await db.project_photo
-                .Where(s => s.photo_id == id)
-                .Select(s => new ProjectPhotoDTO
-            {
-                Photo_Id = s.photo_id,
-                Photo = s.photo
-            }).ToListAsync();
+        //public async Task<List<ProjectPhotoDTO>> ReadProjectPhotoById(int id)
+        //{
+        //    var db = new CrowdFundingViva1Entities();
+        //    List<ProjectPhotoDTO> resultList = new List<ProjectPhotoDTO>();
+        //    resultList = await db.project_photo
+        //        .Where(s => s.photo_id == id)
+        //        .Select(s => new ProjectPhotoDTO
+        //        {
+        //            Photo_Id = s.photo_id,
+        //            Photo = s.photo
+        //        }).ToListAsync();
 
-            return resultList;
-        }
+        //    return resultList;
+        //}
 
         public async Task<List<ProjectStateDTO>> ReadProjectStates()
         {
@@ -201,7 +201,7 @@ namespace BAL
                 Website = s.website
             }).ToListAsync();
 
-            return resultList;
+            return await PrepareProjects(resultList);
         }
 
         public async Task<List<ProjectCategoryDTO>> ReadProjectCategories()
@@ -248,7 +248,18 @@ namespace BAL
                 Website = s.website
             }).ToListAsync();
 
-            return resultList;
+            return await PrepareProjects(resultList);
+        }
+
+        public async Task<List<ProjectDTO>> PrepareProjects(List<ProjectDTO> list)
+        {
+            foreach (var i in list)
+            {
+                await GetProjectAmountAndProgress(i);
+                GetRemainingTime(i);
+            }
+
+            return list;
         }
     } // End class
 } // End namespace

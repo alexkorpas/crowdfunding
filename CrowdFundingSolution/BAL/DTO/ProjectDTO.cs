@@ -25,5 +25,10 @@ namespace BAL
         public DateTime? Blocked_Date { get; set; }
         public int? State_Id { get; set; }
         public string Website { get; set; }
+
+        public virtual decimal Progress { get; set; }
+        public virtual decimal Amount_Gathered { get; set; }
+        public virtual TimeSpan? Days_Remaining { get; set; }
+
     } // End class
 } // End namespace

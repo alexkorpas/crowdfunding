@@ -16,7 +16,7 @@ namespace BAL
         public int Rewards { get; set; }
         public DateTime Payment_Date { get; set; }
         public string Payment_Method { get; set; }
-        public int Refunded_Amount { get; set; }
+        public decimal Refunded_Amount { get; set; }
         public DateTime Refunded_Date{ get; set; }
     }
 }

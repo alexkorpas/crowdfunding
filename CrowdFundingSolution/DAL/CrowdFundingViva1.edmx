@@ -16,8 +16,8 @@
           <Property Name="rewards" Type="text" />
           <Property Name="payment_date" Type="datetime" Nullable="false" />
           <Property Name="payment_method" Type="text" Nullable="false" />
-          <Property Name="refunded_amount" Type="datetime" />
-          <Property Name="refunded_date" Type="text" />
+          <Property Name="refunded_amount" Type="money" />
+          <Property Name="refunded_date"  Type="datetime" />
         </EntityType>
         <EntityType Name="project">
           <Key>
@@ -342,8 +342,8 @@
           <Property Name="rewards" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="payment_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="payment_method" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="refunded_amount" Type="DateTime" Precision="3" />
-          <Property Name="refunded_date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="refunded_amount" Type="Decimal" Precision="19" Scale="4"  />
+          <Property Name="refunded_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="project" Relationship="Self.FK_payments_projects" FromRole="payment" ToRole="project" />
           <NavigationProperty Name="user" Relationship="CrowdFundingViva1Model.FK_payments_users" FromRole="payment" ToRole="user" />
         </EntityType>

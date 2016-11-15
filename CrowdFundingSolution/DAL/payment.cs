@@ -21,8 +21,8 @@ namespace DAL
         public string rewards { get; set; }
         public System.DateTime payment_date { get; set; }
         public string payment_method { get; set; }
-        public Nullable<System.DateTime> refunded_amount { get; set; }
-        public string refunded_date { get; set; }
+        public decimal refunded_amount { get; set; }
+        public Nullable<System.DateTime> refunded_date { get; set; }
     
         public virtual project project { get; set; }
         public virtual user user { get; set; }

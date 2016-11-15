@@ -53,22 +53,26 @@ namespace BAL
 
             return item;
         }
-
+        // Need to remove hardcoded strings
         public ProjectDTO GetRemainingTime(ProjectDTO item)
         {
             if ( ((DateTime)item.Due_Date).CompareTo(DateTime.Now) > 0)
             {
                 TimeSpan time_remaining = ((DateTime)item.Due_Date).Subtract(DateTime.Now);
 
-                item.Remaining_Days = (int) time_remaining.TotalDays;
-                item.Remaining_Hours = time_remaining.Hours;
-                item.Remaining_Minutes = time_remaining.Minutes;
+                if ( (int) time_remaining.TotalDays > 0 )
+                {
+                    item.Left = (int)time_remaining.TotalDays + " day" + ((time_remaining.TotalDays > 1) ? "s" : "") + " left";
+                } else if ((int)time_remaining.Hours > 0)
+                {
+                    item.Left = time_remaining.Hours + " hour" + ((time_remaining.Hours > 1) ? "s" : "") + " left";
+                } else {
+                    item.Left = time_remaining.Minutes + " minute" + ((time_remaining.Minutes>1)?"s":"") + " left";
+                }
 
             } else
             {
-                item.Remaining_Days = 0;
-                item.Remaining_Hours = 0;
-                item.Remaining_Minutes = 0;
+                item.Left = "EXPIRED";
             }
             return item;
         }

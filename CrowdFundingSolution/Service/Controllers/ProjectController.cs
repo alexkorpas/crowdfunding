@@ -12,32 +12,35 @@ namespace Service
         /// <summary>Gets a list of all available Projects</summary>
         /// <returns>List<ProjectDTO></returns>
         [HttpGet]
-        public async Task<HttpResponseMessage> GetProjects(int ?id=null)
+        [Route("GetProjects")]
+        public async Task<HttpResponseMessage> GetProjects([FromUri]TransactionCriteria criteria)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = await repository.ReadProjects(id);
-
-                return Request.CreateResponse(HttpStatusCode.OK, result);
+                var transaction = await repository.ReadProjects(criteria);
+                if (transaction.Result == TransResult.Success)
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
         ///<summary>Gets a list of all available Projects a user has created, given his id.</summary>
         ///<returns>List<ProjectDTO></returns>
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetProjectsByUser(int id)
-        {
-            try
-            {
-                var repository = new CrowdFundingTransactions();
-                var result =await repository.ReadProjectsByUserId(id);
+        //[HttpGet]
+        //public async Task<HttpResponseMessage> GetProjectsByUser(int id)
+        //{
+        //    try
+        //    {
+        //        var repository = new CrowdFundingTransactions();
+        //        var result =await repository.ReadProjectsByUserId(id);
 
-                return Request.CreateResponse(HttpStatusCode.OK, result);
-            }
-            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
-        }
+        //        return Request.CreateResponse(HttpStatusCode.OK, result);
+        //    }
+        //    catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        //}
 
         [HttpGet]
         public async Task<HttpResponseMessage> GetProjectCategories()
@@ -45,38 +48,40 @@ namespace Service
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result =await repository.ReadProjectCategories();
-
-                return Request.CreateResponse(HttpStatusCode.OK, result);
+                var transaction = await repository.ReadProjectCategories();
+                if (transaction.Result == TransResult.Success)
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetProjectByCategory(int id)
-        {
-            try
-            {
-                var repository = new CrowdFundingTransactions();
-                var result = await repository.ReadProjectByCategory(id);
+        //[HttpGet]
+        //public async Task<HttpResponseMessage> GetProjectByCategory(int id)
+        //{
+        //    try
+        //    {
+        //        var repository = new CrowdFundingTransactions();
+        //        var result = await repository.ReadProjectByCategory(id);
 
-                return Request.CreateResponse(HttpStatusCode.OK, result);
-            }
-            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
-        }
+        //        return Request.CreateResponse(HttpStatusCode.OK, result);
+        //    }
+        //    catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        //}
 
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetProjectByState(int id)
-        {
-            try
-            {
-                var repository = new CrowdFundingTransactions();
-                var result = await repository.ReadProjectByState(id);
+        //[HttpGet]
+        //public async Task<HttpResponseMessage> GetProjectByState(int id)
+        //{
+        //    try
+        //    {
+        //        var repository = new CrowdFundingTransactions();
+        //        var result = await repository.ReadProjectByState(id);
 
-                return Request.CreateResponse(HttpStatusCode.OK, result);
-            }
-            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
-        }
+        //        return Request.CreateResponse(HttpStatusCode.OK, result);
+        //    }
+        //    catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        //}
 
         [HttpGet]
         public async Task<HttpResponseMessage> GetProjectStates()
@@ -84,9 +89,11 @@ namespace Service
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var result = await repository.ReadProjectStates();
-
-                return Request.CreateResponse(HttpStatusCode.OK, result);
+                var transaction = await repository.ReadProjectStates();
+                if (transaction.Result == TransResult.Success)
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
@@ -108,17 +115,17 @@ namespace Service
 
         ///<summary>Gets a list of all available Projects that match a keyword-keyphrase.</summary>
         ///<returns>List<ProjectDTO></returns>
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetSearchProjects(string keyword)
-        {
-            try
-            {
-                var repository = new CrowdFundingTransactions();
-                var result = await repository.SearchProjectsByKeyword(keyword);
+        //[HttpGet]
+        //public async Task<HttpResponseMessage> GetSearchProjects(string keyword)
+        //{
+        //    try
+        //    {
+        //        var repository = new CrowdFundingTransactions();
+        //        var result = await repository.SearchProjectsByKeyword(keyword);
 
-                return Request.CreateResponse(HttpStatusCode.OK, result);
-            }
-            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
-        }
+        //        return Request.CreateResponse(HttpStatusCode.OK, result);
+        //    }
+        //    catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        //}
     }
 }

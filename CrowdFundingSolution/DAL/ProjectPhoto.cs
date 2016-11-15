@@ -12,19 +12,20 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class project_state
+    public partial class ProjectPhoto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public project_state()
+        public ProjectPhoto()
         {
-            this.project = new HashSet<project>();
+            this.Project = new HashSet<Project>();
         }
     
-        public int state_id { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
+        public int Id { get; set; }
+        public int ProjectFK { get; set; }
+        public byte[] Photo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<project> project { get; set; }
+        public virtual ICollection<Project> Project { get; set; }
+        public virtual Project Project1 { get; set; }
     }
 }

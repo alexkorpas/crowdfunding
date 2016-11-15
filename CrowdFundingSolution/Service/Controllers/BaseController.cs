@@ -11,7 +11,7 @@ namespace Service.Controllers
     [Authorize]
     public class BaseController : ApiController
     {
-        protected user LoggedUser = null;
+        protected UserInfo LoggedUser = null;
 
         public BaseController()
         {

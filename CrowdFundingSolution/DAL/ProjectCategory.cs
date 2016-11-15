@@ -12,26 +12,19 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class user_address
+    public partial class ProjectCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user_address()
+        public ProjectCategory()
         {
-            this.user1 = new HashSet<user>();
+            this.Project = new HashSet<Project>();
         }
     
-        public int address_id { get; set; }
-        public int user_id { get; set; }
-        public string friendly_name { get; set; }
-        public string name { get; set; }
-        public string number { get; set; }
-        public string area { get; set; }
-        public string country { get; set; }
-        public string postal_code { get; set; }
-        public string telephone { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
     
-        public virtual user user { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> user1 { get; set; }
+        public virtual ICollection<Project> Project { get; set; }
     }
 }

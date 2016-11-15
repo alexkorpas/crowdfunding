@@ -15,17 +15,17 @@
                             <span class="sr-only">70% Complete</span>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-xs-4">
                         <h6 class="card-subtitle text-muted ng-binding">Funded</h6>
                        {{row.Progress}}%
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-xs-4">
                         <h6 class="card-subtitle text-muted ng-binding">Gathered</h6>
-                        <i class="fa fa-eur" aria-hidden="true">{{' '+ row.Amount_Gathered}}</i>
+                        <span><i class="fa fa-eur" aria-hidden="true" /> {{' '+ row.Amount_Gathered}}</span>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 col-xs-4">
                         <h6 class="card-subtitle text-muted ng-binding">Backers</h6>
-                        <i class="fa fa-users" aria-hidden="true">{{' ' +row.Backers }}</i>
+                        <span><i class="fa fa-users" aria-hidden="true" /> {{' ' +row.Backers }}</span>
                     </div>
                     <a ui-sref="Home.Project({ ProjectId: {{row.Project_Id}} })" class="btn btn-theme">Go To Project Page</a>
                 </div>

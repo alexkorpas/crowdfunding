@@ -54,10 +54,17 @@ namespace BAL
         {
             if ( ((DateTime)item.Due_Date).CompareTo(DateTime.Now) > 0)
             {
-                item.Days_Remaining = item.Due_Date - DateTime.Now;
+                TimeSpan time_remaining = ((DateTime)item.Due_Date).Subtract(DateTime.Now);
+
+                item.Remaining_Days = (int) time_remaining.TotalDays;
+                item.Remaining_Hours = time_remaining.Hours;
+                item.Remaining_Minutes = time_remaining.Minutes;
+
             } else
             {
-                item.Days_Remaining = TimeSpan.Zero;
+                item.Remaining_Days = 0;
+                item.Remaining_Hours = 0;
+                item.Remaining_Minutes = 0;
             }
             return item;
         }

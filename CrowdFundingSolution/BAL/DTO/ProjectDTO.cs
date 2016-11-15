@@ -28,7 +28,9 @@ namespace BAL
 
         public virtual decimal Progress { get; set; }
         public virtual decimal Amount_Gathered { get; set; }
-        public virtual TimeSpan? Days_Remaining { get; set; }
+        public virtual int Remaining_Days { get; set; }
+        public virtual int Remaining_Hours { get; set; }
+        public virtual int Remaining_Minutes { get; set; }
 
     } // End class
 } // End namespace

@@ -27,6 +27,7 @@ namespace BAL
         public string Website { get; set; }
 
         public virtual decimal Progress { get; set; }
+        public virtual int Backers { get; set; }
         public virtual decimal Amount_Gathered { get; set; }
         public virtual int Remaining_Days { get; set; }
         public virtual int Remaining_Hours { get; set; }

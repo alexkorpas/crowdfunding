@@ -36,16 +36,20 @@ namespace BAL
                 .Where(s => s.project_id == item.Project_Id)
                 .Select(s => new PaymentDTO
                 {
-                    Amount = s.amount
+                    Amount = s.amount,
+                    Refunded_Amount = s.refunded_amount.Equals(null) ? 0 : s.refunded_amount
                 }).ToListAsync();
 
             decimal sum = 0;
+            int backers = 0;
             foreach (var s in resultList) {
                 sum += s.Amount - s.Refunded_Amount;
+                if (s.Refunded_Amount != s.Amount) backers += 1;
             }
 
             item.Amount_Gathered = sum;
             item.Progress = Math.Round((sum / item.Goal) * 100, 2);
+            item.Backers = backers;
 
             return item;
         }

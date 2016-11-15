@@ -64,3 +64,13 @@
         </div>
     </div>
 </footer>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click', 'li', function () {
+                var x = document.getElementsByClassName("active");
+                $(x[0]).removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+</script>

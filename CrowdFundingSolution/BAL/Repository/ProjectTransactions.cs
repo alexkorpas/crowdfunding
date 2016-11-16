@@ -9,80 +9,15 @@ namespace BAL
 {
     public partial class CrowdFundingTransactions
     {
-        /// <summary>
-        /// Returns a list of all available Projects
-        /// </summary>  
-        /// <returns>List<ProjectDTO></returns>
-        /// 
-        
-            public async Task<int> ReadAndCount()
+        public async Task<TransactionResult> ReadPageCount()
         {
-            var db = new CrowdFundingViva1Entities();
-            List<ProjectDTO> resultList = new List<ProjectDTO>();
-            resultList = await db.project
-                
-                .Select(s => new ProjectDTO
+            try
             {
-                Project_Id = s.project_id,
-                Description = s.description,
-                User_Id = s.user_id,
-                Title = s.title,
-                Short_Description = s.short_description,
-                Goal = s.goal,
-                Goal_Min = s.goal_min,
-                Photo_Id_Main = s.photo_id_main,
-                Video = s.video,
-                Category_Id = s.category_id,
-                CategoryDesc = s.project_category != null ? s.project_category.description : null,
-                CategoryName = s.project_category.title,
-                Due_Date = s.due_date,
-                Is_Active = s.is_active,
-                Created_Date = s.created_date,
-                Updated_Date = s.updated_date,
-                Deleted_Date = s.deleted_date,
-                Blocked_Date = s.blocked_date,
-                State_Id = s.state_id,
-                Website = s.website
-            }).ToListAsync();
-
-            return resultList.Count;
+                var db = new backup_CrowdFundingViva1Entities();
+                return new TransactionResult(TransResult.Success, string.Empty, await db.Project.CountAsync());
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
-        public async Task<List<ProjectDTO>> ReadProjectsByPage(int page)
-        {
-            var db = new CrowdFundingViva1Entities();
-            List<ProjectDTO> resultList = new List<ProjectDTO>();
-            int page_size = 3;
-            resultList = await db.project
-
-                .Select(s => new ProjectDTO
-                {
-                    Project_Id = s.project_id,
-                    Description = s.description,
-                    User_Id = s.user_id,
-                    Title = s.title,
-                    Short_Description = s.short_description,
-                    Goal = s.goal,
-                    Goal_Min = s.goal_min,
-                    Photo_Id_Main = s.photo_id_main,
-                    Video = s.video,
-                    Category_Id = s.category_id,
-                    CategoryDesc = s.project_category != null ? s.project_category.description : null,
-                    CategoryName = s.project_category.title,
-                    Due_Date = s.due_date,
-                    Is_Active = s.is_active,
-                    Created_Date = s.created_date,
-                    Updated_Date = s.updated_date,
-                    Deleted_Date = s.deleted_date,
-                    Blocked_Date = s.blocked_date,
-                    State_Id = s.state_id,
-                    Website = s.website
-                }).Skip(page*page_size).Take(page_size).ToListAsync();
-
-            return await PrepareProjects(resultList);
-        }
-
-
-        public async Task<List<ProjectDTO>> ReadProjects(int? id = null)
         public async Task<TransactionResult> ReadProjects(TransactionCriteria criteria)
         {
             try
@@ -115,7 +50,6 @@ namespace BAL
                         StateFK = s.StateFK,
                         Website = s.Website
                     });
-                    //return await PrepareProjects(resultList);
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }
                 var res = db.Project.AsQueryable();
@@ -127,6 +61,8 @@ namespace BAL
                     res.Where(s => s.CategoryFK.Equals(criteria.CategoryId));
                 if (criteria.Search != null && criteria.Search != "")
                     res.Where(s => s.Title.Contains(criteria.Search) || s.ShortDescription.Contains(criteria.Search));
+                if (criteria.Page != null)
+                    res.Skip((int)criteria.Page * 3).Take(3);
                 result = await res.Where(a => a.IsActive == true).Select(s => new ProjectDTO
                 {
                     Id = s.Id,
@@ -153,83 +89,6 @@ namespace BAL
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
 
-        //public async Task<List<ProjectDTO>> ReadProjectsByUserId(int id)
-        //{
-        //    var db = new backup_CrowdFundingViva1Entities();
-        //    List<ProjectDTO> resultList = new List<ProjectDTO>();
-        //    resultList = await db.Project
-        //        .Where(s => s.UserFK == id.ToString())
-        //        .Select(s => new ProjectDTO
-        //        {
-        //            Id = s.Id,
-        //            Description = s.Description,
-        //            UserFK = s.UserFK,
-        //            Title = s.Title,
-        //            ShortDescription = s.ShortDescription,
-        //            Goal = s.Goal,
-        //            GoalMin = s.GoalMin,
-        //            MainPhotoFK = s.MainPhotoFK,
-        //            Video = s.Video,
-        //            CategoryFK = s.CategoryFK,
-        //            DueDate = s.DueDate,
-        //            IsActive = s.IsActive,
-        //            CreatedDate = s.CreatedDate,
-        //            UpdatedDate = s.UpdatedDate,
-        //            DeletedDate = s.DeletedDate,
-        //            BlockedDate = s.BlockedDate,
-        //            StateFK = s.StateFK,
-        //            Website = s.Website
-        //        }).ToListAsync();
-
-        //    return await PrepareProjects(resultList);
-        //}
-
-        //public async Task<List<ProjectDTO>> ReadProjectByState(int id)
-        //{
-        //    var db = new backup_CrowdFundingViva1Entities();
-        //    List<ProjectDTO> resultList = new List<ProjectDTO>();
-        //    resultList = await db.Project
-        //        .Where(s => s.StateFK.Equals(id))
-        //        .Select(s => new ProjectDTO
-        //        {
-        //            Id = s.Id,
-        //            Description = s.Description,
-        //            UserFK = s.UserFK,
-        //            Title = s.Title,
-        //            ShortDescription = s.ShortDescription,
-        //            Goal = s.Goal,
-        //            GoalMin = s.GoalMin,
-        //            MainPhotoFK = s.MainPhotoFK,
-        //            Video = s.Video,
-        //            CategoryFK = s.CategoryFK,
-        //            DueDate = s.DueDate,
-        //            IsActive = s.IsActive,
-        //            CreatedDate = s.CreatedDate,
-        //            UpdatedDate = s.UpdatedDate,
-        //            DeletedDate = s.DeletedDate,
-        //            BlockedDate = s.BlockedDate,
-        //            StateFK = s.StateFK,
-        //            Website = s.Website
-        //        }).ToListAsync();
-
-        //    return await PrepareProjects(resultList);
-        //}
-
-        //public async Task<List<ProjectPhotoDTO>> ReadProjectPhotoById(int id)
-        //{
-        //    var db = new CrowdFundingViva1Entities();
-        //    List<ProjectPhotoDTO> resultList = new List<ProjectPhotoDTO>();
-        //    resultList = await db.project_photo
-        //        .Where(s => s.photo_id == id)
-        //        .Select(s => new ProjectPhotoDTO
-        //        {
-        //            Photo_Id = s.photo_id,
-        //            Photo = s.photo
-        //        }).ToListAsync();
-
-        //    return resultList;
-        //}
-
         public async Task<TransactionResult> ReadProjectStates()
         {
             try
@@ -248,37 +107,6 @@ namespace BAL
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
 
-        //public async Task<List<ProjectDTO>> ReadProjectByCategory(int id)
-        //{
-        //    var db = new backup_CrowdFundingViva1Entities();
-        //    List<ProjectDTO> resultList = new List<ProjectDTO>();
-        //    resultList = await db.Project
-        //        .Where(s => s.CategoryFK.Equals(id))
-        //        .Select(s => new ProjectDTO
-        //        {
-        //            Id = s.Id,
-        //            Description = s.Description,
-        //            UserFK = s.UserFK,
-        //            Title = s.Title,
-        //            ShortDescription = s.ShortDescription,
-        //            Goal = s.Goal,
-        //            GoalMin = s.GoalMin,
-        //            MainPhotoFK = s.MainPhotoFK,
-        //            Video = s.Video,
-        //            CategoryFK = s.CategoryFK,
-        //            DueDate = s.DueDate,
-        //            IsActive = s.IsActive,
-        //            CreatedDate = s.CreatedDate,
-        //            UpdatedDate = s.UpdatedDate,
-        //            DeletedDate = s.DeletedDate,
-        //            BlockedDate = s.BlockedDate,
-        //            StateFK = s.StateFK,
-        //            Website = s.Website
-        //        }).ToListAsync();
-
-        //    return await PrepareProjects(resultList);
-        //}
-
         public async Task<TransactionResult> ReadProjectCategories()
         {
             try
@@ -296,39 +124,6 @@ namespace BAL
             }
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
-
-        //public async Task<List<ProjectDTO>> SearchProjectsByKeyword(string keyword)
-        //{
-        //    var db = new backup_CrowdFundingViva1Entities();
-        //    List<ProjectDTO> resultList = new List<ProjectDTO>();
-        //    resultList = await db.Project
-        //        .Where(s =>     s.Title.Contains(keyword) ||
-        //                        s.ShortDescription.Contains(keyword)
-        //        )
-        //        .Select(s => new ProjectDTO
-        //        {
-        //            Id = s.Id,
-        //            Description = s.Description,
-        //            UserFK = s.UserFK,
-        //            Title = s.Title,
-        //            ShortDescription = s.ShortDescription,
-        //            Goal = s.Goal,
-        //            GoalMin = s.GoalMin,
-        //            MainPhotoFK = s.MainPhotoFK,
-        //            Video = s.Video,
-        //            CategoryFK = s.CategoryFK,
-        //            DueDate = s.DueDate,
-        //            IsActive = s.IsActive,
-        //            CreatedDate = s.CreatedDate,
-        //            UpdatedDate = s.UpdatedDate,
-        //            DeletedDate = s.DeletedDate,
-        //            BlockedDate = s.BlockedDate,
-        //            StateFK = s.StateFK,
-        //            Website = s.Website
-        //        }).ToListAsync();
-
-        //    return await PrepareProjects(resultList);
-        //}
 
         public async Task<List<ProjectDTO>> PrepareProjects(List<ProjectDTO> list)
         {

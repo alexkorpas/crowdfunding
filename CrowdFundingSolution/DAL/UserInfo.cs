@@ -12,19 +12,20 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class UserInfo
     {
         public int Id { get; set; }
-        public string UserFK { get; set; }
-        public int ProjectFK { get; set; }
-        public decimal Amount { get; set; }
-        public string Rewards { get; set; }
-        public System.DateTime PaymentDate { get; set; }
-        public string PaymentMethod { get; set; }
-        public Nullable<decimal> RefundedAmount { get; set; }
-        public Nullable<System.DateTime> RefundedDate { get; set; }
+        public string IdentityFK { get; set; }
+        public string Mobile { get; set; }
+        public string Address { get; set; }
+        public System.DateTime BirthDate { get; set; }
+        public int Points { get; set; }
+        public bool IsActive { get; set; }
+        public Nullable<System.DateTime> DeletionDate { get; set; }
+        public Nullable<System.DateTime> BlockedDate { get; set; }
+        public bool IsAdmin { get; set; }
+        public string About { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual Project Project { get; set; }
     }
 }

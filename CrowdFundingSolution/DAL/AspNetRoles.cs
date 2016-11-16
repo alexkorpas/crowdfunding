@@ -12,20 +12,18 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class project_photo
+    public partial class AspNetRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public project_photo()
+        public AspNetRoles()
         {
-            this.project1 = new HashSet<project>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public int photo_id { get; set; }
-        public int project_id { get; set; }
-        public byte[] photo { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual project project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<project> project1 { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

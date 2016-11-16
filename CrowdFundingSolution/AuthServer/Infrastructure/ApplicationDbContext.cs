@@ -9,7 +9,7 @@ namespace AuthServer.Infrastructure
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("CrowdFundingViva1Entities", throwIfV1Schema: false)
+            : base("Entities", throwIfV1Schema: false)
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;

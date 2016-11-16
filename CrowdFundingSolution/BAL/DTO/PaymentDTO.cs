@@ -9,14 +9,14 @@ namespace BAL
     public class PaymentDTO
     {
 
-        public int Payment_Id { get; set; }
-        public int Project_Id { get; set; }
-        public int User_Id { get; set; }
+        public int Id { get; set; }
+        public int ProjectFK { get; set; }
+        public int UserFK { get; set; }
         public decimal Amount { get; set; }
         public int Rewards { get; set; }
-        public DateTime Payment_Date { get; set; }
-        public string Payment_Method { get; set; }
-        public decimal Refunded_Amount { get; set; }
-        public DateTime Refunded_Date{ get; set; }
+        public DateTime PaymentDate { get; set; }
+        public string PaymentMethod { get; set; }
+        public decimal RefundedAmount { get; set; }
+        public DateTime RefundedDate{ get; set; }
     }
 }

@@ -12,15 +12,15 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class project_funding_level
+    public partial class ProjectFundingLevel
     {
-        public int funding_level_id { get; set; }
-        public int project_id { get; set; }
-        public string title { get; set; }
-        public decimal amount { get; set; }
-        public string rewards { get; set; }
-        public bool is_active { get; set; }
+        public int Id { get; set; }
+        public int ProjectFK { get; set; }
+        public string Title { get; set; }
+        public decimal Amount { get; set; }
+        public string Rewards { get; set; }
+        public bool IsActive { get; set; }
     
-        public virtual project project { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

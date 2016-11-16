@@ -1,92 +1,50 @@
-﻿<div class="container">
-    <!--{{ProjectId}}-->
-    <div class="row">
+﻿<div id="main-content">
+    <div class="container mt">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 centered">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
 
-        <! -- BLOG POSTS LIST -->
-        <div class="col-lg-8">
-            <! -- Blog Post 1 -->
-            <p><img class="img-responsive" src="Assets/post01.jpg"></p>
-            <a href="single-post.html"><h3 class="ctitle">Time to change your apps.</h3></a>
-            <p><csmall>Posted: April 25, 2014.</csmall> | <csmall2>By: Admin - 3 Comments</csmall2></p>
-            <p>{{row.Description}}</p>
-            <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            <p><a href="single-post.html">[Read More]</a></p>
-            <div class="hline"></div>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="Assets/post01jpg" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="Assets/post02jpg" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="Assets/post03jpg" alt="">
+                        </div>
+                    </div>
+                </div><! --/Carousel -->
+            </div>
 
-            <div class="spacing"></div>
+            <div class="col-lg-5 col-lg-offset-1">
+                <div class="spacing"></div>
+                <h4>YOUR PROJECT NAME</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <h4>Our Proposal</h4>
+                <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
 
-           
+            <div class="col-lg-4 col-lg-offset-1">
+                <div class="spacing"></div>
+                <h4>Project Details</h4>
+                <div class="hline"></div>
+                <p><b>Date:</b> April 18, 2014</p>
+                <p><b>Author:</b> Marcel Newman</p>
+                <p><b>Categories:</b> Illustration, Web Design, Wordpress</p>
+                <p><b>Tagged:</b> Flat, UI, Development</p>
+                <p><b>Client:</b> Wonder Corp.</p>
+                <p><b>Website:</b> <a href="http://blacktie.co">http://blacktie.co</a></p>
+            </div>
 
-        </div><! --/col-lg-8 -->
-
-
-        <! -- SIDEBAR -->
-        <div class="col-lg-4">
-            <h4>Search</h4>
-            <div class="hline"></div>
-            <p>
-                <br />
-                <input type="text" class="form-control" placeholder="Search something">
-            </p>
-
-            <div class="spacing"></div>
-
-            <h4>Categories</h4>
-            <div class="hline"></div>
-            <p><a href="#"><i class="fa fa-angle-right"></i> Wordpress</a> <span class="badge badge-theme pull-right">9</span></p>
-            <p><a href="#"><i class="fa fa-angle-right"></i> Photoshop</a> <span class="badge badge-theme pull-right">3</span></p>
-            <p><a href="#"><i class="fa fa-angle-right"></i> Web Design</a> <span class="badge badge-theme pull-right">11</span></p>
-            <p><a href="#"><i class="fa fa-angle-right"></i> Development</a> <span class="badge badge-theme pull-right">5</span></p>
-            <p><a href="#"><i class="fa fa-angle-right"></i> Tips & Tricks</a> <span class="badge badge-theme pull-right">7</span></p>
-            <p><a href="#"><i class="fa fa-angle-right"></i> Code Snippets</a> <span class="badge badge-theme pull-right">12</span></p>
-            <div class="spacing"></div>
-
-            <h4>Recent Posts</h4>
-            <div class="hline"></div>
-            <ul class="popular-posts">
-                <li>
-                    <a href="#"><img src="Assets/thumb01.jpg" alt="Popular Post"></a>
-                    <p><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></p>
-                    <em>Posted on 02/21/14</em>
-                </li>
-                <li>
-                    <a href="#"><img src="Assets/thumb02.jpg" alt="Popular Post"></a>
-                    <p><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></p>
-                    <em>Posted on 03/01/14</em>
-                <li>
-                    <a href="#"><img src="Assets/thumb03.jpg" alt="Popular Post"></a>
-                    <p><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></p>
-                    <em>Posted on 05/16/14</em>
-                </li>
-                <li>
-                    <a href="#"><img src="Assets/thumb04.jpg" alt="Popular Post"></a>
-                    <p><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></p>
-                    <em>Posted on 05/16/14</em>
-                </li>
-            </ul>
-
-            <div class="spacing"></div>
-
-            <h4>Popular Tags</h4>
-            <div class="hline"></div>
-            <p>
-                <a class="btn btn-theme" href="#" role="button">Design</a>
-                <a class="btn btn-theme" href="#" role="button">Wordpress</a>
-                <a class="btn btn-theme" href="#" role="button">Flat</a>
-                <a class="btn btn-theme" href="#" role="button">Modern</a>
-                <a class="btn btn-theme" href="#" role="button">Wallpaper</a>
-                <a class="btn btn-theme" href="#" role="button">HTML5</a>
-                <a class="btn btn-theme" href="#" role="button">Pre-processor</a>
-                <a class="btn btn-theme" href="#" role="button">Developer</a>
-                <a class="btn btn-theme" href="#" role="button">Windows</a>
-                <a class="btn btn-theme" href="#" role="button">Phothosop</a>
-                <a class="btn btn-theme" href="#" role="button">UX</a>
-                <a class="btn btn-theme" href="#" role="button">Interface</a>
-                <a class="btn btn-theme" href="#" role="button">UI</a>
-                <a class="btn btn-theme" href="#" role="button">Blog</a>
-            </p>
         </div>
-    </div><! --/row -->
-</div><! --/container -->
-
-
+    </div>
+</div>

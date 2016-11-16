@@ -12,44 +12,44 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class project
+    public partial class Project
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public project()
+        public Project()
         {
-            this.payment = new HashSet<payment>();
-            this.project_funding_level = new HashSet<project_funding_level>();
-            this.project_photo = new HashSet<project_photo>();
+            this.Payment = new HashSet<Payment>();
+            this.ProjectFundingLevel = new HashSet<ProjectFundingLevel>();
+            this.ProjectPhoto1 = new HashSet<ProjectPhoto>();
         }
     
-        public int project_id { get; set; }
-        public int user_id { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-        public string short_description { get; set; }
-        public decimal goal { get; set; }
-        public Nullable<decimal> goal_min { get; set; }
-        public Nullable<int> photo_id_main { get; set; }
-        public string video { get; set; }
-        public Nullable<int> category_id { get; set; }
-        public Nullable<System.DateTime> due_date { get; set; }
-        public bool is_active { get; set; }
-        public System.DateTime created_date { get; set; }
-        public Nullable<System.DateTime> updated_date { get; set; }
-        public Nullable<System.DateTime> deleted_date { get; set; }
-        public Nullable<System.DateTime> blocked_date { get; set; }
-        public Nullable<int> state_id { get; set; }
-        public string website { get; set; }
+        public int Id { get; set; }
+        public string UserFK { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ShortDescription { get; set; }
+        public decimal Goal { get; set; }
+        public Nullable<decimal> GoalMin { get; set; }
+        public Nullable<int> MainPhotoFK { get; set; }
+        public string Video { get; set; }
+        public Nullable<int> CategoryFK { get; set; }
+        public Nullable<System.DateTime> DueDate { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public Nullable<System.DateTime> DeletedDate { get; set; }
+        public Nullable<System.DateTime> BlockedDate { get; set; }
+        public Nullable<int> StateFK { get; set; }
+        public string Website { get; set; }
     
+        public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<payment> payment { get; set; }
+        public virtual ICollection<Payment> Payment { get; set; }
+        public virtual ProjectCategory ProjectCategory { get; set; }
+        public virtual ProjectPhoto ProjectPhoto { get; set; }
+        public virtual ProjectState ProjectState { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<project_funding_level> project_funding_level { get; set; }
+        public virtual ICollection<ProjectFundingLevel> ProjectFundingLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<project_photo> project_photo { get; set; }
-        public virtual project_category project_category { get; set; }
-        public virtual project_photo project_photo1 { get; set; }
-        public virtual project_state project_state { get; set; }
-        public virtual user user { get; set; }
+        public virtual ICollection<ProjectPhoto> ProjectPhoto1 { get; set; }
     }
 }

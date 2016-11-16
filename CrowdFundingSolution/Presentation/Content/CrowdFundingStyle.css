@@ -280,3 +280,7 @@ a:focus {
       display:block !important;
   }
 }
+.pagination {
+     display: flex;
+     justify-content: center;
+}

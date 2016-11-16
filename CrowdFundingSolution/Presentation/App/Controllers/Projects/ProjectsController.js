@@ -1,11 +1,17 @@
 ﻿'use strict';
 CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService',
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService) {
-        baseService.httpGetAnonymous("api/Project/GetProjects", null).then(function (res) {
-            $scope.Projects = res;
+        baseService.httpGetAnonymous("api/Project/ReadAndCount", null).then(function (res) {
+           // $scope.Projects = res;
             
             var count = Object.keys(res).length;
-            console.log(res.Remaining_Days);
+            console.log(res.Table_Size);
+        });
+        baseService.httpGetAnonymous("api/Project/GetProjects", null).then(function (res) {
+             $scope.Projects = res;
+
+            var count = Object.keys(res).length;
+            console.log(res);
         });
     }]);
 CrowdFundingApp.controller('ProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService',

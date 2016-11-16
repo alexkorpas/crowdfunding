@@ -14,10 +14,79 @@ namespace BAL
         /// Returns a list of all available Projects
         /// </summary>  
         /// <returns>List<ProjectDTO></returns>
-        public async Task<List<ProjectDTO>> ReadProjects(int ?id=null)
+        /// 
+        
+            public async Task<int> ReadAndCount()
+        {
+            var db = new CrowdFundingViva1Entities();
+            List<ProjectDTO> resultList = new List<ProjectDTO>();
+            resultList = await db.project
+                
+                .Select(s => new ProjectDTO
+            {
+                Project_Id = s.project_id,
+                Description = s.description,
+                User_Id = s.user_id,
+                Title = s.title,
+                Short_Description = s.short_description,
+                Goal = s.goal,
+                Goal_Min = s.goal_min,
+                Photo_Id_Main = s.photo_id_main,
+                Video = s.video,
+                Category_Id = s.category_id,
+                CategoryDesc = s.project_category != null ? s.project_category.description : null,
+                CategoryName = s.project_category.title,
+                Due_Date = s.due_date,
+                Is_Active = s.is_active,
+                Created_Date = s.created_date,
+                Updated_Date = s.updated_date,
+                Deleted_Date = s.deleted_date,
+                Blocked_Date = s.blocked_date,
+                State_Id = s.state_id,
+                Website = s.website
+            }).ToListAsync();
+
+            return resultList.Count;
+        }
+        public async Task<List<ProjectDTO>> ReadProjectsByPage(int page)
+        {
+            var db = new CrowdFundingViva1Entities();
+            List<ProjectDTO> resultList = new List<ProjectDTO>();
+            int page_size = 3;
+            resultList = await db.project
+
+                .Select(s => new ProjectDTO
+                {
+                    Project_Id = s.project_id,
+                    Description = s.description,
+                    User_Id = s.user_id,
+                    Title = s.title,
+                    Short_Description = s.short_description,
+                    Goal = s.goal,
+                    Goal_Min = s.goal_min,
+                    Photo_Id_Main = s.photo_id_main,
+                    Video = s.video,
+                    Category_Id = s.category_id,
+                    CategoryDesc = s.project_category != null ? s.project_category.description : null,
+                    CategoryName = s.project_category.title,
+                    Due_Date = s.due_date,
+                    Is_Active = s.is_active,
+                    Created_Date = s.created_date,
+                    Updated_Date = s.updated_date,
+                    Deleted_Date = s.deleted_date,
+                    Blocked_Date = s.blocked_date,
+                    State_Id = s.state_id,
+                    Website = s.website
+                }).Skip(page*page_size).Take(page_size).ToListAsync();
+
+            return await PrepareProjects(resultList);
+        }
+
+
+        public async Task<List<ProjectDTO>> ReadProjects(int? id = null)
         {
             if (id.Equals(null))
-                
+
             {
                 var db = new CrowdFundingViva1Entities();
                 List<ProjectDTO> resultList = new List<ProjectDTO>();
@@ -54,33 +123,35 @@ namespace BAL
                 List<ProjectDTO> resultList = new List<ProjectDTO>();
                 resultList = await db.project
                     .Where(s => s.project_id == id)
+                    
                     .Select(s => new ProjectDTO
-                {
-                    Project_Id = s.project_id,
-                    Description = s.description,
-                    User_Id = s.user_id,
-                    Title = s.title,
-                    Short_Description = s.short_description,
-                    Goal = s.goal,
-                    Goal_Min = s.goal_min,
-                    Photo_Id_Main = s.photo_id_main,
-                    Video = s.video,
-                    Category_Id = s.category_id,
-                    CategoryDesc = s.project_category != null ? s.project_category.description : null,
-                    Due_Date = s.due_date,
-                    Is_Active = s.is_active,
-                    Created_Date = s.created_date,
-                    Updated_Date = s.updated_date,
-                    Deleted_Date = s.deleted_date,
-                    Blocked_Date = s.blocked_date,
-                    State_Id = s.state_id,
-                    Website = s.website
-                }).ToListAsync();
+                    {
+                        Project_Id = s.project_id,
+                        Description = s.description,
+                        User_Id = s.user_id,
+                        Title = s.title,
+                        Short_Description = s.short_description,
+                        Goal = s.goal,
+                        Goal_Min = s.goal_min,
+                        Photo_Id_Main = s.photo_id_main,
+                        Video = s.video,
+                        Category_Id = s.category_id,
+                        CategoryDesc = s.project_category != null ? s.project_category.description : null,
+                        Due_Date = s.due_date,
+                        Is_Active = s.is_active,
+                        Created_Date = s.created_date,
+                        Updated_Date = s.updated_date,
+                        Deleted_Date = s.deleted_date,
+                        Blocked_Date = s.blocked_date,
+                        State_Id = s.state_id,
+                        Website = s.website
+                    }).ToListAsync();
 
                 return await PrepareProjects(resultList);
             }
-            
+
         }
+        
 
         public async Task<List<ProjectDTO>> ReadProjectsByUserId(int id)
         {

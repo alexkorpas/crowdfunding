@@ -24,8 +24,41 @@ namespace Service
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
-        ///<summary>Gets a list of all available Projects a user has created, given his id.</summary>
-        ///<returns>List<ProjectDTO></returns>
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetProjectsByPage(int page)
+        {
+            try
+            {
+                var repository = new CrowdFundingTransactions();
+                var result = await repository.ReadProjectsByPage(page);
+                
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        }
+
+        ///<summary>Gets the Number of Projects in database so that client can start pagination .</summary>
+        ///<returns>Project Ammount</returns>
+
+        [HttpGet]
+        public async Task<HttpResponseMessage> ReadAndCount()
+        {
+            try
+            {
+                var repository = new CrowdFundingTransactions();
+                var result = await repository.ReadAndCount();
+                var json = new
+                {
+                    Table_Size = result
+                    
+                };
+                return Request.CreateResponse(HttpStatusCode.OK, json);
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        }
+
+        ///<summary>Gets the Number of Projects in database so that client can start pagination .</summary>
+        ///<returns>Project Ammount</returns>
         [HttpGet]
         public async Task<HttpResponseMessage> GetProjectsByUser(int id)
         {

@@ -25,7 +25,7 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
             var count = Object.keys(res).length;
             //console.log(res);
         });
-        baseService.httpGetAnonymous("api/Project/GetProjects/?Page=1", null).then(function (res) {
+        baseService.httpGetAnonymous("api/Project/GetProjects/", null).then(function (res) {
              $scope.Projects = res;
 
             var count = Object.keys(res).length;

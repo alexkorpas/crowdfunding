@@ -62,7 +62,7 @@ namespace BAL
                 if (criteria.Search != null && criteria.Search != "")
                     res = res.Where(s => s.Title.Contains(criteria.Search) || s.ShortDescription.Contains(criteria.Search));
                 if (criteria.Page != null)
-                    res = res.Skip((int)criteria.Page * 3).Take(3);
+                    res = res.OrderBy(s=>s.Id).Skip((int)criteria.Page * 3).Take(3);
                 result = await res.Where(a => a.IsActive == true).Select(s => new ProjectDTO
                 {
                     Id = s.Id,

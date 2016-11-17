@@ -1,10 +1,14 @@
-﻿html, body {
+﻿@import url(http://fonts.googleapis.com/css?family=Raleway:400,550,700,900);
+@import url(http://fonts.googleapis.com/css?family=Lato:200,400,600,900);
+
+html, body {
     height: 100%;
     background-color: azure;
+    font-family: 'Lato', sans-serif;
 }
 
 #contentUI {
-    padding: 70px 0 256px 0;
+    padding: 70px 0 246px 0;
     min-height: 100%;
 }
 
@@ -29,8 +33,17 @@ a:focus {
     color: #01b2fe;
 }
 
+h4 {
+    margin-top: 0;
+}
+
 .centered {
     text-align: center;
+}
+
+.spacing {
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 .form-horizontal > .form-group {
@@ -62,6 +75,7 @@ a:focus {
 
 .btn-theme {
     color: #fff;
+    font-family: 'Raleway', sans-serif;
     background-color: #384452;
     border-color: #384452;
     margin: 4px;
@@ -78,19 +92,72 @@ a:focus {
     border-color: #00b3fe;
 }
 
+.progress {
+    height: 15px;
+}
+
+.progress-bar-theme {
+    background: #00b3fe;
+    background: -webkit-linear-gradient(top, #00b3fe 0%, #0073be 100%);
+    background: linear-gradient(to bottom, #00b3fe 0%, #0073be 100%);
+}
+
+.nav-tabs.nav-justified>.active>a,
+.nav-tabs.nav-justified>.active>a:focus,
+.nav-tabs.nav-justified>.active>a:hover {
+    color: #01b2fe;
+}
+
+.nav-tabs.nav-justified>li>a:focus,
+.nav-tabs.nav-justified>li>a:hover {
+    background: #fff;
+    transition: none;
+}
+
+.tab-content {
+    padding: 10px;
+    background: #fff;
+    border-radius: 0 0 4px 4px;
+    border: 1px solid #ddd;
+    border-top-color: #fff
+}
+
+.hline {
+	border-bottom: 2px solid #384452;
+}
+
+.hline-w {
+	border-bottom: 2px solid #ffffff;
+	margin-bottom: 25px;
+}
+
 .validator {
     border-color: red;
 }
 
 /* Navigation Bar Style*/
 .navbar {
+    font-family: 'Raleway', sans-serif;
     padding-top: 10px;
     min-height: 70px;
     margin-bottom: 0px;
+    color: white;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #fff;
+    border: 2px solid;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
 }
 
 .navbar-brand {
-    font-family: 'Raleway', sans-serif;
     font-weight: 900;
 }
 
@@ -100,8 +167,8 @@ a:focus {
 
 .navbar-default .navbar-nav > li > a {
     color: white;
-    font-weight: 700;
-    font-size: 13px;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -133,24 +200,31 @@ a:focus {
 /* Header */
 #headerwrap {
     background-color: #00b3fe;
-    text-align: center;
-}
-
-#headerwrap h3, h5 {
-    color: white;
-    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
 }
 
 #headerwrap h1 {
+    text-align: center;
     font-size:26px;
     font-weight:100;
     color: white;
     margin-bottom: 25px;
 }
 
+#headerwrap h2 {
+    font-size:26px;
+    font-weight:100;
+    color: white;
+    margin-bottom: 25px;
+}
+
+#headerwrap h3, h5 {
+    color: white;
+    font-weight: 400;
+}
 /* Footer */
 #footerwrap {
-    margin-top: -256px;
+    margin-top: -246px;
     padding: 40px 0;
     background: #384452;
 }
@@ -161,6 +235,7 @@ a:focus {
 
 #footerwrap h4 {
     color: white;
+    font-family: 'Raleway', sans-serif;
 }
 
 #footerwrap i {
@@ -173,16 +248,11 @@ a:focus {
     color: #00b3fe;
 }
 
-.hline-w {
-	border-bottom: 2px solid #ffffff;
-	margin-bottom: 25px;
-}
-
 /* Cards */
 .card {
     position: relative;
     display: block;
-    margin-bottom: .75rem;
+    margin-bottom: 1.5rem;
     background-color: #fff;
     border-radius: .25rem;
     border: 1px solid rgba(0,0,0,.125);
@@ -241,6 +311,19 @@ a:focus {
 .card-bot:last-child,
 .card-footer:last-child {
     border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+}
+
+/* Carousel */
+
+.carousel > .carousel-inner > .item {
+    width: 100%;
+    height: 352px;
+}
+
+.carousel > .carousel-inner > .item > img,
+.carousel > .carousel-inner > .item > iframe {
+    width: 100%;
+    height: 100%;
 }
 
 /* Media Queries */

@@ -14,6 +14,8 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+         
+   
         .state('Home.Projects', {
             url: "/Projects",
             templateUrl: "/App/Views/Projects/ProjectsView.html",
@@ -78,7 +80,9 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
             //function ($scope, $stateParams) {
             //$scope.portfolioId = $stateParams.portfolioId;
       //  }
-    });
+    })
+
+   
     
 });
 CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers) {

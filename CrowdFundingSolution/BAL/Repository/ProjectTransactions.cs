@@ -54,15 +54,15 @@ namespace BAL
                 }
                 var res = db.Project.AsQueryable();
                 if (criteria.UserId != null)
-                    res.Where(s => s.UserFK == criteria.UserId.ToString());
+                    res = res.Where(s => s.UserFK == criteria.UserId.ToString());
                 if (criteria.StateId != null)
-                    res.Where(s => s.StateFK.Equals(criteria.UserId));
+                    res = res.Where(s => s.StateFK == criteria.UserId);
                 if (criteria.CategoryId != null)
-                    res.Where(s => s.CategoryFK.Equals(criteria.CategoryId));
+                    res = res.Where(s => s.CategoryFK == criteria.CategoryId);
                 if (criteria.Search != null && criteria.Search != "")
-                    res.Where(s => s.Title.Contains(criteria.Search) || s.ShortDescription.Contains(criteria.Search));
+                    res = res.Where(s => s.Title.Contains(criteria.Search) || s.ShortDescription.Contains(criteria.Search));
                 if (criteria.Page != null)
-                    res.Skip((int)criteria.Page * 3).Take(3);
+                    res = res.OrderBy(s=>s.Id).Skip((int)criteria.Page * 3).Take(3);
                 result = await res.Where(a => a.IsActive == true).Select(s => new ProjectDTO
                 {
                     Id = s.Id,

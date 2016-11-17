@@ -77,6 +77,7 @@
     <Content Include="App\Views\Email\EmailConfirmed.html" />
     <Content Include="App\Views\HomeView.html" />
     <Content Include="App\Views\Login\LoginView.html" />
+    <Content Include="App\Views\Pagination\PaginationIndexView.html" />
     <Content Include="App\Views\Projects\ProjectPage.html" />
     <Content Include="App\Views\Projects\ProjectsView.html" />
     <Content Include="App\Views\Register\RegisterView.html" />

@@ -1,6 +1,6 @@
 ﻿<div id="headerwrap">
     <div class="container">
-        <h2>Project Title</h2>
+        <h2>{{Project.Title}}</h2>
     </div>
 </div>
 <div id="main-content">
@@ -45,15 +45,15 @@
 
             <div class="col-lg-8 spacing">
                 <ul class="nav nav-tabs nav-justified">
-                    <li class="active"><a data-toggle="tab" href="#description">Home</a></li>
-                    <li><a data-toggle="tab" href="#updates">Updates</a></li>
-                    <li><a data-toggle="tab" href="#comments">Comments</a></li>
+                    <li class="active"><a data-toggle="tab" ng-href="#description">Home</a></li>
+                    <li><a data-toggle="tab" ng-href="#updates">Updates</a></li>
+                    <li><a data-toggle="tab" ng-href="#comments">Comments</a></li>
                 </ul>
 
                 <div class="tab-content">
                     <div id="description"> <!--class="tab-pane fade in active">-->
                         <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>{{Project.Description}}</p>
                     </div>
                     <div id="updates"> <!--class="tab-pane fade">-->
                         <h4>Updates</h4>

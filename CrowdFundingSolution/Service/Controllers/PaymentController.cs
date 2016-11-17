@@ -16,7 +16,7 @@ namespace Service.Controllers
         private string _PaymentsCreateOrderUrl = "/api/orders";
 
         [HttpPost]
-        public HttpResponseMessage Pay(string hidToken)
+        public HttpResponseMessage Pay(string ourToken)
         {
             var _orderCode = CreateOrder(10000);    //CALL TO CREATE AN ORDER. IF AN ORDER CODE ALREADY EXISTS FROM A PREVIOUS STEP, USE THAT ONE INSTEAD
 
@@ -33,7 +33,7 @@ namespace Service.Controllers
                 SourceCode = "Default",             //MAKE SURE THIS IS A SOURCE OF TYPE SIMPLE/NATIVE  
                 CreditCard = new
                 {
-                    Token = hidToken//.Value.ToString()
+                    Token = ourToken//.Value.ToString()
                 }
             });
 

@@ -17,16 +17,45 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
          
    
         .state('Home.Projects', {
-            url: "/Projects",
-            templateUrl: "/App/Views/Projects/ProjectsView.html",
-            controller: "ProjectsController",
-            data: {
-                requireLogin: _requiresLogin,
-                settings: {
-                    displayName: 'Projects'
-                }
-            }
+            
+                    url: "/Projects/1",
+                    views: {
+                        '': {
+                            templateUrl: 'App/Views/Projects/ProjectsView.html',
+                            controller: 'ProjectsController'
+                        },
+                        'Pagination@Home.Projects': { templateUrl: 'App/Views/Pagination/PaginationIndexView.html', },
+                        
+                    },
+                    data: {
+                        requireLogin: _requiresLogin,
+                        settings: {
+                            displayName: 'Home'
+                        }
+                    }
+              
+            
         })
+
+         .state('Home.ProjectsByPage', {
+
+             url: "/Projects/:ProjectPage",
+             views: {
+                 '': {
+                     templateUrl: 'App/Views/Projects/ProjectsView.html',
+                     controller: 'ProjectPageController'
+                 },
+                 'Pagination@Home.Projects': { templateUrl: 'App/Views/Pagination/PaginationIndexView.html', },
+                 
+             },
+             data: {
+                 requireLogin: _requiresLogin,
+                 settings: {
+                     displayName: 'ProjectsByPage'
+                 }
+             }
+
+         })
         .state('Home.Login', {
             url: "/Login",
             templateUrl: "/App/Views/Login/LoginView.html",

@@ -68,6 +68,7 @@
     <Content Include="App\Controllers\Email\EmailController.js" />
     <Content Include="App\Controllers\HomeController.js" />
     <Content Include="App\Controllers\Login\LoginController.js" />
+    <Content Include="App\Controllers\Projects\ProjectController.js" />
     <Content Include="App\Controllers\Profile\ProfileController.js" />
     <Content Include="App\Controllers\Projects\ProjectsController.js" />
     <Content Include="App\Controllers\Register\RegisterController.js" />

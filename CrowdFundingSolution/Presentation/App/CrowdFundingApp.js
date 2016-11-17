@@ -85,7 +85,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
     //.state('new-qs', {
     .state('Home.Project',{
        // url: '/Project?portfolioId',
-        url: '/Project/:ProjectId',
+        url: '/Project/:Id',
         templateUrl: "/App/Views/Projects/ProjectPage.html",
         controller:'ProjectController'
             //function ($scope, $stateParams) {

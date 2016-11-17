@@ -37,7 +37,7 @@
     </div>
 
     <input type="hidden" name="OrderId" value="146228" /> <!--Custom Field-->
-    <input type="hidden" id="hidToken" name="hidToken" /> <!--Hidden Field to hold the Generated Token-->
+    <input type="hidden" id="hidToken" name="hidToken" ng-model="hidToken" /> <!--Hidden Field to hold the Generated Token-->
     <input type="submit" id="submit" value="Submit Payment" />
     <input type="button" id="submit" value="Submit" onclick="VivaPayments.cards.requestToken();" />
 </form>

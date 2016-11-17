@@ -25,5 +25,21 @@ CrowdFundingApp.controller('BackItController', ['$scope', '$state', 'ngDialog', 
                     alert(response.Error);
             }
         });
-        $scope.test = function () { alert("hello"); };
+        $scope.test = function () {
+
+            var deferred = $q.defer();
+            var config = {
+                method: 'POST',
+                data: 'json',
+                params: $scope.hidToken
+            };
+            $http.post(
+                servers.CF_SERVER + URI, config
+                ).success(function (data) {
+                    deferred.resolve(data);
+                }).error(function (err, status) {
+                    deferred.reject(err);
+                });
+            return deferred.promise;
+        };
     }]);

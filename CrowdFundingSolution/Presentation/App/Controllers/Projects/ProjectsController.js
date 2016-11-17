@@ -33,6 +33,17 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
         });
     }]);
 
+CrowdFundingApp.controller('ProjectPageController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService',
+    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService) {
+        
+        baseService.httpGetAnonymous("api/Project/GetProjects/?Page=" + $stateParams.ProjectPage, null).then(function (res) {
+            $scope.Projects = res;
+
+            var count = Object.keys(res).length;
+            console.log(res);
+        });
+    }]);
+
 //CrowdFundingApp.controller('TestController', function ($scope, $http) {
 //    // create a message to display in our view
 //    $scope.message = 'contacts';

@@ -14,48 +14,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-         
-   
         .state('Home.Projects', {
-            
-                    url: "/Projects/1",
-                    views: {
-                        '': {
-                            templateUrl: 'App/Views/Projects/ProjectsView.html',
-                            controller: 'ProjectsController'
-                        },
-                        'Pagination@Home.Projects': { templateUrl: 'App/Views/Pagination/PaginationIndexView.html', },
-                        
-                    },
-                    data: {
-                        requireLogin: _requiresLogin,
-                        settings: {
-                            displayName: 'Home'
-                        }
-                    }
-              
-            
+            url: "/Projects",
+            templateUrl: "/App/Views/Projects/ProjectsView.html",
+            controller: "ProjectsController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Login'
+                }
+            }
         })
-
-         .state('Home.ProjectsByPage', {
-
-             url: "/Projects/:ProjectPage",
-             views: {
-                 '': {
-                     templateUrl: 'App/Views/Projects/ProjectsView.html',
-                     controller: 'ProjectPageController'
-                 },
-                 'Pagination@Home.Projects': { templateUrl: 'App/Views/Pagination/PaginationIndexView.html', },
-                 
-             },
-             data: {
-                 requireLogin: _requiresLogin,
-                 settings: {
-                     displayName: 'ProjectsByPage'
-                 }
-             }
-
-         })
         .state('Home.Login', {
             url: "/Login",
             templateUrl: "/App/Views/Login/LoginView.html",
@@ -111,18 +80,11 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-    //.state('new-qs', {
-    .state('Home.Project',{
-       // url: '/Project?portfolioId',
-        url: '/Project/:Id',
-        templateUrl: "/App/Views/Projects/ProjectPage.html",
-        controller:'ProjectController'
-            //function ($scope, $stateParams) {
-            //$scope.portfolioId = $stateParams.portfolioId;
-      //  }
-    })
-
-   
+        .state('Home.Project',{
+            url: '/Project/:Id',
+            templateUrl: "/App/Views/Projects/ProjectPage.html",
+            controller:'ProjectController'
+        }) 
     
 });
 CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers) {

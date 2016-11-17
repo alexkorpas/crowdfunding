@@ -34,7 +34,9 @@
             </div>
         </div>
         <div class="row"></div>
-        <div id="contentUI1" ui-view="Pagination"></div>
+        <ul class="pagination">
+            <li ng-repeat="n in index"><a ui-sref="" ng-click="reload(n)">{{n}}</a></li>
+        </ul>
         </div>
         
     </div>

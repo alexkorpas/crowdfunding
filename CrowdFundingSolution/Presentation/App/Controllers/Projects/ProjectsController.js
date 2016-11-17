@@ -12,8 +12,7 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
                 }
                 else {
                     pages = res;
-                }
-                
+                }                
                 
                 console.log(pages);
                 for (var i=0; i<pages; i++) {
@@ -25,7 +24,15 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
             var count = Object.keys(res).length;
             //console.log(res);
         });
-        baseService.httpGetAnonymous("api/Project/GetProjects/", null).then(function (res) {
+        $scope.reload = function (n) {
+            baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: n-1 }).then(function (res) {
+                $scope.Projects = res;
+
+                var count = Object.keys(res).length;
+                console.log(res);
+            });
+        };
+        baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: 0 }).then(function (res) {
              $scope.Projects = res;
 
             var count = Object.keys(res).length;
@@ -33,16 +40,16 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
         });
     }]);
 
-CrowdFundingApp.controller('ProjectPageController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService) {
+//CrowdFundingApp.controller('ProjectPageController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService',
+//    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService) {
         
-        baseService.httpGetAnonymous("api/Project/GetProjects/?Page=" + $stateParams.ProjectPage, null).then(function (res) {
-            $scope.Projects = res;
+//        baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: $stateParams.ProjectPage }).then(function (res) {
+//            $scope.Projects = res;
 
-            var count = Object.keys(res).length;
-            console.log(res);
-        });
-    }]);
+//            var count = Object.keys(res).length;
+//            console.log(res);
+//        });
+//    }]);
 
 //CrowdFundingApp.controller('TestController', function ($scope, $http) {
 //    // create a message to display in our view

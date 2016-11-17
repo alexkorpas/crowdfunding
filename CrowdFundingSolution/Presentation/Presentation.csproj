@@ -68,6 +68,8 @@
     <Content Include="App\Controllers\Email\EmailController.js" />
     <Content Include="App\Controllers\HomeController.js" />
     <Content Include="App\Controllers\Login\LoginController.js" />
+    <Content Include="App\Controllers\Projects\ProjectController.js" />
+    <Content Include="App\Controllers\Profile\ProfileController.js" />
     <Content Include="App\Controllers\Projects\ProjectsController.js" />
     <Content Include="App\Controllers\Register\RegisterController.js" />
     <Content Include="App\CrowdFundingApp.js" />
@@ -78,6 +80,7 @@
     <Content Include="App\Views\HomeView.html" />
     <Content Include="App\Views\Login\LoginView.html" />
     <Content Include="App\Views\Pagination\PaginationIndexView.html" />
+    <Content Include="App\Views\Profile\ProfileView.html" />
     <Content Include="App\Views\Projects\ProjectPage.html" />
     <Content Include="App\Views\Projects\ProjectsView.html" />
     <Content Include="App\Views\Register\RegisterView.html" />

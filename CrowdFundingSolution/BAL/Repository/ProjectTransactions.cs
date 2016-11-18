@@ -62,7 +62,7 @@ namespace BAL
                 if (criteria.Search != null && criteria.Search != "")
                     res = res.Where(s => s.Title.Contains(criteria.Search) || s.ShortDescription.Contains(criteria.Search));
                 if (criteria.Page != null)
-                    res = res.OrderBy(s=>s.Id).Skip((int)criteria.Page * 3).Take(3);
+                    res = res.OrderBy(s => s.Id).Skip((int)criteria.Page * 3).Take(3);
                 result = await res.Where(a => a.IsActive == true).Select(s => new ProjectDTO
                 {
                     Id = s.Id,
@@ -110,7 +110,7 @@ namespace BAL
         public async Task<TransactionResult> ReadProjectCategories()
         {
             try
-            { 
+            {
                 var db = new backup_CrowdFundingViva1Entities();
                 List<ProjectCategoryDTO> result = new List<ProjectCategoryDTO>();
                 result = await db.ProjectCategory.Select(s => new ProjectCategoryDTO
@@ -134,6 +134,51 @@ namespace BAL
             }
 
             return list;
+        }
+
+        public async Task<TransactionResult> ReadTrendingProjects()
+        {
+            try
+            {
+                var db = new backup_CrowdFundingViva1Entities();
+                double days = 7;
+                int projsToReturn = 5;
+                DateTime fromDay = DateTime.Now.AddDays(-days);
+
+                var result = await db.Project.Where(
+                    x => (
+                        from p in db.Payment
+                        where (fromDay.CompareTo(p.PaymentDate) <= 0 && (p.Amount - p.RefundedAmount != 0))
+                        group p by p.ProjectFK into ProjectIDs
+                        let countPayments = ProjectIDs.Count()
+                        orderby countPayments descending
+                        select ProjectIDs.Key).Take(projsToReturn
+                        ).Contains(x.Id)
+                    ).Select(s => new ProjectDTO
+                    {
+                        Id = s.Id,
+                        Description = s.Description,
+                        UserFK = s.UserFK,
+                        Title = s.Title,
+                        ShortDescription = s.ShortDescription,
+                        Goal = s.Goal,
+                        GoalMin = s.GoalMin,
+                        MainPhotoFK = s.MainPhotoFK,
+                        Video = s.Video,
+                        CategoryFK = s.CategoryFK,
+                        DueDate = s.DueDate,
+                        IsActive = s.IsActive,
+                        CreatedDate = s.CreatedDate,
+                        UpdatedDate = s.UpdatedDate,
+                        DeletedDate = s.DeletedDate,
+                        BlockedDate = s.BlockedDate,
+                        StateFK = s.StateFK,
+                        Website = s.Website
+                    }).ToListAsync();
+
+                return new TransactionResult(TransResult.Success, string.Empty, result);
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
     } // End class
 } // End namespace

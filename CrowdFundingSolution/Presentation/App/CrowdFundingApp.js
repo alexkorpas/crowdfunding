@@ -14,8 +14,6 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-         
-   
         .state('Home.Projects', {
             url: "/Projects",
             templateUrl: "/App/Views/Projects/ProjectsView.html",
@@ -23,18 +21,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
             data: {
                 requireLogin: _requiresLogin,
                 settings: {
-                    displayName: 'Projects'
-                }
-            }
-        })
-        .state('Home.Profile', {
-            url: "/Profile",
-            templateUrl: "/App/Views/Profile/ProfileView.html",
-            controller: "ProfileController",
-            data: {
-                requireLogin: _requiresLogin,
-                settings: {
-                    displayName: 'Profile'
+                    displayName: 'Login'
                 }
             }
         })
@@ -53,6 +40,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
             url: "/Register",
             templateUrl: "/App/Views/Register/RegisterView.html",
             controller: "RegisterController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Register'
+                }
+            }
+        })
+        .state('Home.BackIt', {
+            url: "/BackIt",
+            templateUrl: "/App/Views/BackIt/BackItForm.html",
+            controller: "BackItController",
             data: {
                 requireLogin: _requiresLogin,
                 settings: {
@@ -82,18 +80,11 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-    //.state('new-qs', {
-    .state('Home.Project',{
-       // url: '/Project?portfolioId',
-        url: '/Project/:Id',
-        templateUrl: "/App/Views/Projects/ProjectPage.html",
-        controller:'ProjectController'
-            //function ($scope, $stateParams) {
-            //$scope.portfolioId = $stateParams.portfolioId;
-      //  }
-    })
-
-   
+        .state('Home.Project',{
+            url: '/Project/:Id',
+            templateUrl: "/App/Views/Projects/ProjectPage.html",
+            controller:'ProjectController'
+        }) 
     
 });
 CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers) {

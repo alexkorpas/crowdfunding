@@ -47,17 +47,6 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('Home.BackIt', {
-            url: "/BackIt",
-            templateUrl: "/App/Views/BackIt/BackItForm.html",
-            controller: "BackItController",
-            data: {
-                requireLogin: _requiresLogin,
-                settings: {
-                    displayName: 'Register'
-                }
-            }
-        })
         .state('Home.RegistrationSubmitted', {
             url: "/RegistrationSubmitted",
             templateUrl: "/App/Views/Register/RegistrationSubmitted.html",

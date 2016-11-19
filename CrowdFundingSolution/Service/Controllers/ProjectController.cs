@@ -99,6 +99,23 @@ namespace Service
                     return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
-        }        
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<HttpResponseMessage> SaveProject(JObject jobj)
+        {
+            if (jobj == null)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
+            try
+            {
+                var user = User.Identity.Name;
+                ProjectDTO projectDTO = jobj.ToObject<ProjectDTO>();
+                var repository = new CrowdFundingTransactions();
+                var transaction = await repository.SaveProjectTransaction(projectDTO, user);
+                return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        }
     }
 }

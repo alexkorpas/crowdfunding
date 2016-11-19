@@ -5,7 +5,7 @@ namespace BAL
 {
     public class ProjectDTO
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Description { get; set; }
         public string UserFK { get; set; }
         public string Title { get; set; }
@@ -18,7 +18,7 @@ namespace BAL
         public string CategoryDesc { get; set; }
         public string CategoryName { get; set; }
         public DateTime? DueDate { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? DeletedDate { get; set; }

@@ -47,7 +47,7 @@ services.factory('baseService', ['$http', '$q', '$state', 'localStorageService',
                 };
             }
             catch (ex) {
-                $state.go("login");
+                //$state.go("login");
             }
             return config;
         }
@@ -77,7 +77,20 @@ services.factory('baseService', ['$http', '$q', '$state', 'localStorageService',
             return deferred.promise;
         };
 
+        var _httpPost = function (URI, params) {
+            var config = _prepareRequest();
+            var deferred = $q.defer();
+            $http.post(servers.CF_SERVER + URI, params, config
+                    ).success(function (data) {
+                        deferred.resolve(data)
+                    }).error(function (err, status) {
+                        deferred.reject(err);
+                    });
+            return deferred.promise;
+        };
+
         baseServiceResult.httpGet = _httpGet;
+        baseServiceResult.httpPost = _httpPost;
         baseServiceResult.httpGetAnonymous = _httpGetAnonymous;
         return baseServiceResult;
     }]);

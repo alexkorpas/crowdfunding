@@ -148,6 +148,52 @@ namespace BAL
             return list;
         }
 
+        public async Task<TransactionResult> SaveProjectTransaction(ProjectDTO projectDTO, string user)
+        {
+            try
+            {
+                using (var db = new backup_CrowdFundingViva1Entities())
+                {
+                    AspNetUsers _user = await db.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();
+
+                    ProjectCategory _projectCategory = null;
+                    if (projectDTO.CategoryFK != null)
+                        _projectCategory = await db.ProjectCategory.FindAsync(projectDTO.CategoryFK);
+
+                    if (projectDTO.Id == null || projectDTO.Id == 0)
+                    {
+                        Project project = new Project()
+                        {
+                            AspNetUsers = _user,
+                            Title = projectDTO.Title,
+                            Description = projectDTO.Description,
+                            ShortDescription = projectDTO.ShortDescription,
+                            Goal = projectDTO.Goal,
+                            Video = projectDTO.Video,
+                            ProjectCategory = _projectCategory,
+                            DueDate = projectDTO.DueDate,
+                            IsActive = true,
+                            CreatedDate = DateTime.Now
+                        
+                        };
+                        db.Project.Add(project);
+                        await db.SaveChangesAsync();
+
+                        return new TransactionResult(TransResult.Success, "Success", null, project.Id);
+                    }
+                    else
+                    {
+                        //Project project = uow.GetObjectByKey<Project>(projectDTO.Id);
+                        //uow.CommitChanges();
+
+                        return new TransactionResult(TransResult.Success, "Success", null);
+                        //result = projectDTO.Id;
+                    }
+                }
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        }
+
         public async Task<TransactionResult> ReadTrendingProjects()
         {
             try

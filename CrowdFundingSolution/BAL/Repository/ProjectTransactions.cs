@@ -66,9 +66,9 @@ namespace BAL
                 }
                 var res = db.Project.AsQueryable();
                 if (criteria.UserId != null)
-                    res = res.Where(s => s.UserFK == criteria.UserId.ToString());
+                    res = res.Where(s => s.UserFK == criteria.UserId);
                 if (criteria.StateId != null)
-                    res = res.Where(s => s.StateFK == criteria.UserId);
+                    res = res.Where(s => s.StateFK == criteria.StateId);
                 if (criteria.CategoryId != null)
                     res = res.Where(s => s.CategoryFK == criteria.CategoryId);
                 if (criteria.Search != null && criteria.Search != "")

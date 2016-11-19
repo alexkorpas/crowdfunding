@@ -11,12 +11,12 @@ namespace BAL
 
         public int Id { get; set; }
         public int ProjectFK { get; set; }
-        public int UserFK { get; set; }
+        public string UserFK { get; set; }
         public decimal Amount { get; set; }
-        public int Rewards { get; set; }
+        public string Rewards { get; set; }
         public DateTime PaymentDate { get; set; }
         public string PaymentMethod { get; set; }
-        public decimal RefundedAmount { get; set; }
-        public DateTime RefundedDate{ get; set; }
+        public decimal? RefundedAmount { get; set; }
+        public DateTime? RefundedDate{ get; set; }
     }
 }

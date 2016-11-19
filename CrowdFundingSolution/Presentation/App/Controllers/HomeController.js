@@ -5,5 +5,11 @@ CrowdFundingApp.controller('HomeController', ['$scope', '$state', 'ngDialog', '$
             CFHelpers.deleteToken();
             $state.go("Home.Login");
         }
+        $scope.search = function (field) {
+            console.log(field);
+            $state.go("Home.Projects",{Search:field});
+        }
         $scope.test = "///////This is a controller parameter////////";
-    }]);
+    }
+
+]);

@@ -1,7 +1,7 @@
 ﻿'use strict';
 CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService',
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService) {
-        baseService.httpGetAnonymous("api/Project/GetPageCount", null).then(function (res) {
+        baseService.httpGetAnonymous("api/Project/GetPageCount",null).then(function (res) {
             var pages; 
             var pageindex=[];
             if (angular.isNumber(res)) {
@@ -25,14 +25,15 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
             //console.log(res);
         });
         $scope.reload = function (n) {
-            baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: n-1 }).then(function (res) {
+            
+            baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: n - 1, Search: $stateParams.Search }).then(function (res) {
                 $scope.Projects = res;
-
+                
                 var count = Object.keys(res).length;
                 console.log(res);
             });
         };
-        baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: 0 }).then(function (res) {
+        baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: 0, Search: $stateParams.Search }).then(function (res) {
              $scope.Projects = res;
 
             var count = Object.keys(res).length;

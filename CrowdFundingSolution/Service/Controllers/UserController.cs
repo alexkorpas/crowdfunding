@@ -3,6 +3,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Service.Controllers
@@ -15,13 +16,13 @@ namespace Service.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage GetLoggedInUser()
+        public async Task<HttpResponseMessage> GetLoggedInUser()
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
                 var identity = User.Identity as ClaimsIdentity;
-                var result = repository.ReadUserByName(identity.Name);
+                var result = await repository.ReadUserByName(identity.Name);
 
                 return Request.CreateResponse(HttpStatusCode.OK, "");
             }

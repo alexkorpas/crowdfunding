@@ -3,7 +3,7 @@
         <!-- left column -->
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
-                <img src="Assets/img/post02.jpg" class="avatar img-circle img-thumbnail" alt="avatar" id="Photo" width="150px">
+                <img src="Content/Images/post02.jpg" class="avatar img-circle img-thumbnail" alt="avatar" id="Photo" width="100" height="100">
                 <h6>Upload a different photo...</h6>
                 <input type="file" class="text-center center-block well well-sm">
             </div>
@@ -15,43 +15,43 @@
                         <h3>Personal info</h3>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">First name:</label>
+                        <label class="col-lg-3 control-label" style="padding-top: 5px;">First name:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="FirstName" value="Jane" type="text">
+                            <input class="form-control" id="FirstName" value="{{User.FirstName}}" type="text">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Last name:</label>
+                        <label class="col-lg-3 control-label" style="padding-top: 5px;">Last name:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="LastName" value="Bishop" type="text">
+                            <input class="form-control" id="LastName" value="{{User.LastName}}" type="text">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Phone Number:</label>
+                        <label class="col-lg-3 control-label" style="padding-top: 5px;">Phone Number:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="PhoneNumber" value="" type="text">
+                            <input class="form-control" id="PhoneNumber" value="{{User.PhoneNumber}}" type="text">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Email:</label>
+                        <label class="col-lg-3 control-label" style="padding-top: 5px;">Email:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="Email" value="" type="text" disabled>
+                            <input class="form-control" id="Email" value="" type="{{User.Email}}" disabled>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Username:</label>
+                        <label class="col-lg-3 control-label" style="padding-top: 5px;">Username:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="UserName" value="" type="text">
+                            <input class="form-control" id="UserName" value="{{User.UserName}}" type="text">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Password:</label>
+                        <label class="col-lg-3 control-label" style="padding-top: 5px;">Password:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="PassWord1" value="" type="password">
+                            <input class="form-control" id="PassWord1" value="{{User.Password}}" type="password">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Confirm password:</label>
+                        <label class="col-lg-3 control-label" style="padding-top: 5px;">Confirm password:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
                             <input class="form-control" id="PassWord2" value="" type="password">
                         </div>

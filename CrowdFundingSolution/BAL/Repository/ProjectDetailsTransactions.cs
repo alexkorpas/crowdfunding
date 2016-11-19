@@ -35,13 +35,20 @@ namespace BAL
                 .Select(s => new PaymentDTO
                 {
                     Amount = s.Amount,
-                    RefundedAmount = s.RefundedAmount.Equals(null) ? 0 : (decimal)s.RefundedAmount
+                    RefundedAmount = s.RefundedAmount
                 }).ToListAsync();
 
             decimal sum = 0;
             int backers = 0;
             foreach (var s in resultList) {
-                sum += s.Amount - s.RefundedAmount;
+                if (s.RefundedAmount != null)
+                {
+                    sum += s.Amount - (decimal)(s.RefundedAmount);
+                } else
+                {
+                    sum += s.Amount;
+                }
+
                 if (s.RefundedAmount != s.Amount) backers += 1;
             }
 

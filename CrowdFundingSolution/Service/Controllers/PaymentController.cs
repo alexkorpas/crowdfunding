@@ -1,11 +1,13 @@
-﻿using RestSharp;
+﻿using BAL;
+using RestSharp;
 using RestSharp.Authenticators;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Service.Controllers
+namespace Service
 {
     public class PaymentController : ApiController
     {
@@ -107,6 +109,22 @@ namespace Service.Controllers
             public int ErrorCode { get; set; }
             public string ErrorText { get; set; }
             public DateTime TimeStamp { get; set; }
+        }
+
+        [HttpGet]
+        [Route("GetPayments")]
+        public async Task<HttpResponseMessage> GetPayments([FromUri]TransactionCriteria criteria)
+        {
+            try
+            {
+                var repository = new CrowdFundingTransactions();
+                var transaction = await repository.ReadPayments(criteria);
+                if (transaction.Result == TransResult.Success)
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿var CrowdFundingApp = angular.module('app', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngDialog', 'angular-loading-bar', 'Services', 'LocalStorageModule']);
+﻿var CrowdFundingApp = angular.module('app', ['ngMaterial', 'ngDisqus',  'ui.router', 'ui.bootstrap', 'ngAnimate', 'ngDialog', 'angular-loading-bar', 'Services', 'LocalStorageModule']);
 CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/Home"); // If no valid state is given, redirect to home
     const _requiresLogin = false;

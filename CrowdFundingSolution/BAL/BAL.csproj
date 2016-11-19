@@ -54,7 +54,7 @@
     <Compile Include="DTO\ProjectFundingLevelDTO.cs" />
     <Compile Include="DTO\ProjectPhotoDTO.cs" />
     <Compile Include="DTO\ProjectStateDTO.cs" />
-    <Compile Include="DTO\UserDTO.cs" />
+    <Compile Include="DTO\UserInfoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DTO\PaymentDTO.cs" />
     <Compile Include="Repository\Base\TransactionCriteria.cs" />

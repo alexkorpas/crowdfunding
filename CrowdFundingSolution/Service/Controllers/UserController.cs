@@ -21,7 +21,7 @@ namespace Service.Controllers
             {
                 var repository = new CrowdFundingTransactions();
                 var identity = User.Identity as ClaimsIdentity;
-                //var result = repository.ReadUserByName(identity.Name);
+                var result = repository.ReadUserByName(identity.Name);
 
                 return Request.CreateResponse(HttpStatusCode.OK, "");
             }

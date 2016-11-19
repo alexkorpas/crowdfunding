@@ -46,7 +46,7 @@ namespace BAL
                 AspNetUsersDTO result = new AspNetUsersDTO();
 
                 var s = (from us in db.AspNetUsers
-                               where us.FirstName == name
+                               where us.Email == name
                                select us).FirstOrDefault();
 
                 result = new AspNetUsersDTO

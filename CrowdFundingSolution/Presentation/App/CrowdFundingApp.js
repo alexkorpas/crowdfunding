@@ -36,6 +36,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('Home.Profile', {
+            url: "/Profile",
+            templateUrl: "/App/Views/Profile/ProfileView.html",
+            controller: "ProfileController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Profile'
+                }
+            }
+        })
         .state('Home.Register', {
             url: "/Register",
             templateUrl: "/App/Views/Register/RegisterView.html",

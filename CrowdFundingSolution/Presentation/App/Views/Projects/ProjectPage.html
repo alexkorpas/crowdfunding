@@ -31,15 +31,17 @@
             </div>
 
             <div class="col-lg-4">
-                <div class="spacing"></div>
                 <h4>Project Details</h4>
                 <div class="hline"></div>
-                <p><b>Added on:</b> November 17, 2016</p>
-                <p><b>Ends:</b> December 3, 2016</p>
-                <p><b>Categories:</b> Art</p>
+                <p><b>Added on:</b> {{Project.CreatedDate}}</p>
+                <p><b>Last Updated:</b> {{Project.UpdatedDate}}</p>
+                <p><b>Ends:</b> {{Project.DueDate}}</p>
+                <p><b>Category:</b> {{Project.CategoryName}}</p>
                 <p><b>Creator:</b> VivaTeam1</p>
-                <p><b>Backers:</b> 5</p>
-                <p><b>Goal (Minimum):</b> 10.000 (8.000)</p>
+                <p><b>Website:</b> {{Project.Website}}</p>
+                <p><b>Backers:</b> {{Project.Backers}}</p>
+                <p><b>Goal (Minimum):</b> {{Project.Goal}} ({{Project.GoalMin}})</p>
+                <p><b>Gathered:</b> {{Project.Gathered}}</p>
                 <button class="btn btn-theme" ng-click="backIt()" style="width:210px;">Back It!!</button>
                 <!--<a ui-sref="Home.BackIt" class="btn btn-theme">Back It!!</a>-->
             </div>
@@ -48,21 +50,18 @@
                 <div ng-cloak>
                     <md-content>
                         <md-tabs md-dynamic-height md-border-bottom>
-                            <md-tab label="one">
+                            <md-tab label="Description">
                                 <md-content class="md-padding">
-                                    <h1 class="md-display-2">Description</h1>
                                     <p>{{Project.Description}}</p>
                                 </md-content>
                             </md-tab>
-                            <md-tab label="two">
+                            <md-tab label="Updates">
                                 <md-content class="md-padding">
-                                    <h1 class="md-display-2">Updates</h1>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. </p>
                                 </md-content>
                             </md-tab>
-                            <md-tab label="three">
+                            <md-tab label="Comments">
                                 <md-content class="md-padding">
-                                    <h1 class="md-display-2">Comments</h1>
                                     <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
                                 </md-content>
                             </md-tab>

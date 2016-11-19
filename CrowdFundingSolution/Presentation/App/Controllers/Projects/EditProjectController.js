@@ -7,9 +7,9 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
             $scope.selectedCat = res[0];
         });
         $scope.test = function () {
-            //baseService.httpPost("api/Project/SaveProject", $scope.project).then(function (res) {
+            baseService.httpPost("api/Project/SaveProject", $scope.project).then(function (res) {
             $scope.showSimpleToast()
-            //});           
+            });           
         };
         //$rootScope.showSimpleToast = function () {
         //    //var pinTo = $scope.getToastPosition();
@@ -57,7 +57,7 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
               $mdToast.simple()
                 .textContent('Simple Toast!')
                 .position(pinTo)
-                .hideDelay(300000)
+                .hideDelay(3000)
                 //.toastClass('toast')
             );
         };

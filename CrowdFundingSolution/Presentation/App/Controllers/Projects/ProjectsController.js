@@ -1,7 +1,7 @@
 ﻿'use strict';
 CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService',
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService) {
-        baseService.httpGetAnonymous("api/Project/GetPageCount",null).then(function (res) {
+        baseService.httpGetAnonymous("api/Project/GetPageCount", {keyword: $stateParams.Search}).then(function (res) {
             var pages; 
             var pageindex=[];
             if (angular.isNumber(res)) {

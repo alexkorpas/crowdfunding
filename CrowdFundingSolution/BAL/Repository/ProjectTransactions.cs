@@ -9,12 +9,24 @@ namespace BAL
 {
     public partial class CrowdFundingTransactions
     {
-        public async Task<TransactionResult> ReadPageCount()
+        public async Task<TransactionResult> ReadPageCount(string keyword)
         {
             try
             {
                 var db = new backup_CrowdFundingViva1Entities();
-                return new TransactionResult(TransResult.Success, string.Empty, await db.Project.CountAsync());
+                int result;
+                //var transaction = await ReadProjects(new TransactionCriteria { Search = keyword });
+                if (keyword != null) {
+                    result = await db.Project.Where(s => s.Title.Contains(keyword) || s.ShortDescription.Contains(keyword)).CountAsync();
+                }
+                else
+                {
+                    result = await db.Project.CountAsync();
+                }
+                
+                //return new TransactionResult(TransResult.Success, string.Empty, ((List<ProjectDTO>)transaction.ReturnObject).Count());
+
+                return new TransactionResult(TransResult.Success, string.Empty, result);
             }
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }

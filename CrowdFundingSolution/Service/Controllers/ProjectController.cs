@@ -26,12 +26,12 @@ namespace Service
         }
 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetPageCount()
+        public async Task<HttpResponseMessage> GetPageCount(string keyword)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadPageCount();
+                var transaction = await repository.ReadPageCount(keyword);
                 if (transaction.Result == TransResult.Success)
                     return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
                 else

@@ -22,9 +22,9 @@ namespace Service.Controllers
             {
                 var repository = new CrowdFundingTransactions();
                 var identity = User.Identity as ClaimsIdentity;
-                var result = await repository.ReadUserByName(identity.Name);
+                var result = repository.ReadUserByName(identity.Name);
 
-                return Request.CreateResponse(HttpStatusCode.OK, "");
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }

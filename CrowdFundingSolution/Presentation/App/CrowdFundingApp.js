@@ -25,6 +25,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('Home.EditProject', {
+            url: "/EditProject",
+            templateUrl: "/App/Views/Projects/EditProject.html",
+            controller: "EditProjectController",
+            data: {
+                requireLogin: _requiresLogin,
+                settings: {
+                    displayName: 'Edit Project'
+                }
+            }
+        })
         .state('Home.Login', {
             url: "/Login",
             templateUrl: "/App/Views/Login/LoginView.html",

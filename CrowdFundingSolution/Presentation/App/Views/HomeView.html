@@ -15,7 +15,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><form ng-submit="search(field)"><input type="search" placeholder="Search" name="field" ng-model="field"></form></li>
-                <li><a href=""><i class="fa fa-plus" /> Create a Project</a></li>
+                <li><a ui-sref="Home.EditProject"><i class="fa fa-plus" /> Create a Project</a></li>
                 <!-- Guest's Options -->
                 <li ng-show="!isLogged"><a ui-sref="Home.Register"><i class="fa fa-user-plus" /> Sign Up</a></li>
                 <li ng-show="!isLogged"><a ui-sref="Home.Login"><i class="fa fa-sign-in" /> Login</a></li>

@@ -4,7 +4,49 @@
 html, body {
     height: 100%;
     background-color: azure;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;    
+}
+/*html {
+    overflow-y:scroll;
+}*/
+/*body{
+    overflow-y: hidden!important;
+}*/
+body.md-toast-animating { overflow: auto!important; }
+/*Scrollbar*/
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-track {
+	background-color: rgba(113,112,107,0);
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:vertical {
+	background-color: rgba(0,0,0,.3);
+	-webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+	background: rgba(0,0,0,.6);;
+}
+::-webkit-scrollbar-thumb:horizontal {
+	background-color: rgba(0,0,0,.2);
+	-webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+md-toast {
+    z-index:10000!important;
+    position:fixed!important;
+}
+.md-toast-content {
+    background-color: green!important;
+}
+
+md-toast.md-error-toast-theme .md-toast-content {
+    background-color: maroon;
 }
 
 #contentUI {

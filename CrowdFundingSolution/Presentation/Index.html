@@ -13,59 +13,59 @@
     <link href="content/loading-bar.css" rel="stylesheet" />
     <link href="Content/angular-material.min.css" rel="stylesheet" />
 </head>
-<body>
+<body layout="column">
+    
+        <div ui-view="" style="height:100%;"></div>
+        
 
-    <div ui-view="" style="height:100%;"></div>
+        <!--JQuery-->
+        <script src="Scripts/jquery-3.1.1.js"></script>
 
-    <!--JQuery-->
-    <script src="Scripts/jquery-3.1.1.js"></script>
+        <!--Angular-->
+        <script src="scripts/angular.js"></script>
+        <script src="scripts/angular-animate.js"></script>
+        <script src="scripts/angular-ui-router.min.js"></script>
+        <script src="scripts/angular-translate.js"></script>
+        <script src="scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+        <script src="scripts/loading-bar.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="Scripts/angular-local-storage.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="Scripts/angular-aria/angular-aria.js"></script>
+        <script src="Scripts/angular-disqus.js"></script>
+        <script src="Scripts/angular-material/angular-material.js"></script>
 
-    <!--Angular-->
-    <script src="scripts/angular.js"></script>
-    <script src="scripts/angular-animate.js"></script>
-    <script src="scripts/angular-ui-router.min.js"></script>
-    <script src="scripts/angular-translate.js"></script>
-    <script src="scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
-    <script src="scripts/loading-bar.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="Scripts/angular-local-storage.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <script src="Scripts/angular-aria/angular-aria.js"></script>
-    <script src="Scripts/angular-disqus.js"></script>
-    <script src="Scripts/angular-material/angular-material.js"></script>
+        <!--ngDialog-->
+        <script src="scripts/ngDialog.min.js"></script>
 
-    <!--ngDialog-->
-    <script src="scripts/ngDialog.min.js"></script>
+        <!--Controllers-->
+        <script src="App/CrowdFundingApp.js"></script>
+        <script src="App/Config/Config.js"></script>
+        <script src="App/Controllers/BackIt/BackItController.js"></script>
+        <script type="text/javascript" src="https://www.vivapayments.com/web/checkout/js"></script>
+        <script src="App/Controllers/Login/LoginController.js"></script>
+        <script src="App/Controllers/Register/RegisterController.js"></script>
+        <script src="App/Controllers/Email/EmailController.js"></script>
+        <script src="App/Controllers/HomeController.js"></script>
+        <script src="App/Controllers/Projects/EditProjectController.js"></script>
+        <script src="App/Controllers/Projects/ProjectsController.js"></script>
+        <script src="App/Controllers/Projects/ProjectController.js"></script>
+        <script src="App/Controllers/Profile/ProfileController.js"></script>
 
-    <!--Controllers-->
-    <script src="App/CrowdFundingApp.js"></script>
-    <script src="App/Config/Config.js"></script>
-    <script src="App/Controllers/BackIt/BackItController.js"></script>
-    <script type="text/javascript" src="https://www.vivapayments.com/web/checkout/js"></script>
-    <script src="App/Controllers/Login/LoginController.js"></script>
-    <script src="App/Controllers/Register/RegisterController.js"></script>
-    <script src="App/Controllers/Email/EmailController.js"></script>
-    <script src="App/Controllers/HomeController.js"></script>
-    <script src="App/Controllers/Projects/EditProjectController.js"></script>
-    <script src="App/Controllers/Projects/ProjectsController.js"></script>
-    <script src="App/Controllers/Projects/ProjectController.js"></script>
-    <script src="App/Controllers/Profile/ProfileController.js"></script>
+        <!--Services-->
+        <script src="App/Services/RequestServices.js"></script>
+        <script src="App/Services/CFHelpers.js"></script>
+        <script src="App/Services/AuthService.js"></script>
 
-    <!--Services-->
-    <script src="App/Services/RequestServices.js"></script>
-    <script src="App/Services/CFHelpers.js"></script>
-    <script src="App/Services/AuthService.js"></script>
-
-    <!--UI Template-->
-
-    <!--Bootstrap-->
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/angular-ui/ui-bootstrap.min.js"></script>
-    <script src="Scripts/retina-1.1.0.js"></script>
-    <script src="Scripts/jquery.hoverdir.js"></script>
-    <script src="Scripts/jquery.hoverex.min.js"></script>
-    <script src="Scripts/jquery.prettyPhoto.js"></script>
-    <script src="Scripts/jquery.isotope.min.js"></script>
-    <script src="Scripts/custom.js"></script>
+        <!--UI Template-->
+        <!--Bootstrap-->
+        <script src="Scripts/bootstrap.min.js"></script>
+        <script src="Scripts/angular-ui/ui-bootstrap.min.js"></script>
+        <script src="Scripts/retina-1.1.0.js"></script>
+        <script src="Scripts/jquery.hoverdir.js"></script>
+        <script src="Scripts/jquery.hoverex.min.js"></script>
+        <script src="Scripts/jquery.prettyPhoto.js"></script>
+        <script src="Scripts/jquery.isotope.min.js"></script>
+        <script src="Scripts/custom.js"></script>
 </body>
 </html>

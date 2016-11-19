@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\AspNetUsersDTO.cs" />
     <Compile Include="DTO\ProjectCategoryDTO.cs" />
     <Compile Include="DTO\ProjectDTO.cs" />
     <Compile Include="DTO\ProjectFundingLevelDTO.cs" />

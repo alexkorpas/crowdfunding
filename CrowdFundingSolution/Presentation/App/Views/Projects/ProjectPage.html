@@ -6,16 +6,35 @@
 <div id="main-content">
     <div class="container mt">
         <div class="row">
-            <div class="col-lg-8 centered">
+            
+            <carousel3d ng-model="Photos"
+                        options="carouselOptions">
+                <md-progress-circular id="progressCircle" class="md-hue-2" md-diameter="70" style="margin:0 auto; top:150px"></md-progress-circular>
+                <carousel3d-slide ng-repeat="photo in Photos track by $index" style="outline:none!important">
+                    <figure>
+                        <img data-ng-src="data:image/jpeg;base64,{{photo.Photo}}" />
+
+                        <!--<img ng-src="{{slide.src}}" alt="" />
+                        <figcaption ng-bind="slide.caption"></figcaption>-->
+                    </figure>
+                </carousel3d-slide>
+
+            </carousel3d>
+            <!--<div carousel3d ng-model="Photos">
+                <div carousel3d-slide ng-repeat="image in Photos track by $index">
+                    <figure>
+                        <img ng-src="data:image/jpeg;base64,{{image.Photo}}" />
+                        <figcaption ng-bind="image.caption"></figcaption>
+                    </figure>
+                </div>
+            </div>-->
+            <!--<div class="col-lg-8 centered">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                     </ol>
-
-                    <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item img-responsive active">
                             <iframe src="https://www.youtube.com/embed/LaqPUQuiR-w" frameborder="0" allowfullscreen></iframe>
@@ -28,40 +47,23 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-4">
-                <h4>Project Details</h4>
-                <div class="hline"></div>
-                <p><b>Added on:</b> {{Project.CreatedDate}}</p>
-                <p><b>Last Updated:</b> {{Project.UpdatedDate}}</p>
-                <p><b>Ends:</b> {{Project.DueDate}}</p>
-                <p><b>Category:</b> {{Project.CategoryName}}</p>
-                <p><b>Creator:</b> VivaTeam1</p>
-                <p><b>Website:</b> {{Project.Website}}</p>
-                <p><b>Backers:</b> {{Project.Backers}}</p>
-                <p><b>Goal (Minimum):</b> {{Project.Goal}} ({{Project.GoalMin}})</p>
-                <p><b>Gathered:</b> {{Project.Gathered}}</p>
-                <button class="btn btn-theme" ng-click="backIt()" style="width:210px;">Back It!!</button>
-                <!--<a ui-sref="Home.BackIt" class="btn btn-theme">Back It!!</a>-->
-            </div>
-
+            </div>-->            
             <div class="col-lg-8 spacing">
                 <div ng-cloak>
-                    <md-content>
+                    <md-content style="background-color:rgba(0,0,0,0)">
                         <md-tabs md-dynamic-height md-border-bottom>
                             <md-tab label="Description">
-                                <md-content class="md-padding">
+                                <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
                                     <p>{{Project.Description}}</p>
                                 </md-content>
                             </md-tab>
                             <md-tab label="Updates">
-                                <md-content class="md-padding">
+                                <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. </p>
                                 </md-content>
                             </md-tab>
                             <md-tab label="Comments">
-                                <md-content class="md-padding">
+                                <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
                                     <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
                                 </md-content>
                             </md-tab>
@@ -69,6 +71,53 @@
                     </md-content>
                 </div>
             </div>
+            <div class="col-lg-4 spacing">
+                <div ng-cloak>
+                    <md-content style="background-color:rgba(0,0,0,0)">
+                        <md-tabs md-dynamic-height md-border-bottom>
+                            <md-tab label="Details">
+                                <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Gathered</label>
+                                        <input ng-model="Project.Gathered" type="number" step="100" disabled>
+                                        <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Goal</label>
+                                        <input ng-model="Project.Goal" type="number" step="100" disabled>
+                                        <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>Created</label>
+                                        <md-datepicker ng-model="Project.CreatedDate" disabled></md-datepicker>
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>Last Updated</label>
+                                        <md-datepicker ng-model="Project.UpdatedDate" disabled></md-datepicker>
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>Ends</label>
+                                        <md-datepicker ng-model="Project.DueDate" disabled></md-datepicker>
+                                    </md-input-container>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </md-content>
+                </div>
+        <!--<h4>Project Details</h4>
+        <div class="hline"></div>
+        <p><b>Added on:</b> {{Project.CreatedDate}}</p>
+        <p><b>Last Updated:</b> {{Project.UpdatedDate}}</p>
+        <p><b>Ends:</b> {{Project.DueDate}}</p>
+        <p><b>Category:</b> {{Project.CategoryName}}</p>
+        <p><b>Creator:</b> VivaTeam1</p>
+        <p><b>Website:</b> {{Project.Website}}</p>
+        <p><b>Backers:</b> {{Project.Backers}}</p>
+        <p><b>Goal (Minimum):</b> {{Project.Goal}} ({{Project.GoalMin}})</p>
+        <p><b>Gathered:</b> {{Project.Gathered}}</p>
+        <button class="btn btn-theme" ng-click="backIt()" style="width:210px;">Back It!!</button>-->
+    </div>
+
         </div>
     </div>
 </div>

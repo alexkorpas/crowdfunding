@@ -113,7 +113,10 @@ namespace Service
                 ProjectDTO projectDTO = jobj.ToObject<ProjectDTO>();
                 var repository = new CrowdFundingTransactions();
                 var transaction = await repository.SaveProjectTransaction(projectDTO, user);
-                return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                if (transaction.Result == TransResult.Success)
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Id);
+                else
+                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }

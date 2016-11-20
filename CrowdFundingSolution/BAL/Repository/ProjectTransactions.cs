@@ -159,6 +159,9 @@ namespace BAL
                     ProjectCategory _projectCategory = null;
                     if (projectDTO.CategoryFK != null)
                         _projectCategory = await db.ProjectCategory.FindAsync(projectDTO.CategoryFK);
+                    ProjectState _projectState = null;
+                    if (projectDTO.StateFK != null)
+                        _projectState = await db.ProjectState.FindAsync(projectDTO.StateFK);
 
                     if (projectDTO.Id == null || projectDTO.Id == 0)
                     {
@@ -173,6 +176,7 @@ namespace BAL
                             ProjectCategory = _projectCategory,
                             DueDate = projectDTO.DueDate,
                             IsActive = true,
+                            ProjectState = _projectState,
                             CreatedDate = DateTime.Now
                         
                         };
@@ -183,11 +187,21 @@ namespace BAL
                     }
                     else
                     {
-                        //Project project = uow.GetObjectByKey<Project>(projectDTO.Id);
-                        //uow.CommitChanges();
+                        Project project = await db.Project.FindAsync(projectDTO.Id);
+                        if (project.AspNetUsers != _user)
+                            return new TransactionResult(TransResult.Fail, "This is not your project", null);
+                        project.Title = projectDTO.Title;
+                        project.Description = projectDTO.Description;
+                        project.ShortDescription = projectDTO.ShortDescription;
+                        project.Goal = projectDTO.Goal;
+                        project.Video = projectDTO.Video;
+                        project.ProjectCategory = _projectCategory;
+                        project.DueDate = projectDTO.DueDate;
+                        project.IsActive = true;
+                        project.ProjectState = _projectState;
+                        await db.SaveChangesAsync();
 
                         return new TransactionResult(TransResult.Success, "Success", null);
-                        //result = projectDTO.Id;
                     }
                 }
             }

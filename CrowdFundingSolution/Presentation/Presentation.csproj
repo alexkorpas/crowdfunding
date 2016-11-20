@@ -75,6 +75,7 @@
     <Content Include="App\Controllers\Projects\ProjectsController.js" />
     <Content Include="App\Controllers\Register\RegisterController.js" />
     <Content Include="App\CrowdFundingApp.js" />
+    <Content Include="App\Directives\FileUpload.js" />
     <Content Include="App\Services\AuthService.js" />
     <Content Include="App\Services\CFHelpers.js" />
     <Content Include="App\Services\RequestServices.js" />

@@ -44,9 +44,8 @@ md-toast {
 .md-toast-content {
     background-color: green!important;
 }
-
-md-toast.md-error-toast-theme .md-toast-content {
-    background-color: maroon;
+.failure .md-toast-content {
+    background-color: maroon!important;
 }
 
 #contentUI {

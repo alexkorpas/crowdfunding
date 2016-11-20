@@ -6,6 +6,7 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
             baseService.httpGetAnonymous("api/Project/GetProjects", { Id: $stateParams.id }).then(function (res) {                
                 $scope.project = res[0];
                 $scope.project.DueDate = new Date(res[0].DueDate);
+                $scope.loadImages();
             });
         baseService.httpGetAnonymous("api/Project/GetProjectCategories", null).then(function (res) {
             $scope.Categories = res;
@@ -15,11 +16,16 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
             $scope.States = res;
             $scope.selectedState = res[0];
         });
+        $scope.loadImages = function () {
+            baseService.httpGetAnonymous("api/Photos/GetProjectImages", { Id: $scope.project.Id }).then(function (res) {
+                $scope.Photos = res;
+            });
+        };
         $scope.saveProject = function () {
             baseService.httpPost("api/Project/SaveProject", $scope.project).then(function (res) {
                 $mdToast.show(
                   $mdToast.simple()
-                    .textContent("Success")
+                    .textContent("Project saved")
                     .position('top right')
                     .hideDelay(3000)
                     );
@@ -36,35 +42,41 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
             });           
         };
         $scope.uploadPhoto = function () {
-            var oReq = new XMLHttpRequest();
-            var url = servers.CF_SERVER + "api/project/SaveProjectImage";
-            oReq.open("POST", url, true);
-            oReq.withCredentials = true;
-            oReq.onload = function (oEvent) {
-                //if (toSend.IsDefault == true) {
-                //    for (let i = 0; i < $scope.subCategoriesPhotosDataSource.data().length; i++) {
-                //        $scope.subCategoriesPhotosDataSource.data()[i].IsDefault = false;
-                //    }
-                //}
-                //if (toSend.FotoID == null) {
-                //    var response = JSON.parse(oReq.responseText);
-
-                //    toSend.FotoID = response.Id;
-                //    baseService.showNotification({ message: response.Message, type: "success" });
-                //    $scope.subCategoriesPhotosDataSource.add(toSend);
-                //} else {
-                //    dataItem.Designation = toSend.Designation;
-                //    dataItem.Caption = toSend.Caption;
-                //    dataItem.IsDefault = toSend.IsDefault;
-                //    dataItem.ImageBinaryData = toSend.ImageBinaryData;
-                //}
-
-                //angular.element(document.querySelector('#subCategoryPhotosGrid')).data("kendoGrid").refresh();
-            };
-
-            var bytesArray = [toSend.FotoID + ';', toSend.ImageBinaryData];
-            var blob = new Blob(bytesArray, { type: 'text/plain' }, 'native');
-
-            oReq.send(blob);
+            baseService.httpPost("api/Photos/SaveImage", { Id: $scope.project.Id, PhotoString: $scope.ImageBinaryData }).then(function (res) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent("Image uploaded")
+                    .position('top right')
+                    .hideDelay(3000)
+                    );
+                $scope.loadImages();
+            }, function (error) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(error.Message)
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass('failure')
+                    );
+            });
+        };
+        $scope.deletePhoto = function (id) {
+            baseService.httpPost("api/Photos/DeleteImage?Id="+id, null).then(function (res) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent("Photo deleted successfully")
+                    .position('top right')
+                    .hideDelay(3000)
+                    );
+                $scope.loadImages();
+            }, function (error) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(error.Message)
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass('failure')
+                    );
+            });
         };
     }]);

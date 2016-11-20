@@ -60,6 +60,7 @@
     <Compile Include="DTO\PaymentDTO.cs" />
     <Compile Include="Repository\Base\TransactionCriteria.cs" />
     <Compile Include="Repository\Base\TransactionResult.cs" />
+    <Compile Include="Repository\ImageTransactions.cs" />
     <Compile Include="Repository\PaymentTransactions.cs" />
     <Compile Include="Repository\ProjectDetailsTransactions.cs" />
     <Compile Include="Repository\ProjectTransactions.cs" />

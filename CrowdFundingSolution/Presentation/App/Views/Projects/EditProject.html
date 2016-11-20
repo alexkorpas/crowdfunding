@@ -73,6 +73,17 @@
                     <md-content class="md-padding"  style="background-color:rgba(0,0,0,0)">
                         <aps-upload-file></aps-upload-file>
                         <md-button class="md-raised" ng-click="uploadPhoto()" style="width:210px;">Upload</md-button>
+                            <md-list flex="">
+                                <md-subheader class="md-no-sticky">Project Photos</md-subheader>
+                                <md-list-item class="md-3-line" ng-repeat="photo in Photos" ng-click="null">
+                                    <img data-ng-src="data:image/jpeg;base64,{{photo.Photo}}" style="width:533px; height:300px;" />
+                                    <div class="md-list-item-text" layout="column">
+                                        <div style="margin:0 auto; width:220px;">
+                                            <md-button class="md-raised" ng-click="deletePhoto(photo.Id)" style="width:210px;">Delete</md-button>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
                     </md-content>
                 </md-tab>                
             </md-tabs>

@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Filters;
 
-namespace Service.Services
+namespace Service
 {
     public class CFExceptionFilter : ExceptionFilterAttribute
     {

@@ -2,7 +2,7 @@
 CrowdFundingApp.directive('apsUploadFile', function () {
     return {
             restrict: 'E',
-            template: '<input id="fileInput" type="file" class="ng-hide"> <md-button id="uploadButton" class="md-raised md-primary" aria-label="attach_file">    Choose file </md-button><md-input-container  md-no-float>    <input id="textInput" ng-model="fileName" type="text" placeholder="No file chosen" ng-readonly="true"></md-input-container>',
+            template: '<input id="fileInput" type="file" class="ng-hide"> <md-button id="uploadButton" class="md-raised" style="width:210px;" aria-label="attach_file">    Choose file </md-button><md-input-container  md-no-float>    <input id="textInput" ng-model="fileName" type="text" placeholder="No file chosen" ng-readonly="true" style="width:210px"></md-input-container>',
             link: apsUploadFileLink
         };
 

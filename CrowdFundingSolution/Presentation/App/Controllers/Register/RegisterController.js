@@ -24,23 +24,27 @@ CrowdFundingApp.controller('RegisterController', ['$scope', '$state', 'ngDialog'
                 $('#userNameTxt').removeClass('validator');
                 $('#userNameChkTxt').removeClass('validator');
             }
-            if (!$scope.validatePassword($scope.user.password)) {
-                $('#resultTxt').text("Password must be minimun 6 characters long and contain at least one digit, one lowercase character and one uppercase character.");
-                $('#passwordTxt').addClass('validator');
-                $('#passwordChkTxt').addClass('validator');
-                $scope.loading = false;
-                return;
-            } else {
-                $('#passwordTxt').removeClass('validator');
-                $('#passwordChkTxt').removeClass('validator');
-            }
+            //if (!$scope.validatePassword($scope.user.password)) {
+            //    $('#resultTxt').text("Password must be minimun 6 characters long and contain at least one digit, one lowercase character and one uppercase character.");
+            //    $('#passwordTxt').addClass('validator');
+            //    $('#passwordChkTxt').addClass('validator');
+            //    $scope.loading = false;
+            //    return;
+            //} else {
+            //    $('#passwordTxt').removeClass('validator');
+            //    $('#passwordChkTxt').removeClass('validator');
+            //}
             if (send) {
                 authService.httpPost($scope.user).then(function (data) {
                     $state.go('Home.RegistrationSubmitted');
                     $scope.loading = false;
                 }, function (er) {
-                    var test = er.modelState[""][1];
-                    $('#resultTxt').text(er.modelState[""][1]);
+                    if (er.modelState["createUserModel.Password"] != undefined)
+                        $('#resultTxt').text(er.modelState["createUserModel.Password"][0]);
+                    else if (er.modelState[""][1] == undefined)
+                        $('#resultTxt').text(er.modelState[""][0]);
+                    else
+                        $('#resultTxt').text(er.modelState[""][1]);
                     $scope.loading = false;
                 });
             }

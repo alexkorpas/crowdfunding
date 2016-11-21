@@ -5,43 +5,47 @@
 </div>
 <div id="main-content">
     <div class="container">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <md-input-container>
-                    <label>First Name</label>
-                    <input ng-model="user.firstname">
-                </md-input-container>
-                <md-input-container>
-                    <label>Last Name</label>
-                    <input ng-model="user.lastname">
-                </md-input-container>
-                <md-input-container>
-                    <label>Email</label>
-                    <input ng-model="user.username" type="email">
-                </md-input-container>
-                <md-input-container>
-                    <label>Re-enter your email</label>
-                    <input ng-model="user.usernameChk" type="email">
-                </md-input-container>
-                <md-input-container>
-                    <label>Password</label>
-                    <input ng-model="user.password" type="password">
-                </md-input-container>
-                <md-input-container>
-                    <label>Re-enter your password</label>
-                    <input ng-model="user.passwordChk" type="password">
-                </md-input-container>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-theme" ng-click="singUp(true)">Sign me up!</button>
-            </div>
-            <div class="form-txt centered">
-                <a ui-sref="Home.Login">Already have an account</a>
-            </div>
-            <div class="form-loading centered">
-                <p ng-show="loading"><img src="../../../Content/Images/spin.gif" /></p>
-                <p id="resultTxt"></p>
+        <form ng-submit="singUp(true)">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <md-input-container>
+                        <label>First Name</label>
+                        <input required md-no-asterisk ng-model="user.firstname">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Last Name</label>
+                        <input required md-no-asterisk ng-model="user.lastname">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Email</label>
+                        <input required md-no-asterisk ng-model="user.username" type="email">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Re-enter your email</label>
+                        <input required md-no-asterisk ng-model="user.usernameChk" type="email">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Password</label>
+                        <input required md-no-asterisk ng-model="user.password" type="password">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Re-enter your password</label>
+                        <input required md-no-asterisk ng-model="user.passwordChk" type="password">
+                    </md-input-container>
+                </div>
+                <div class="form-group">
+                    <!--<button class="btn btn-theme" ng-click="singUp(true)">Sign me up!</button>-->
+                    <md-button type="submit" class="md-raised md-primary" style="width:100%;">Sign me up!</md-button>
+                </div>
+                <div class="form-txt centered">
+                    <a ui-sref="Home.Login">Already have an account</a>
+                </div>
+                <div class="form-loading centered">
+                    <md-progress-circular id="progressCircle" class="md-hue-2" md-diameter="50" ng-show="loading" style="margin:0 auto; top:20px"></md-progress-circular>
+                    <!--<p ng-show="loading"><img src="../../../Content/Images/spin.gif" /></p>-->
+                    <p id="resultTxt"></p>
+                </div>
             </div>
         </form>
-    </div>
+</div>
 </div>

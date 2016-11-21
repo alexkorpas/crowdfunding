@@ -6,13 +6,13 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
             var pageindex=[];
             if (angular.isNumber(res)) {
                 console.log(res);
-                var rem = res % 3;
-                if (rem != 0) {
-                    pages = (Math.floor(res/3)) + 1;
-                }
-                else {
-                    pages = res;
-                }                
+                //var rem = res % 3;
+                //if (rem != 0) {
+                    pages = (Math.ceil(res/3));
+                //}
+                //else {
+                //    pages = res;
+                //}                
                 
                 console.log(pages);
                 for (var i=0; i<pages; i++) {

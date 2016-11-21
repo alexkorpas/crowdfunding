@@ -88,16 +88,16 @@ h4 {
 }
 
 .form-horizontal > .form-group {
-    width: 300px;
+    width: 350px;
     min-height: 40px;
     margin: 4px auto 2px;
 }
 
     .form-horizontal > .form-group > .btn,
-    .form-horizontal > .form-group > input {
+    .form-horizontal > .form-group > md-input-container {
         width: 100%;
         min-height: 40px;
-        margin: 0px;
+        margin: 0 0 10px 0;
     }
 
     .form-horizontal > .form-group > .btn {

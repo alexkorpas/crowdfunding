@@ -47,6 +47,11 @@ md-toast {
 .failure .md-toast-content {
     background-color: maroon!important;
 }
+.transform {
+    transition:0.5s;  
+}
+.transform:hover {
+}
 
 #contentUI {
     padding: 70px 0 246px 0;

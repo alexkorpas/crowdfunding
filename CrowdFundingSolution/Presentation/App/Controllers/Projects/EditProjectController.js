@@ -2,11 +2,14 @@
 CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService', '$mdToast', 'servers',
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $mdToast, servers) {
         $scope.project = {};
+        $scope.card = {};
         if ($stateParams.id != "" && $stateParams.id != null && $stateParams.id != undefined)
             baseService.httpGetAnonymous("api/Project/GetProjects", { Id: $stateParams.id }).then(function (res) {                
                 $scope.project = res[0];
                 $scope.project.DueDate = new Date(res[0].DueDate);
+                $scope.card.ProjectFK = $scope.project.Id;
                 $scope.loadImages();
+                $scope.loadPackages();
             });
         baseService.httpGetAnonymous("api/Project/GetProjectCategories", null).then(function (res) {
             $scope.Categories = res;
@@ -21,6 +24,11 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                 $scope.Photos = res;
             });
         };
+        $scope.loadPackages = function () {
+            baseService.httpGetAnonymous("api/ProjectDetails/GetProjectFundingLevels", { Id: $scope.project.Id }).then(function (res) {
+                $scope.Packages = res;
+            });
+        };
         $scope.saveProject = function () {
             baseService.httpPost("api/Project/SaveProject", $scope.project).then(function (res) {
                 $mdToast.show(
@@ -29,8 +37,10 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                     .position('top right')
                     .hideDelay(3000)
                     );
-                if ($scope.project.Id == undefined)
+                if ($scope.project.Id == undefined) {
                     $scope.project.Id = res;
+                    $scope.card.ProjectFK = $scope.project.Id;
+                }
             }, function (error) {
                 $mdToast.show(
                   $mdToast.simple()
@@ -69,6 +79,25 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                     .hideDelay(3000)
                     );
                 $scope.loadImages();
+            }, function (error) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(error.Message)
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass('failure')
+                    );
+            });
+        };
+        $scope.saveCard = function () {
+            baseService.httpPost("api/ProjectDetails/SaveProjectFunding", $scope.card).then(function (res) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent("Package Saved")
+                    .position('top right')
+                    .hideDelay(3000)
+                    );
+                $scope.loadPackages();
             }, function (error) {
                 $mdToast.show(
                   $mdToast.simple()

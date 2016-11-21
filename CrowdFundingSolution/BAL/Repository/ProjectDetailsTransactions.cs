@@ -9,6 +9,74 @@ namespace BAL
 {
     public partial class CrowdFundingTransactions
     {
+        public async Task<TransactionResult> ReadProjectFundingLevels(int Id)
+        {
+            try
+            {
+                using (var db = new backup_CrowdFundingViva1Entities())
+                {
+                    List<ProjectFundingLevelDTO> result = new List<ProjectFundingLevelDTO>();
+                    result = await db.ProjectFundingLevel.Where(w=> w.IsActive && w.ProjectFK == Id).Select(s => new ProjectFundingLevelDTO
+                    {
+                        Id = s.Id,
+                        Title = s.Title,
+                        Amount = (int)s.Amount,
+                        Rewards = s.Rewards
+                    }).ToListAsync();
+
+                    return new TransactionResult(TransResult.Success, string.Empty, result);
+                }
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        }
+
+        public async Task<TransactionResult> SaveProjectFundingTransaction(ProjectFundingLevelDTO projectFundingLevelDTO, string user)
+        {
+            try
+            {
+                using (var db = new backup_CrowdFundingViva1Entities())
+                {
+                    AspNetUsers _user = await db.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();                    
+
+                    Project _project = null;
+                    if (projectFundingLevelDTO.ProjectFK != null)
+                        _project = await db.Project.FindAsync(projectFundingLevelDTO.ProjectFK);
+
+                    if (_project.AspNetUsers != _user)
+                        return new TransactionResult(TransResult.Fail, "This is not your project", null);
+
+                    if (projectFundingLevelDTO.Id == null || projectFundingLevelDTO.Id == 0)
+                    {
+                        ProjectFundingLevel projectFundingLevel = new ProjectFundingLevel()
+                        {
+                            Project = _project,
+                            Title = projectFundingLevelDTO.Title,
+                            Amount = projectFundingLevelDTO.Amount != null ? Convert.ToDecimal(projectFundingLevelDTO.Amount) : 0,
+                            Rewards = projectFundingLevelDTO.Rewards,
+                            IsActive = projectFundingLevelDTO.IsActive != null ? (bool)projectFundingLevelDTO.IsActive : true
+                        };
+                        db.ProjectFundingLevel.Add(projectFundingLevel);
+                        await db.SaveChangesAsync();
+
+                        return new TransactionResult(TransResult.Success, "Success", null, projectFundingLevel.Id);
+                    }
+                    else
+                    {
+                        ProjectFundingLevel projectFundingLevel = await db.ProjectFundingLevel.FindAsync(projectFundingLevelDTO.Id);
+                        projectFundingLevel.Project = _project;
+                        projectFundingLevel.Title = projectFundingLevelDTO.Title;
+                        projectFundingLevel.Amount = projectFundingLevelDTO.Amount != null ? (decimal)projectFundingLevelDTO.Amount : 0;
+                        projectFundingLevel.Rewards = projectFundingLevelDTO.Rewards;
+                        projectFundingLevel.IsActive = projectFundingLevelDTO.IsActive != null ? (bool)projectFundingLevelDTO.IsActive : true;
+                        await db.SaveChangesAsync();
+
+                        return new TransactionResult(TransResult.Success, "Success", null);
+                    }
+                }
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        }
+
         public async Task<List<ProjectPhotoDTO>> ReadProjectPhotoById(int id)
         {
             var db = new backup_CrowdFundingViva1Entities();

@@ -1,22 +1,10 @@
-﻿<div id="main-content"  style="margin:0; padding:0;">
+﻿<div id="main-content" style="margin:0; padding:0;">
     <div class="container mt">
-        <md-content  style="background-color:rgba(0,0,0,0)">
+        <md-content style="background-color:rgba(0,0,0,0)">
             <md-tabs md-dynamic-height="" md-border-bottom="">
                 <md-tab label="Details">
-                    <md-content class="md-padding"  style="background-color:rgba(0,0,0,0)">
+                    <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
                         <form ng-submit="saveProject()" id="projectform">
-                            <!--<div id="headerwrap">
-                            <div class="container">
-                                <h2>-->
-                            <!--<md-input-container style="margin-bottom:0px; padding-bottom:0px;">
-                                <label>Title</label>
-                                <input required="" ng-model="project.Title">
-                            </md-input-container>-->
-                            <!--</h2>
-                                </div>
-                            </div>-->
-                            <!--<div id="main-content">
-                                <div class="container mt">-->
                             <md-input-container class="md-block" flex-gt-sm="">
                                 <label>Title</label>
                                 <input required="" ng-model="project.Title">
@@ -55,7 +43,7 @@
                                 <md-input-container class="md-block" flex-gt-sm="">
                                     <label>Video Url</label>
                                     <input ng-model="project.Video">
-                                </md-input-container>                                
+                                </md-input-container>
                                 <md-input-container>
                                     <label>Due Date</label>
                                     <md-datepicker ng-model="project.DueDate"></md-datepicker>
@@ -70,22 +58,63 @@
                     </md-content>
                 </md-tab>
                 <md-tab label="Images" ng-disabled="!(project.Id != undefined)">
-                    <md-content class="md-padding"  style="background-color:rgba(0,0,0,0)">
+                    <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
                         <aps-upload-file></aps-upload-file>
                         <md-button class="md-raised" ng-click="uploadPhoto()" style="width:210px;">Upload</md-button>
-                            <md-list flex="">
-                                <md-subheader class="md-no-sticky">Project Photos</md-subheader>
-                                <md-list-item class="md-3-line" ng-repeat="photo in Photos" ng-click="null">
-                                    <img data-ng-src="data:image/jpeg;base64,{{photo.Photo}}" style="width:533px; height:300px;" />
-                                    <div class="md-list-item-text" layout="column">
-                                        <div style="margin:0 auto; width:220px;">
-                                            <md-button class="md-raised" ng-click="deletePhoto(photo.Id)" style="width:210px;">Delete</md-button>
-                                        </div>
+                        <md-list flex="">
+                            <md-subheader class="md-no-sticky">Project Photos</md-subheader>
+                            <md-list-item class="md-3-line" ng-repeat="photo in Photos" ng-click="null">
+                                <img data-ng-src="data:image/jpeg;base64,{{photo.Photo}}" style="width:533px; height:300px;" />
+                                <div class="md-list-item-text" layout="column">
+                                    <div style="margin:0 auto; width:220px;">
+                                        <md-button class="md-raised" ng-click="deletePhoto(photo.Id)" style="width:210px;">Delete</md-button>
                                     </div>
-                                </md-list-item>
-                            </md-list>
+                                </div>
+                            </md-list-item>
+                        </md-list>
                     </md-content>
-                </md-tab>                
+                </md-tab>
+                <md-tab label="Packages" ng-disabled="!(project.Id != undefined)">
+                    <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
+                        <div ng-repeat="package in Packages">
+                            <md-card style="width:530px; float:left; height:405px" class="transform">
+                                <md-card-content style="padding:30px 40px 20px 40px">
+                                    <p>
+                                        <md-icon md-font-icon="fa fa-euro fa-2x" style="color:rgba(0,0,0,0.8);" /><span style="font-size:25px; position:relative;  top:3px">{{package.Amount}} or more</span>
+                                    </p>
+                                    <p style="margin-top:45px">
+                                        <h2>{{package.Title}}</h2>
+                                    </p>
+                                    <p style="margin-top:45px">
+                                        {{package.Rewards}}
+                                    </p>
+                                        <!--<md-button type="submit" class="md-raised md-primary" style="width:210px;">Save Card</md-button>-->
+                                        <!--</form>-->
+                                </md-card-content>
+                            </md-card>
+                        </div>
+                        <md-card style="width:530px; float:left; height:405px">
+                            <md-card-content>
+                                <form ng-submit="saveCard()" id="projectform">
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Ammount or more</label>
+                                        <md-icon md-font-icon="fa fa-euro fa-2x" style="color:gray;" />
+                                        <input required="" ng-model="card.Amount" type="number">
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Title</label>
+                                        <input required="" ng-model="card.Title">
+                                    </md-input-container>
+                                    <md-input-container class="md-block">
+                                        <label>Rewards</label>
+                                        <textarea required="" name="shortDesc" ng-model="card.Rewards" md-maxlength="250" rows="4"></textarea>
+                                    </md-input-container>
+                                    <md-button type="submit" class="md-raised" style="width:97%">Save New Card</md-button>
+                                </form>
+                            </md-card-content>
+                        </md-card>
+                    </md-content>
+                </md-tab>
             </md-tabs>
 
         </md-content>

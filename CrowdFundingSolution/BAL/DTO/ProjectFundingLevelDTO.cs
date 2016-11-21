@@ -9,12 +9,12 @@ namespace BAL
     public class ProjectFundingLevelDTO
     {
 
-        public int Id { get; set; }
-        public int ProjectFK { get; set; }
+        public int? Id { get; set; }
+        public int? ProjectFK { get; set; }
         public string Title { get; set; }
-        public int Amount { get; set; }
-        public int Rewards { get; set; }
-        public bool IsActive { get; set; }
+        public int? Amount { get; set; }
+        public string Rewards { get; set; }
+        public bool? IsActive { get; set; }
 
 
     }

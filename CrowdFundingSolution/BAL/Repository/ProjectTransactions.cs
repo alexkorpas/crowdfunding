@@ -17,11 +17,11 @@ namespace BAL
                 int result;
                 //var transaction = await ReadProjects(new TransactionCriteria { Search = keyword });
                 if (keyword != null) {
-                    result = await db.Project.Where(s => s.Title.Contains(keyword) || s.ShortDescription.Contains(keyword)).CountAsync();
+                    result = await db.Project.Where(s => (s.Title.Contains(keyword) || s.ShortDescription.Contains(keyword)) && s.IsActive == true ).CountAsync();
                 }
                 else
                 {
-                    result = await db.Project.CountAsync();
+                    result = await db.Project.Where(s => s.IsActive == true).CountAsync();
                 }
                 
                 //return new TransactionResult(TransResult.Success, string.Empty, ((List<ProjectDTO>)transaction.ReturnObject).Count());

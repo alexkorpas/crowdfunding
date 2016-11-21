@@ -4,6 +4,7 @@ CrowdFundingApp.controller('LoginController', ['$scope', '$state', 'ngDialog', '
         $scope.user = {};
         $scope.loading = false;
         $scope.login = function () {
+            $('#resultTxt').text(" ");
             $scope.loading = true;
             var promise = authService.token($scope.user);
             promise.then(function (data) {

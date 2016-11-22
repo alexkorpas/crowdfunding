@@ -292,6 +292,11 @@ h4 {
         }
 
 /* Cards */
+md-card md-card-title + md-card-content {
+    height: 50px;
+    overflow: hidden;
+}
+
 .card {
     position: relative;
     display: block;

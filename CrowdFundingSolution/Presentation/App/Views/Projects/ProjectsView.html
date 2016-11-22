@@ -1,64 +1,37 @@
-﻿<div id="main-content" class="container">
-    <md-card ng-repeat='row in Projects'>
-        <img ng-src="Content/Images/post03.jpg" class="md-card-image" alt="image caption">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">{{row.Title}}</span>
-                <span class="md-subhead">{{row.CategoryName}}</span>
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-            <p>{{row.Description}}</p>
-        </md-card-content>
-        <md-card-actions layout="row" layout-align="start center">
-            <md-progress-linear md-mode="determinate" value="..."></md-progress-linear>
-        </md-card-actions>
-        <md-card-actions layout="row" layout-align="start center">
-            <div class="col-sm-4 col-xs-4">
-                <h6 class="card-subtitle text-muted ng-binding">Funded</h6>
-                {{row.Progress}}%
-            </div>
-            <div class="col-sm-4 col-xs-4">
-                <h6 class="card-subtitle text-muted ng-binding">Gathered</h6>
-                <span><i class="fa fa-eur" aria-hidden="true" /> {{row.Amount_Gathered}}</span>
-            </div>
-            <div class="col-sm-4 col-xs-4">
-                <h6 class="card-subtitle text-muted ng-binding">Backers</h6>
-                <span><i class="fa fa-users" aria-hidden="true" /> {{row.Backers}}</span>
-            </div>
-        </md-card-actions>
-        <md-card-actions layout="row" layout-align="start center">
-            <md-button>Action 1</md-button>
-            <md-button>Action 2</md-button>
-            <md-card-icon-actions>
-                <md-button class="md-icon-button" aria-label="icon">
-                    <md-icon md-svg-icon="icon"></md-icon>
-                </md-button>
-            </md-card-icon-actions>
-        </md-card-actions>
-    </md-card>
-
-    <div class="col-lg-4 col-md-6 col-sm-12" ng-repeat='row in Projects'>
-        <div class="card">
-            <img class="card-img-top" src="Content/Images/post03.jpg" />
-            <div class="card-block">
-                <h4 class="card-title">{{row.Title }}</h4>
-                <h6 class="card-subtitle text-muted"><i class="fa fa-tag" aria-hidden="true" /> {{row.CategoryName}}</h6>
-                <p class="card-text">{{row.Description}}</p>
-            </div>
-            <div class="card-bot">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-theme" p role="progressbar" aria-valuenow="70"
-                         aria-valuemin="0" aria-valuemax="100" style="width:{{row.Progress > 100 ? 100 : row.Progress}}%;">
-                    </div>
+﻿<div id="main-content">
+    <div class="container md-padding" layout="row" layout-align="center" layout-wrap>
+        <md-card ng-repeat='row in Projects' style="width: 350px;">
+            <img ng-src="Content/Images/post03.jpg" class="md-card-image" alt="image caption">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{row.Title}}</span>
+                    <span class="md-subhead">{{row.CategoryName}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>{{row.ShortDescription}}</p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="start center">
+                <md-progress-linear md-mode="determinate" value="{{row.Progress > 100 ? 100 : row.Progress}}"></md-progress-linear>
+            </md-card-actions>
+            <md-card-actions layout="row" layout-align="start center">
+                <div class="col-sm-4 col-xs-4">
+                    <h6 class="card-subtitle text-muted ng-binding">Funded</h6>
+                    {{row.Progress}}%
                 </div>
-
-                <a ui-sref="Home.Project({ Id: {{row.Id}} })" class="btn btn-theme">Go To Project Page</a>
-            </div>
-            <div class="card-footer">
-                <span class="text-muted"><i class="fa fa-calendar" /> {{row.Left}}</span>
-            </div>
-        </div>
+                <div class="col-sm-4 col-xs-4">
+                    <h6 class="card-subtitle text-muted ng-binding">Gathered</h6>
+                    <span><i class="fa fa-eur" aria-hidden="true" /> {{row.Amount_Gathered}}</span>
+                </div>
+                <div class="col-sm-4 col-xs-4">
+                    <h6 class="card-subtitle text-muted ng-binding">Backers</h6>
+                    <span><i class="fa fa-users" aria-hidden="true" /> {{row.Backers}}</span>
+                </div>
+            </md-card-actions>
+            <md-card-actions layout="row" layout-align="center">
+                <md-button ui-sref="Home.Project({ Id: {{row.Id}} })" class="md-raised md-primary">Go to Project Page</md-button>
+            </md-card-actions>
+        </md-card>
     </div>
     <div class="row">
         <ul class="pagination">

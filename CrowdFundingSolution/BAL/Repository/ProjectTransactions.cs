@@ -125,7 +125,7 @@ namespace BAL
             {
                 var db = new backup_CrowdFundingViva1Entities();
                 List<ProjectCategoryDTO> result = new List<ProjectCategoryDTO>();
-                result = await db.ProjectCategory.Select(s => new ProjectCategoryDTO
+                result = await db.ProjectCategory.OrderBy(s => s.Title).Select(s => new ProjectCategoryDTO
                 {
                     Id = s.Id,
                     Title = s.Title,

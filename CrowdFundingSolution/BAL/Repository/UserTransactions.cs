@@ -3,6 +3,7 @@ using DAL;
 using System.Threading.Tasks;
 using BAL.DTO;
 using System;
+using System.Data.Entity;
 
 namespace BAL
 {
@@ -37,35 +38,56 @@ namespace BAL
             return result;
         }
 
-        public AspNetUsersDTO ReadUserByName(string name)
+        public AspNetUsersDTO ReadUserByName(string email)
         {
             try
             {
                 var db = new backup_CrowdFundingViva1Entities();
-
                 AspNetUsersDTO result = new AspNetUsersDTO();
 
                 var s = (from us in db.AspNetUsers
-                               where us.Email == name
+                               where us.Email == email
                                select us).FirstOrDefault();
 
                 result = new AspNetUsersDTO
                 {
-
                     FirstName = s.FirstName,
                     LastName = s.LastName,
                     UserName = s.UserName,
                     Email = s.Email,
                     PhoneNumber = s.PhoneNumber
                 };
-
                 return result;
             }
             catch(Exception ex)
             {
                 return new AspNetUsersDTO();
             }
-            
+        }
+        public async Task<TransactionResult> SaveUserTransaction(AspNetUsersDTO userInfoDTO, string email)
+        {
+            try
+            {
+                using (var db = new backup_CrowdFundingViva1Entities())
+                {
+                    var s = await (from us in db.AspNetUsers
+                             where us.Email == email
+                             select us).FirstOrDefaultAsync();
+
+                    AspNetUsersDTO updatedUser = new AspNetUsersDTO
+                    {
+                        FirstName = s.FirstName,
+                        LastName = s.LastName,
+                        UserName = s.UserName,
+                        Email = s.Email,
+                        PhoneNumber = "6977777777"
+                    };
+                    await db.SaveChangesAsync();
+
+                    return new TransactionResult(TransResult.Success, "Success", null);
+                }
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
     }
 }

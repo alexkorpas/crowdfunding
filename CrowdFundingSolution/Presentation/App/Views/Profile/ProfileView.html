@@ -10,7 +10,7 @@
         </div>
         <!-- edit form column -->
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info" width="80%">
-            <form class="form-vertical" role="form">
+            <form class="form-vertical" role="form" ng-submit="save()">
                     <div class="form-group" style="padding-bottom: 5px;">
                         <h3>Personal info</h3>
                     </div>
@@ -57,9 +57,9 @@
                         </div>
                     </div>
                     <div class="form-group" style="padding-top: 5px;">
-                        <label class="col-md-3 control-label"></label>
-                        <div class="col-md-8">
-                            <input class="btn btn-primary" value="Save Changes" type="button">
+                        <label class="col-lg-3 control-label"></label>
+                        <div class="col-lg-8" style="padding-top: 5px;padding-bottom:5px;">
+                            <input class="btn btn-primary" value="Save Changes" type="submit">
                         </div>
                     </div>
 </form>

@@ -22,7 +22,7 @@ namespace BAL
                         Title = s.Title,
                         Amount = (int)s.Amount,
                         Rewards = s.Rewards
-                    }).ToListAsync();
+                    }).OrderBy(s=>s.Amount).ToListAsync();
 
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }

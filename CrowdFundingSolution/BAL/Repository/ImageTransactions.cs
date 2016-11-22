@@ -65,6 +65,30 @@ namespace BAL
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
 
+        public async Task<TransactionResult> SetMainPhotoTransaction(int Id, string user)
+        {
+            try
+            {
+                using (var db = new backup_CrowdFundingViva1Entities())
+                {
+
+                    AspNetUsers _user = await db.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();
+                    if(_user == null) return new TransactionResult(TransResult.Fail, "You are not authorized", null);
+
+                    ProjectPhoto projectPhoto = await db.ProjectPhoto.FindAsync(Id);
+                    Project project = await db.Project.FindAsync(projectPhoto.ProjectFK);
+                    if (project.AspNetUsers != _user)
+                        return new TransactionResult(TransResult.Fail, "This is not your project", null);
+
+                    project.ProjectPhoto = projectPhoto;
+                    await db.SaveChangesAsync();
+
+                    return new TransactionResult(TransResult.Success, "Success", null);
+                }
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        }
+
         public async Task<TransactionResult> ReadProjectImages(int Id)
         {
             try

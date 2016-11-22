@@ -108,4 +108,29 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                     );
             });
         };
+        $scope.makeDefault = function (id) {
+            baseService.httpPost("api/Photos/SetMainPhoto?Id=" + id, null).then(function (res) {
+                $scope.project.MainPhotoFK == id;
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent("Main photo changed")
+                    .position('top right')
+                    .hideDelay(3000)
+                    );                
+                $scope.loadImages();
+                //var btnDef = angular.element(document.querySelector("#btnDef" + id));
+                //btnDef.remove();
+            }, function (error) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(error.Message)
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass('failure')
+                    );
+            });
+        };
+        $scope.isNotMain = function (id) {
+            return !($scope.project.MainPhotoFK == id);
+        };
     }]);

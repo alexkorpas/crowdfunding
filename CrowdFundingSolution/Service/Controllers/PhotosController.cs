@@ -55,6 +55,23 @@ namespace Service
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<HttpResponseMessage> SetMainPhoto(int Id)
+        {
+            try
+            {
+                var user = User.Identity.Name;
+                var repository = new CrowdFundingTransactions();
+                var transaction = await repository.SetMainPhotoTransaction(Id, user);
+                if (transaction.Result == TransResult.Success)
+                    return Request.CreateResponse(HttpStatusCode.OK, "Success");
+                else
+                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        }
+
         [HttpGet]
         public async Task<HttpResponseMessage> GetProjectImages(int Id)
         {

@@ -68,6 +68,7 @@
                                 <div class="md-list-item-text" layout="column">
                                     <div style="margin:0 auto; width:220px;">
                                         <md-button class="md-raised" ng-click="deletePhoto(photo.Id)" style="width:210px;">Delete</md-button>
+                                        <md-button class="md-raised" ng-click="makeDefault(photo.Id)" style="width:210px;">Set as Main</md-button>
                                     </div>
                                 </div>
                             </md-list-item>
@@ -77,15 +78,15 @@
                 <md-tab label="Packages" ng-disabled="!(project.Id != undefined)">
                     <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
                         <div ng-repeat="package in Packages">
-                            <md-card style="width:530px; float:left; height:405px" class="transform">
-                                <md-card-content style="padding:30px 40px 20px 40px">
+                            <md-card style="width:530px; float:left; height:405px;  background-color:#eaf0ff" class="transform">
+                                <md-card-content style="padding:30px 40px 20px 40px;">
                                     <p>
-                                        <md-icon md-font-icon="fa fa-euro fa-2x" style="color:rgba(0,0,0,0.8);" /><span style="font-size:25px; position:relative;  top:3px">{{package.Amount}} or more</span>
+                                        <md-icon md-font-icon="fa fa-euro fa-2x" style="color:#4980ff;" /><span style="font-size:25px; position:relative;  top:3px; color:#4980ff">{{package.Amount}} or more</span>
                                     </p>
                                     <p style="margin-top:45px">
                                         <h2>{{package.Title}}</h2>
                                     </p>
-                                    <p style="margin-top:45px">
+                                    <p style="margin-top:45px; color:rgba(0,0,0,0.7)">
                                         {{package.Rewards}}
                                     </p>
                                         <!--<md-button type="submit" class="md-raised md-primary" style="width:210px;">Save Card</md-button>-->

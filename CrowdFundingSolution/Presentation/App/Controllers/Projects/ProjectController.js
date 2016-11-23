@@ -14,7 +14,7 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
         visible: 3,
         //perspective: 35,
         startSlide: 0,
-        border: 0,
+        border: 2,
         dir: 'ltr',
         width: 622,
         height: 350,

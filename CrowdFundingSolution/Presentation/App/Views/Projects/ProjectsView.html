@@ -1,22 +1,39 @@
-﻿<div id="main-content">
+﻿<div id="headerwrap">
+    <div class="container">
+        <h2>Browse</h2>
+    </div>
+</div>
+<div id="main-content">
     <div class="container md-padding" layout="row" layout-align="center" layout-wrap>
-        <div ng-repeat="row in Projects">
-            <md-card style="width: 350px;">
-                <img data-ng-src="data:image/jpeg;base64,{{row.Photo}}" alt="Content/Images/post03.jpg" />
+        <div ng-repeat="row in Projects" class="test">
+            <md-card style="width: 350px; height:500px; background-color:#f9fafc">
+                <div id="progressCircle{{row.Id}}" style="height:197px">
+                    <md-progress-circular class="md-hue-2" md-diameter="70" style="margin:0 auto; top:50px"></md-progress-circular>
+                </div>
+                <img data-ng-src="data:image/jpeg;base64,{{row.MainPhoto}}" alt="" class="md-card-image" ng-click="goToState(row.Id)" style="outline:none!important" />
                 <!--<img ng-src="Content/Images/post03.jpg" class="md-card-image" alt="image caption">-->
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{row.Title}}</span>
-                        <span class="md-subhead">{{row.CategoryName}}</span>
-                    </md-card-title-text>
-                </md-card-title>
                 <md-card-content>
-                    <p>{{row.ShortDescription}}</p>
+                    <div style="height:250px">
+                        <p><span class="md-headline">{{row.Title}}</span></p>
+                        <p>
+                            <md-button class="md-icon-button" aria-label="Favorite" ng-click="addToFavorites(row.Id)" style="outline:none!important">
+                                <md-icon md-font-icon="fa fa-heart" style="color:gray" />
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Settings" style="outline:none!important">
+                                <md-icon md-font-icon="fa fa-share" style="color:gray" />
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Share" ng-click="goToState(row.Id)" style="outline:none!important">
+                                <md-icon md-font-icon="fa fa-search" style="color:gray" />
+                            </md-button>
+                        </p>
+                        <p>{{row.ShortDescription}}</p>
+                    </div>
+                    <p><md-progress-linear md-mode="determinate" value="50"></md-progress-linear></p>
                 </md-card-content>
-                <md-card-actions layout="row" layout-align="start center">
+                <!--<md-card-actions layout="row" layout-align="start center">
                     <md-progress-linear md-mode="determinate" value="{{row.Progress > 100 ? 100 : row.Progress}}"></md-progress-linear>
-                </md-card-actions>
-                <md-card-actions layout="row" layout-align="start center">
+                </md-card-actions>-->
+                <!--<md-card-actions layout="row" layout-align="start center">
                     <div class="col-sm-4 col-xs-4">
                         <h6 class="card-subtitle text-muted ng-binding">Funded</h6>
                         {{row.Progress}}%
@@ -29,26 +46,27 @@
                         <h6 class="card-subtitle text-muted ng-binding">Backers</h6>
                         <span><i class="fa fa-users" aria-hidden="true" /> {{row.Backers}}</span>
                     </div>
-                </md-card-actions>
-                <md-card-actions layout="row" layout-align="center">
-                    <md-button ui-sref="Home.Project({ Id: {{row.Id}} })" class="md-raised md-primary">Go to Project Page</md-button>
-                </md-card-actions>
+                </md-card-actions>-->
+                <!--<md-card-actions layout="row" layout-align="center">
+                    <md-button ui-sref="Home.Project({ Id: {{row.Id}} })" class="md-raised" style="width:100%">Go to Project Page</md-button>
+                </md-card-actions>-->
             </md-card>
         </div>
         <!--<div style="width:100%; text-align:center">-->
-        <div>
-            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <div layout="row" layout-align="center center" style="width:100%">
+            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" class="layout-align-center">
                 <md-nav-item ng-repeat="tab in tabs" md-nav-click="reload(tab.title)" name="{{tab.title}}">{{tab.title}}</md-nav-item>
-                <!--<md-nav-item md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item>
-                <md-nav-item md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item>-->
-                <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
-        <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
-        <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
-        -->
+            </md-nav-bar>
+
+            <!--<md-nav-item md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item>
+            <md-nav-item md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item>-->
+            <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
+            <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
+            <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
+            -->
             <!--</md-nav-bar>-->
-            </div>
+        </div>
     </div>
-    
     <!--<div class="row">
         <ul class="pagination">
             <li ng-repeat="n in index"><a ui-sref="" ng-click="reload(n)">{{n}}</a></li>

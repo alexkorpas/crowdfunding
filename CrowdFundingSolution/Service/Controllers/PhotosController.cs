@@ -89,5 +89,23 @@ namespace Service
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetProjectMainImage(int Id)
+        {
+            try
+            {
+                var repository = new CrowdFundingTransactions();
+                var transaction = await repository.ReadProjectMainImage(Id);
+                if (transaction.Result == TransResult.Success)
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                else
+                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
     }
 }

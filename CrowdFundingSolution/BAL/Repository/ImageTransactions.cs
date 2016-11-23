@@ -109,5 +109,27 @@ namespace BAL
                 return new TransactionResult(TransResult.Fail, ex.Message, ex);
             }
         }
+
+        public async Task<TransactionResult> ReadProjectMainImage(int Id)
+        {
+            try
+            {
+                using (var db = new backup_CrowdFundingViva1Entities())
+                {
+                    Project project = await db.Project.FindAsync(Id);                    
+                    var photo = await db.ProjectPhoto.FindAsync(project.MainPhotoFK);
+                    var result = new ProjectPhotoDTO
+                    {
+                        Id = photo.Id,
+                        Photo = photo.Photo
+                    };
+                    return new TransactionResult(TransResult.Success, string.Empty, result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new TransactionResult(TransResult.Fail, ex.Message, ex);
+            }
+        }
     }
 }

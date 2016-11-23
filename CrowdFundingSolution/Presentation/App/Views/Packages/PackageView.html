@@ -1,0 +1,26 @@
+﻿<div id="headerwrap">
+    <div class="container">
+        <h2>Select Package</h2>
+    </div>
+</div>
+<div id="main-content" style="margin:0; padding:0;">
+    <div class="container mt">
+        <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
+            <div ng-repeat="package in Packages">
+                <md-card style="width:530px; float:left; height:405px;  background-color:#eaf0ff" class="transform">
+                    <md-card-content style="padding:30px 40px 20px 40px;">
+                        <p>
+                            <md-icon md-font-icon="fa fa-euro fa-2x" style="color:#4980ff;" /><span style="font-size:25px; position:relative;  top:3px; color:#4980ff">{{package.Amount}} or more</span>
+                        </p>
+                        <p style="margin-top:45px">
+                            <h2>{{package.Title}}</h2>
+                        </p>
+                        <p style="margin-top:45px; color:rgba(0,0,0,0.7)">
+                            {{package.Rewards}}
+                        </p>
+                        <md-button class="md-raised md-primary">Select this Package</md-button>
+                    </md-card-content>
+                </md-card>
+        </md-content>
+    </div>
+</div>

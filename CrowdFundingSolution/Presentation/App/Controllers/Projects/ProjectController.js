@@ -76,5 +76,8 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
                 controller: 'BackItController',
                 scope: $scope
             });
-        };        
+        };
+        $scope.goToState = function (id) {
+            $state.go('Home.Packages', { Id: id });
+        };
     }]);

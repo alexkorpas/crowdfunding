@@ -95,8 +95,12 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/Project/:Id',
             templateUrl: "/App/Views/Projects/ProjectPage.html",
             controller:'ProjectController'
-        }) 
-    
+        })
+        .state('Home.Packages', {
+            url: '/Packages/:Id',
+            templateUrl: "/App/Views/Packages/PackageView.html",
+            controller: 'PackageController'
+        })
 });
 CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers) {
     $rootScope.$on('$stateChangeStart', function (e, to, params, from) { // On state change (page change)

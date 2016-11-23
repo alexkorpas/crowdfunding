@@ -13,5 +13,6 @@ namespace BAL
         public int? ProjectFK { get; set; }
         public byte[] Photo { get; set; }
         public string PhotoString { get; set; }
+        public int? Pointer { get; set; }
     }
 }

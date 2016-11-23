@@ -91,12 +91,12 @@ namespace Service
         }
 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetProjectMainImage(int Id)
+        public async Task<HttpResponseMessage> GetProjectMainImage(int id, int? pointer = null)
         {
             try
             {
                 var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadProjectMainImage(Id);
+                var transaction = await repository.ReadProjectMainImage(id, pointer);
                 if (transaction.Result == TransResult.Success)
                     return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
                 else

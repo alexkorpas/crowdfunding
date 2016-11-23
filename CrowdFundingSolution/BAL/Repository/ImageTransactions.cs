@@ -110,18 +110,20 @@ namespace BAL
             }
         }
 
-        public async Task<TransactionResult> ReadProjectMainImage(int Id)
+        public async Task<TransactionResult> ReadProjectMainImage(int id, int? pointer = null)
         {
             try
             {
                 using (var db = new backup_CrowdFundingViva1Entities())
                 {
-                    Project project = await db.Project.FindAsync(Id);                    
+                    Project project = await db.Project.FindAsync(id);                    
                     var photo = await db.ProjectPhoto.FindAsync(project.MainPhotoFK);
                     var result = new ProjectPhotoDTO
                     {
                         Id = photo.Id,
-                        Photo = photo.Photo
+                        Photo = photo.Photo,
+                        ProjectFK = project.Id,
+                        Pointer = pointer
                     };
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }

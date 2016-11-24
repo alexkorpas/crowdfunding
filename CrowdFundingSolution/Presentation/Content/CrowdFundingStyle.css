@@ -519,3 +519,7 @@ input:-moz-placeholder {
 input::-webkit-input-placeholder {
 	color: #999;
 }
+
+md-content.transparent {
+    background-color:transparent;
+}

@@ -1,9 +1,9 @@
 ﻿<div id="main-content" style="margin:0; padding:0;">
     <div class="container mt">
-        <md-content style="background-color:rgba(0,0,0,0)">
+        <md-content class="transparent">
             <md-tabs md-dynamic-height="" md-border-bottom="">
                 <md-tab label="Details">
-                    <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
+                    <md-content class="md-padding transparent">
                         <form ng-submit="saveProject()" id="projectform">
                             <md-input-container class="md-block" flex-gt-sm="">
                                 <label>Title</label>
@@ -58,7 +58,7 @@
                     </md-content>
                 </md-tab>
                 <md-tab label="Images" ng-disabled="!(project.Id != undefined)">
-                    <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
+                    <md-content class="md-padding transparent">
                         <aps-upload-file></aps-upload-file>
                         <md-button class="md-raised" ng-click="uploadPhoto()" style="width:210px;">Upload</md-button>
                         <md-list flex="">
@@ -76,7 +76,7 @@
                     </md-content>
                 </md-tab>
                 <md-tab label="Packages" ng-disabled="!(project.Id != undefined)">
-                    <md-content class="md-padding" style="background-color:rgba(0,0,0,0)">
+                    <md-content class="md-padding transparent">
                         <div ng-repeat="package in Packages">
                             <md-card style="width:530px; float:left; height:405px;  background-color:#eaf0ff" class="transform">
                                 <md-card-content style="padding:30px 40px 20px 40px;">

@@ -1,6 +1,71 @@
-﻿<div class="container" style="padding-top: 30px;">
+﻿<div id="headerwrap">
+    <div class="container">
+        <h2>Dashboard</h2>
+    </div>
+</div>
+<div id="main-content" style="margin:0; padding:0;">
+    <div class="container" ng-cloak>
+        <md-content class="transparent">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="My Projects">
+                    <md-content class="md-padding transparent">
+                    </md-content>
+                </md-tab>
+                <md-tab label="My Funds">
+                    <md-content class="md-padding transparent">
+                    </md-content>
+                </md-tab>
+                <md-tab label="My profile">
+                    <div layout="column" layout-padding ng-cloak>
+                        <md-content class="md-no-momentum md-padding transparent">
+                            <div>
+                                <div class="text-center" layout-align="column">
+                                    <img src="Content/Images/post02.jpg" class="avatar img-circle img-thumbnail img-responsive" alt="avatar" id="Photo" style="height: 100px;">
+                                    <aps-upload-file></aps-upload-file>
+                                    <md-button class="md-raised" ng-click="uploadPhoto()" style="width:210px;">Change Profile Picture</md-button>
+                                </div>
+                            </div>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>First Name</label>
+                                <input ng-model="User.FirstName" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Last Name</label>
+                                <input ng-model="User.LastName" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Phone Number</label>
+                                <input ng-model="User.PhoneNumber" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Email</label>
+                                <input ng-model="User.Email" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>User Name</label>
+                                <input ng-model="User.UserName" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Password</label>
+                                <input ng-model="User.Password" type="text">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Re-enter your Password</label>
+                                <input ng-model="User.Password" type="text">
+                            </md-input-container>
+                            <md-button class="md-raised" ng-click="">Save Changes</md-button>
+                        </md-content>
+                    </div>
+                </md-tab>
+
+            </md-tabs>
+        </md-content>
+    </div>
+
+
+</div>
+<!--<div class="container" style="padding-top: 30px;">
     <div class="row">
-        <!-- left column -->
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
                 <img src="Content/Images/post02.jpg" class="avatar img-circle img-thumbnail" alt="avatar" id="Photo" width="100" height="100">
@@ -8,7 +73,6 @@
                 <input type="file" class="text-center center-block well well-sm">
             </div>
         </div>
-        <!-- edit form column -->
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info" width="80%">
             <form class="form-vertical" role="form" ng-submit="save()">
                     <div class="form-group" style="padding-bottom: 5px;">
@@ -64,5 +128,4 @@
                     </div>
 </form>
         </div>
-    </div>
-</div>
+    </div>-->

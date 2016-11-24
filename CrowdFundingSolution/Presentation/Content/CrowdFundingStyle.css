@@ -53,6 +53,28 @@ md-toast {
 .transform:hover {
 }
 
+.ngdialog-content {
+     padding:0!important;
+ }
+
+.ngdialog-close {
+    top:-1px!important;
+    right:-1px!important;
+}
+
+.ngdialog-close:before {    
+    color:ghostWhite!important;
+}
+.ngdialog-close:hover:before, .ngdialog-close:active:before {    
+    background:red!important;
+}
+
+.panel-heading {
+    background: #363940!important;
+    color:ghostwhite!important;
+    height:43px!important;
+}
+
 .test.ng-enter {
   -webkit-transition: 0.5s;
   transition: 0.5s;

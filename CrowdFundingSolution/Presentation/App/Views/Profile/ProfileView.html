@@ -17,37 +17,37 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="padding-top: 5px;">First name:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="FirstName" value="{{User.FirstName}}" type="text">
+                            <input class="form-control" id="FirstName" value="{{User.FirstName}}" ng-model="User.FirstName" type="text">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="padding-top: 5px;">Last name:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="LastName" value="{{User.LastName}}" type="text">
+                            <input class="form-control" id="LastName" value="{{User.LastName}}" ng-model="User.LastName" type="text">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="padding-top: 5px;">Phone Number:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="PhoneNumber" value="{{User.PhoneNumber}}" type="text">
+                            <input class="form-control" id="PhoneNumber" value="{{User.PhoneNumber}}" ng-model="User.PhoneNumber" type="number">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="padding-top: 5px;">Email:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="Email" value="" type="{{User.Email}}" disabled>
+                            <input class="form-control" id="Email" value="" type="{{User.Email}}" ng-model="User.Email" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="padding-top: 5px;">Username:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="UserName" value="{{User.UserName}}" type="text">
+                            <input class="form-control" id="UserName" value="{{User.UserName}}" ng-model="User.UserName" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="padding-top: 5px;">Password:</label>
                         <div class="col-lg-8" style="padding-top: 5px;">
-                            <input class="form-control" id="PassWord1" value="{{User.Password}}" type="password">
+                            <input class="form-control" id="PassWord1" value="{{User.Password}}" ng-model="User.Password" type="password">
                         </div>
                     </div>
                     <div class="form-group">

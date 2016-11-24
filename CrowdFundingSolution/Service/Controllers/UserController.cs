@@ -25,14 +25,15 @@ namespace Service.Controllers
             {
                 var repository = new CrowdFundingTransactions();
                 var identity = User.Identity as ClaimsIdentity;
-                var result = repository.ReadUserByName(identity.Name);
-
-                return Request.CreateResponse(HttpStatusCode.OK, result);
+                var transaction = await repository.ReadUserByName(identity.Name);
+                if (transaction.Result == TransResult.Success)
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<HttpResponseMessage> UpdateUser(JObject jobj)
         {

@@ -38,31 +38,23 @@ namespace BAL
             return result;
         }
 
-        public AspNetUsersDTO ReadUserByName(string email)
+        public async Task<TransactionResult> ReadUserByName(string email)
         {
             try
             {
                 var db = new backup_CrowdFundingViva1Entities();
-                AspNetUsersDTO result = new AspNetUsersDTO();
-
-                var s = (from us in db.AspNetUsers
-                               where us.Email == email
-                               select us).FirstOrDefault();
-
-                result = new AspNetUsersDTO
+                var s = await db.AspNetUsers.Where(w => w.UserName == email).FirstOrDefaultAsync();
+                var result = new AspNetUsersDTO
                 {
+                    Id = s.Id,
                     FirstName = s.FirstName,
                     LastName = s.LastName,
-                    UserName = s.UserName,
                     Email = s.Email,
                     PhoneNumber = s.PhoneNumber
                 };
-                return result;
+                return new TransactionResult(TransResult.Success, string.Empty, result);
             }
-            catch(Exception ex)
-            {
-                return new AspNetUsersDTO();
-            }
+            catch(Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex);}
         }
         public async Task<TransactionResult> SaveUserTransaction(AspNetUsersDTO userInfoDTO, string email)
         {

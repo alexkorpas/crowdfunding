@@ -102,11 +102,17 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'PackageController'
         })
 });
-CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers) {
+CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers, CFConfig, baseService) {
     $rootScope.$on('$stateChangeStart', function (e, to, params, from) { // On state change (page change)
         if (CFHelpers.getToken() == null)
             $rootScope.isLogged = false;
-        else
+        else {
+            if (CFConfig.LOGUSER == "NULL") {
+                baseService.httpGet("api/User/GetLoggedInUser", null).then(function (res) {
+                    CFConfig.LOGUSER = res;
+                });
+            }
             $rootScope.isLogged = true;
+        }
     });
 });

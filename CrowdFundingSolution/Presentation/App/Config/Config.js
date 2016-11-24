@@ -15,7 +15,7 @@ CrowdFundingApp.constant('CFConfig', {
     JWT: "CFJWT",
     DEFAULT_THEME: "material",
     CLIENT_ID: "099153c2625149bc8ecb3e85e03f0022",
-    LOGUSER: "LOGGEDUSER",
+    LOGUSER: "NULL",
     TIMEOUT: 20,// tolerable delay up to 500 milsec
     FPA: 23,
 

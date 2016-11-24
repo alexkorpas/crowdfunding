@@ -65,6 +65,7 @@ namespace BAL
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }
                 var res = db.Project.AsQueryable();
+                res = res.Where(a => a.IsActive == true);
                 if (criteria.UserId != null)
                     res = res.Where(s => s.UserFK == criteria.UserId);
                 if (criteria.StateId != null)
@@ -75,7 +76,7 @@ namespace BAL
                     res = res.Where(s => s.Title.Contains(criteria.Search) || s.ShortDescription.Contains(criteria.Search));
                 if (criteria.Page != null)
                     res = res.OrderBy(s => s.Id).Skip((int)criteria.Page * 6).Take(6);
-                result = await res.Where(a => a.IsActive == true).Select(s => new ProjectDTO
+                result = await res.Select(s => new ProjectDTO
                 {
                     Id = s.Id,
                     Description = s.Description,

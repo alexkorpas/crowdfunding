@@ -1,7 +1,9 @@
 ﻿using BAL;
+using DAL;
 using RestSharp;
 using RestSharp.Authenticators;
 using System;
+using System.Data.Common;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,6 +11,7 @@ using System.Web.Http;
 
 namespace Service
 {
+    [Authorize]
     public class PaymentController : ApiController
     {
         private Guid _MerchantId = new Guid("5964e387-437d-4e70-a795-6e346f92b57a");
@@ -18,9 +21,9 @@ namespace Service
         private string _PaymentsCreateOrderUrl = "/api/orders";
 
         [HttpPost]
-        public HttpResponseMessage Pay(string ourToken)
+        public HttpResponseMessage Pay(string ourToken, int amountPledged)
         {
-            var _orderCode = CreateOrder(10000);    //CALL TO CREATE AN ORDER. IF AN ORDER CODE ALREADY EXISTS FROM A PREVIOUS STEP, USE THAT ONE INSTEAD
+            var _orderCode = CreateOrder(amountPledged);    //CALL TO CREATE AN ORDER. IF AN ORDER CODE ALREADY EXISTS FROM A PREVIOUS STEP, USE THAT ONE INSTEAD
 
             var cl = new RestClient(_BaseApiUrl);
             cl.Authenticator = new HttpBasicAuthenticator(
@@ -40,12 +43,26 @@ namespace Service
             });
 
             //paymentform.Visible = false;
-
+            //using (var db = new backup_CrowdFundingViva1Entities())
+            //{
+            //    DbConnection conn = db.Database.Connection;
+            //    try
+            //    {
+            //        conn.Open();   // check the database connection
+            //        var res = cl.Execute<TransactionResult>(req);
+            //        db.Payment.Add(new Payment( ));
+            //    }
+            //    catch
+            //    {
+            //        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Connection Lost");
+            //    }
+            //}
             var res = cl.Execute<TransactionResult>(req);
             if (res.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 if (res.Data.ErrorCode == 0 && res.Data.StatusId == "F")
                 {
+                    
                     //Response.Write(string.Format(
                     //    "Transaction was successful. TransactionId is {0}",
                     //    res.Data.TransactionId));
@@ -56,7 +73,7 @@ namespace Service
                     //Response.Write(string.Format(
                     //    "Transaction failed. Error code was {0}",
                     //    res.Data.ErrorCode));
-                    return Request.CreateResponse(HttpStatusCode.OK, string.Format("Transaction failed. Error code was {0}", res.Data.ErrorCode));
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, string.Format("Transaction failed. Error code was {0}", res.Data.ErrorCode));
                 }
             }
             else
@@ -64,7 +81,7 @@ namespace Service
                 //Response.Write(string.Format(
                 //    "Transaction failed. Error code was {0}",
                 //    res.StatusCode));
-                return Request.CreateResponse(HttpStatusCode.OK, string.Format("Transaction failed. Error code was {0}", res.StatusCode));
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, string.Format("Transaction failed. Error code was {0}", res.StatusCode));
             }
         }
 
@@ -79,7 +96,7 @@ namespace Service
 
             req.AddObject(new
             {
-                Amount = 100,    // Amount is in cents
+                Amount = amount * 100,    // Amount is in cents
                 SourceCode = "Default"
             });
 
@@ -109,6 +126,23 @@ namespace Service
             public int ErrorCode { get; set; }
             public string ErrorText { get; set; }
             public DateTime TimeStamp { get; set; }
+        }
+
+        public bool TestConnection()
+        {
+            using (var db = new backup_CrowdFundingViva1Entities())
+            {
+                DbConnection conn = db.Database.Connection;
+                try
+                {
+                    conn.Open();   // check the database connection
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
 
         [HttpGet]

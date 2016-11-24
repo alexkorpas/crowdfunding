@@ -52,6 +52,25 @@ services.factory('baseService', ['$http', '$q', '$state', 'localStorageService',
             return config;
         }
 
+        var _prepareRequestPost = function () {
+            try {
+                var authData = localStorageService.get(CFConfig.JWT);
+                var authorizationValue = authData.token_type + ' ' + authData.access_token;
+
+                var config = {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': authorizationValue
+                    }
+                };
+            }
+            catch (ex) {
+                $state.go("Home.Login");
+            }
+            return config;
+        }
+
 
         var _prepareRequestWithParams = function (params) {
             var config = _prepareRequest();
@@ -78,7 +97,9 @@ services.factory('baseService', ['$http', '$q', '$state', 'localStorageService',
         };
 
         var _httpPost = function (URI, params) {
-            var config = _prepareRequest();
+            var config = _prepareRequestPost();
+            if (params != null)
+                config.params = params;
             var deferred = $q.defer();
             $http.post(servers.CF_SERVER + URI, params, config
                     ).success(function (data) {

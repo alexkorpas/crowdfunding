@@ -31,33 +31,49 @@ CrowdFundingApp.controller('BackItController', ['$scope', '$state', 'ngDialog', 
                 VivaPayments.cards.requestToken();
             };
             $scope.pay = function () {
-                var deferred = $q.defer();
+                //var deferred = $q.defer();
                 $scope.backIt.closeDialog();
-                $http({
-                    url: servers.CF_SERVER + 'api/Payment/Pay',
-                    method: "POST",
-                    params: { ourToken: $scope.hidToken },
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    skipAuthorization: true
-                }).success(function (data) {
-                    deferred.resolve(data);                    
+                baseService.httpPost("api/Payment/Pay", { ourToken: $scope.hidToken, amountPledged: $scope.AmountPledged }).then(function (res) {
                     $mdToast.show(
-                                  $mdToast.simple()
-                                    .textContent("Transasction Successful")
-                                    .position('top right')
-                                    .hideDelay(3000)
-                                    );
-                }).error(function (err, status) {
-                    deferred.reject(err);
+                      $mdToast.simple()
+                        .textContent("Transasction Successful")
+                        .position('top right')
+                        .hideDelay(3000)
+                        );
+                }, function (error) {
                     $mdToast.show(
-                                  $mdToast.simple()
-                                    .textContent(err.Message)
-                                    .position('top right')
-                                    .hideDelay(3000)
-                                    .toastClass('failure')
-                                    );
+                      $mdToast.simple()
+                        .textContent(error.Message)
+                        .position('top right')
+                        .hideDelay(3000)
+                        .toastClass('failure')
+                        );
                 });
-                return deferred.promise;
+                //$http({
+                //    url: servers.CF_SERVER + 'api/Payment/Pay',
+                //    method: "POST",
+                //    params: { ourToken: $scope.hidToken, amountPledged: $scope.AmountPledged },
+                //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                //    skipAuthorization: true
+                //}).success(function (data) {
+                //    deferred.resolve(data);                    
+                //    $mdToast.show(
+                //                  $mdToast.simple()
+                //                    .textContent("Transasction Successful")
+                //                    .position('top right')
+                //                    .hideDelay(3000)
+                //                    );
+                //}).error(function (err, status) {
+                //    deferred.reject(err);
+                //    $mdToast.show(
+                //                  $mdToast.simple()
+                //                    .textContent(err.Message)
+                //                    .position('top right')
+                //                    .hideDelay(3000)
+                //                    .toastClass('failure')
+                //                    );
+                //});
+                //return deferred.promise;
             };
         }, 500);
         //});

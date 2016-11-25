@@ -13,7 +13,7 @@ namespace BAL
         {
             try
             {
-                var db = new backup_CrowdFundingViva1Entities();
+                //var db = new backup_CrowdFundingViva1Entities();
                 var result = new List<PaymentDTO>();
 
                 // Checking if an Id, ProjectId or UserId has been given
@@ -27,7 +27,7 @@ namespace BAL
 
                 if (criteria.Id != null)
                 {
-                    var s = await db.Payment.FindAsync(criteria.Id);
+                    var s = await context.Payment.FindAsync(criteria.Id);
                     result.Add(new PaymentDTO
                     {
                         Id = s.Id,
@@ -42,7 +42,7 @@ namespace BAL
                     });
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }
-                var res = db.Payment.AsQueryable();
+                var res = context.Payment.AsQueryable();
                 if (criteria.ProjectId != null)
                     res = res.Where(s => s.ProjectFK == criteria.ProjectId);
                 if (criteria.UserId != null)

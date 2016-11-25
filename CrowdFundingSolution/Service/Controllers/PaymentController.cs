@@ -23,65 +23,76 @@ namespace Service
         [HttpPost]
         public HttpResponseMessage Pay(string ourToken, int amountPledged)
         {
-            var _orderCode = CreateOrder(amountPledged);    //CALL TO CREATE AN ORDER. IF AN ORDER CODE ALREADY EXISTS FROM A PREVIOUS STEP, USE THAT ONE INSTEAD
-
-            var cl = new RestClient(_BaseApiUrl);
-            cl.Authenticator = new HttpBasicAuthenticator(
-                                    _MerchantId.ToString(),
-                                    _ApiKey);
-
-            var req = new RestRequest(_PaymentsUrl, Method.POST);
-            req.RequestFormat = DataFormat.Json;
-            req.AddBody(new
+            var context = new backup_CrowdFundingViva1Entities();
+            using (var dbTran = context.Database.BeginTransaction())
             {
-                OrderCode = _orderCode,
-                SourceCode = "Default",             //MAKE SURE THIS IS A SOURCE OF TYPE SIMPLE/NATIVE  
-                CreditCard = new
+                try
                 {
-                    Token = ourToken//.Value.ToString()
-                }
-            });
 
-            //paymentform.Visible = false;
-            //using (var db = new backup_CrowdFundingViva1Entities())
-            //{
-            //    DbConnection conn = db.Database.Connection;
-            //    try
-            //    {
-            //        conn.Open();   // check the database connection
-            //        var res = cl.Execute<TransactionResult>(req);
-            //        db.Payment.Add(new Payment( ));
-            //    }
-            //    catch
-            //    {
-            //        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Connection Lost");
-            //    }
-            //}
-            var res = cl.Execute<TransactionResult>(req);
-            if (res.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                if (res.Data.ErrorCode == 0 && res.Data.StatusId == "F")
+                    var payment = new Payment();
+                    payment.Amount = amountPledged;
+
+                    context.Payment.Add(payment);
+                    context.SaveChanges();
+
+                var _orderCode = CreateOrder(amountPledged);    //CALL TO CREATE AN ORDER. IF AN ORDER CODE ALREADY EXISTS FROM A PREVIOUS STEP, USE THAT ONE INSTEAD
+
+                var cl = new RestClient(_BaseApiUrl);
+                cl.Authenticator = new HttpBasicAuthenticator(
+                                        _MerchantId.ToString(),
+                                        _ApiKey);
+
+                var req = new RestRequest(_PaymentsUrl, Method.POST);
+                req.RequestFormat = DataFormat.Json;
+                req.AddBody(new
                 {
-                    
-                    //Response.Write(string.Format(
-                    //    "Transaction was successful. TransactionId is {0}",
-                    //    res.Data.TransactionId));
-                    return Request.CreateResponse(HttpStatusCode.OK, string.Format("Transaction was successful. TransactionId is {0}", res.Data.TransactionId));
+                    OrderCode = _orderCode,
+                    SourceCode = "Default",             //MAKE SURE THIS IS A SOURCE OF TYPE SIMPLE/NATIVE  
+                    CreditCard = new
+                    {
+                        Token = ourToken//.Value.ToString()
+                    }
+                });
+
+               
+                var res = cl.Execute<TransactionResult>(req);
+                if (res.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    if (res.Data.ErrorCode == 0 && res.Data.StatusId == "F")
+                    {
+
+                            //Response.Write(string.Format(
+                            //    "Transaction was successful. TransactionId is {0}",
+                            //    res.Data.TransactionId));
+                          //payment.tra
+                          //save
+                            
+                            dbTran.Commit();
+                        return Request.CreateResponse(HttpStatusCode.OK, string.Format("Transaction was successful. TransactionId is {0}", res.Data.TransactionId));
+                    }
+                    else
+                    {
+                            //Response.Write(string.Format(
+                            //    "Transaction failed. Error code was {0}",
+                            //    res.Data.ErrorCode));
+                            dbTran.Rollback();
+                        return Request.CreateResponse(HttpStatusCode.InternalServerError, string.Format("Transaction failed. Error code was {0}", res.Data.ErrorCode));
+                    }
                 }
                 else
                 {
-                    //Response.Write(string.Format(
-                    //    "Transaction failed. Error code was {0}",
-                    //    res.Data.ErrorCode));
-                    return Request.CreateResponse(HttpStatusCode.InternalServerError, string.Format("Transaction failed. Error code was {0}", res.Data.ErrorCode));
+                        //Response.Write(string.Format(
+                        //    "Transaction failed. Error code was {0}",
+                        //    res.StatusCode));
+                        dbTran.Rollback();
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, string.Format("Transaction failed. Error code was {0}", res.StatusCode));
                 }
-            }
-            else
-            {
-                //Response.Write(string.Format(
-                //    "Transaction failed. Error code was {0}",
-                //    res.StatusCode));
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, string.Format("Transaction failed. Error code was {0}", res.StatusCode));
+                }
+                catch (Exception)
+                {
+                    dbTran.Rollback();
+                    throw;
+                }
             }
         }
 
@@ -151,12 +162,22 @@ namespace Service
         {
             try
             {
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadPayments(criteria);
-                if (transaction.Result == TransResult.Success)
+                //var repository = new CrowdFundingTransactions();
+                //var transaction = await repository.ReadPayments(criteria);
+                //if (transaction.Result == TransResult.Success)
+                //    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                //else
+                //    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+
+                using (var repo = new CrowdFundingTransactions())
+                {
+                 var    transaction = await repo.ReadPayments(criteria);
+                    if (transaction.Result == TransResult.Success)
                     return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                }
+
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }

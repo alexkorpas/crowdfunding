@@ -22,18 +22,18 @@ namespace Service
         [HttpPost]
         public async Task<HttpResponseMessage> SaveImage(JObject jobj)
         {
-            if (jobj == null)
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
+            if (jobj == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
             try
             {
-                var user = User.Identity.Name;
-                ProjectPhotoDTO projectPhotoDTO = jobj.ToObject<ProjectPhotoDTO>();
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.SaveImageTransaction(projectPhotoDTO, user);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, "Success" );
-                else
-                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var user = User.Identity.Name;
+                    var transaction = await repository.SaveImageTransaction(jobj.ToObject<ProjectPhotoDTO>(), user);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, "Success");
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
@@ -44,13 +44,15 @@ namespace Service
         {
             try
             {
-                var user = User.Identity.Name;
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.DeleteImageTransaction(Id, user);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, "Success");
-                else
-                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var user = User.Identity.Name;
+                    var transaction = await repository.DeleteImageTransaction(Id, user);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, "Success");
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
@@ -61,13 +63,15 @@ namespace Service
         {
             try
             {
-                var user = User.Identity.Name;
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.SetMainPhotoTransaction(Id, user);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, "Success");
-                else
-                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var user = User.Identity.Name;
+                    var transaction = await repository.SetMainPhotoTransaction(Id, user);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, "Success");
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
@@ -77,17 +81,16 @@ namespace Service
         {
             try
             {
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadProjectImages(Id);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var transaction = await repository.ReadProjectImages(Id);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
-            }
+            catch (Exception ex) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message); }
         }
 
         [HttpGet]
@@ -95,17 +98,16 @@ namespace Service
         {
             try
             {
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadProjectMainImage(id, pointer);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var transaction = await repository.ReadProjectMainImage(id, pointer);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
-            }
+            catch (Exception ex) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message); }
         }
     }
 }

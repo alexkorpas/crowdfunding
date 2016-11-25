@@ -21,7 +21,7 @@ namespace Service
         private string _PaymentsCreateOrderUrl = "/api/orders";
 
         [HttpPost]
-        public HttpResponseMessage Pay(string ourToken, int amountPledged)
+        public HttpResponseMessage Pay(string ourToken, int amountPledged, int projectId)
         {
             var context = new backup_CrowdFundingViva1Entities();
             using (var dbTran = context.Database.BeginTransaction())
@@ -31,8 +31,15 @@ namespace Service
 
                     var payment = new Payment();
                     payment.Amount = amountPledged;
+                    payment.PaymentDate = DateTime.Now;
+                    payment.ProjectFK = projectId;
+                    payment.PaymentMethod = "";
 
                     context.Payment.Add(payment);
+
+                    var project = context.Project.Find(projectId);
+                    project.GoalMin = project.GoalMin == null ? (decimal)amountPledged : project.GoalMin+ (decimal)amountPledged;
+
                     context.SaveChanges();
 
                 var _orderCode = CreateOrder(amountPledged);    //CALL TO CREATE AN ORDER. IF AN ORDER CODE ALREADY EXISTS FROM A PREVIOUS STEP, USE THAT ONE INSTEAD
@@ -64,9 +71,10 @@ namespace Service
                             //Response.Write(string.Format(
                             //    "Transaction was successful. TransactionId is {0}",
                             //    res.Data.TransactionId));
-                          //payment.tra
-                          //save
-                            
+                            //payment.tra
+                            //save
+                            payment.PaymentMethod = res.Data.TransactionId.ToString();
+                            context.SaveChanges();
                             dbTran.Commit();
                         return Request.CreateResponse(HttpStatusCode.OK, string.Format("Transaction was successful. TransactionId is {0}", res.Data.TransactionId));
                     }
@@ -162,18 +170,11 @@ namespace Service
         {
             try
             {
-                //var repository = new CrowdFundingTransactions();
-                //var transaction = await repository.ReadPayments(criteria);
-                //if (transaction.Result == TransResult.Success)
-                //    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                //else
-                //    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
-
                 using (var repo = new CrowdFundingTransactions())
                 {
-                 var    transaction = await repo.ReadPayments(criteria);
+                    var transaction = await repo.ReadPayments(criteria);
                     if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
                     else
                         return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
                 }

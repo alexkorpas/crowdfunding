@@ -33,7 +33,7 @@ CrowdFundingApp.controller('BackItController', ['$scope', '$state', 'ngDialog', 
             $scope.pay = function () {
                 //var deferred = $q.defer();
                 $scope.backIt.closeDialog();
-                baseService.httpPost("api/Payment/Pay", { ourToken: $scope.hidToken, amountPledged: $scope.AmountPledged }).then(function (res) {
+                baseService.httpPostPayment("api/Payment/Pay", { ourToken: $scope.hidToken, amountPledged: $scope.AmountPledged, projectId: $stateParams.Id }).then(function (res) {
                     $mdToast.show(
                       $mdToast.simple()
                         .textContent("Transasction Successful")

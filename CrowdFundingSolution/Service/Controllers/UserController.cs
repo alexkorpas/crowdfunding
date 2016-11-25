@@ -23,13 +23,15 @@ namespace Service.Controllers
         {
             try
             {
-                var repository = new CrowdFundingTransactions();
-                var identity = User.Identity as ClaimsIdentity;
-                var transaction = await repository.ReadUserByName(identity.Name);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var identity = User.Identity as ClaimsIdentity;
+                    var transaction = await repository.ReadUserByName(identity.Name);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
@@ -37,8 +39,7 @@ namespace Service.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> UpdateUser(JObject jobj)
         {
-            if (jobj == null)
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
+            if (jobj == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
             try
             {
                 var user = User.Identity.Name;

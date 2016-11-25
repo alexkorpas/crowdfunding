@@ -13,7 +13,6 @@ namespace BAL
         {
             try
             {
-                //var db = new backup_CrowdFundingViva1Entities();
                 var result = new List<PaymentDTO>();
 
                 // Checking if an Id, ProjectId or UserId has been given

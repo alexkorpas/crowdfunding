@@ -16,42 +16,46 @@ namespace Service
         {
             try
             {
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadProjects(criteria);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var transaction = await repository.ReadProjects(criteria);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetPageCount(string keyword)
-        {
-            try
-            {
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadPageCount(keyword);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
-            }
-            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
-        }
+        //[HttpGet]
+        //public async Task<HttpResponseMessage> GetPageCount(string keyword)
+        //{
+        //    try
+        //    {
+        //        var repository = new CrowdFundingTransactions();
+        //        var transaction = await repository.ReadPageCount(keyword);
+        //        if (transaction.Result == TransResult.Success)
+        //            return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+        //        else
+        //            return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+        //    }
+        //    catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        //}
 
         [HttpGet]
         public async Task<HttpResponseMessage> GetProjectCategories()
         {
             try
             {
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadProjectCategories();
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var transaction = await repository.ReadProjectCategories();
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
@@ -61,12 +65,14 @@ namespace Service
         {
             try
             {
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadProjectStates();
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var transaction = await repository.ReadProjectStates();
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
@@ -91,12 +97,14 @@ namespace Service
         {
             try
             {
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.ReadTrendingProjects();
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                else
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var transaction = await repository.ReadTrendingProjects();
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
@@ -109,14 +117,15 @@ namespace Service
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
             try
             {
-                var user = User.Identity.Name;
-                ProjectDTO projectDTO = jobj.ToObject<ProjectDTO>();
-                var repository = new CrowdFundingTransactions();
-                var transaction = await repository.SaveProjectTransaction(projectDTO, user);
-                if (transaction.Result == TransResult.Success)
-                    return Request.CreateResponse(HttpStatusCode.OK, transaction.Id);
-                else
-                    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var user = User.Identity.Name;
+                    var transaction = await repository.SaveProjectTransaction(jobj.ToObject<ProjectDTO>(), user);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Id);
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }

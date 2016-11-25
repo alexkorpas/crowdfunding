@@ -97,6 +97,18 @@ services.factory('baseService', ['$http', '$q', '$state', 'localStorageService',
         };
 
         var _httpPost = function (URI, params) {
+            var config = _prepareRequest();
+            var deferred = $q.defer();
+            $http.post(servers.CF_SERVER + URI, params, config
+                    ).success(function (data) {
+                        deferred.resolve(data)
+                    }).error(function (err, status) {
+                        deferred.reject(err);
+                    });
+            return deferred.promise;
+        };
+
+        var _httpPostPayment = function (URI, params) {
             var config = _prepareRequestPost();
             if (params != null)
                 config.params = params;
@@ -112,6 +124,7 @@ services.factory('baseService', ['$http', '$q', '$state', 'localStorageService',
 
         baseServiceResult.httpGet = _httpGet;
         baseServiceResult.httpPost = _httpPost;
+        baseServiceResult.httpPostPayment = _httpPostPayment;
         baseServiceResult.httpGetAnonymous = _httpGetAnonymous;
         return baseServiceResult;
     }]);

@@ -34,11 +34,10 @@ namespace BAL
         {
             try
             {
-                var db = new backup_CrowdFundingViva1Entities();
                 var result = new List<ProjectDTO>();
                 if (criteria.Id != null)
                 {
-                    var s = await db.Project.FindAsync(criteria.Id);
+                    var s = await context.Project.FindAsync(criteria.Id);
                     result.Add(new ProjectDTO
                     {
                         Id = s.Id,
@@ -64,7 +63,7 @@ namespace BAL
                     });
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }
-                var res = db.Project.AsQueryable();
+                var res = context.Project.AsQueryable();
                 res = res.Where(a => a.IsActive == true);
                 if (criteria.UserId != null)
                     res = res.Where(s => s.UserFK == criteria.UserId);
@@ -106,9 +105,8 @@ namespace BAL
         {
             try
             {
-                var db = new backup_CrowdFundingViva1Entities();
                 List<ProjectStateDTO> result = new List<ProjectStateDTO>();
-                result = await db.ProjectState.Select(s => new ProjectStateDTO
+                result = await context.ProjectState.Select(s => new ProjectStateDTO
                 {
                     Id = s.Id,
                     Title = s.Title,
@@ -124,9 +122,8 @@ namespace BAL
         {
             try
             {
-                var db = new backup_CrowdFundingViva1Entities();
                 List<ProjectCategoryDTO> result = new List<ProjectCategoryDTO>();
-                result = await db.ProjectCategory.OrderBy(s => s.Title).Select(s => new ProjectCategoryDTO
+                result = await context.ProjectCategory.OrderBy(s => s.Title).Select(s => new ProjectCategoryDTO
                 {
                     Id = s.Id,
                     Title = s.Title,
@@ -153,58 +150,56 @@ namespace BAL
         {
             try
             {
-                using (var db = new backup_CrowdFundingViva1Entities())
+                AspNetUsers _user = await context.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();
+
+                ProjectCategory _projectCategory = null;
+                if (projectDTO.CategoryFK != null)
+                    _projectCategory = await context.ProjectCategory.FindAsync(projectDTO.CategoryFK);
+                ProjectState _projectState = null;
+                if (projectDTO.StateFK != null)
+                    _projectState = await context.ProjectState.FindAsync(projectDTO.StateFK);
+
+                if (projectDTO.Id == null || projectDTO.Id == 0)
                 {
-                    AspNetUsers _user = await db.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();
-
-                    ProjectCategory _projectCategory = null;
-                    if (projectDTO.CategoryFK != null)
-                        _projectCategory = await db.ProjectCategory.FindAsync(projectDTO.CategoryFK);
-                    ProjectState _projectState = null;
-                    if (projectDTO.StateFK != null)
-                        _projectState = await db.ProjectState.FindAsync(projectDTO.StateFK);
-
-                    if (projectDTO.Id == null || projectDTO.Id == 0)
+                    Project project = new Project()
                     {
-                        Project project = new Project()
-                        {
-                            AspNetUsers = _user,
-                            Title = projectDTO.Title,
-                            Description = projectDTO.Description,
-                            ShortDescription = projectDTO.ShortDescription,
-                            Goal = projectDTO.Goal,
-                            Video = projectDTO.Video,
-                            ProjectCategory = _projectCategory,
-                            DueDate = projectDTO.DueDate,
-                            IsActive = true,
-                            ProjectState = _projectState,
-                            CreatedDate = DateTime.Now
-                        
-                        };
-                        db.Project.Add(project);
-                        await db.SaveChangesAsync();
+                        AspNetUsers = _user,
+                        Title = projectDTO.Title,
+                        Description = projectDTO.Description,
+                        ShortDescription = projectDTO.ShortDescription,
+                        Goal = projectDTO.Goal,
+                        Video = projectDTO.Video,
+                        ProjectCategory = _projectCategory,
+                        DueDate = projectDTO.DueDate,
+                        IsActive = true,
+                        ProjectState = _projectState,
+                        CreatedDate = DateTime.Now
+                    
+                    };
+                    context.Project.Add(project);
+                    await context.SaveChangesAsync();
 
-                        return new TransactionResult(TransResult.Success, "Success", null, project.Id);
-                    }
-                    else
-                    {
-                        Project project = await db.Project.FindAsync(projectDTO.Id);
-                        if (project.AspNetUsers != _user)
-                            return new TransactionResult(TransResult.Fail, "This is not your project", null);
-                        project.Title = projectDTO.Title;
-                        project.Description = projectDTO.Description;
-                        project.ShortDescription = projectDTO.ShortDescription;
-                        project.Goal = projectDTO.Goal;
-                        project.Video = projectDTO.Video;
-                        project.ProjectCategory = _projectCategory;
-                        project.DueDate = projectDTO.DueDate;
-                        project.IsActive = true;
-                        project.ProjectState = _projectState;
-                        await db.SaveChangesAsync();
-
-                        return new TransactionResult(TransResult.Success, "Success", null);
-                    }
+                    return new TransactionResult(TransResult.Success, "Success", null, project.Id);
                 }
+                else
+                {
+                    Project project = await context.Project.FindAsync(projectDTO.Id);
+                    if (project.AspNetUsers != _user)
+                        return new TransactionResult(TransResult.Fail, "This is not your project", null);
+                    project.Title = projectDTO.Title;
+                    project.Description = projectDTO.Description;
+                    project.ShortDescription = projectDTO.ShortDescription;
+                    project.Goal = projectDTO.Goal;
+                    project.Video = projectDTO.Video;
+                    project.ProjectCategory = _projectCategory;
+                    project.DueDate = projectDTO.DueDate;
+                    project.IsActive = true;
+                    project.ProjectState = _projectState;
+                    await context.SaveChangesAsync();
+
+                    return new TransactionResult(TransResult.Success, "Success", null);
+                }
+                
             }
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
@@ -213,14 +208,13 @@ namespace BAL
         {
             try
             {
-                var db = new backup_CrowdFundingViva1Entities();
                 double days = 7;
                 int projsToReturn = 5;
                 DateTime fromDay = DateTime.Now.AddDays(-days);
 
-                var result = await db.Project.Where(
+                var result = await context.Project.Where(
                     x => (
-                        from p in db.Payment
+                        from p in context.Payment
                         where (fromDay.CompareTo(p.PaymentDate) <= 0 && (p.Amount - p.RefundedAmount != 0))
                         group p by p.ProjectFK into ProjectIDs
                         let countPayments = ProjectIDs.Count()

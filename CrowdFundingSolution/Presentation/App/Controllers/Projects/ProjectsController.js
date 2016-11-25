@@ -11,14 +11,9 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
                     $scope.Projects.push(res[i]);
                     $scope.pointer++;
                     baseService.httpGetAnonymous("api/Photos/GetProjectMainImage/", { id: res[i].Id, pointer: $scope.pointer-1 }).then(function (res2) {
-                        //if ($scope.Projects[i + ($scope.page-2)*3].MainPhotoFK == res2.Id) {
-                        //$scope.Projects[i + ($scope.page - 2) * 3].MainPhoto = res2.Photo;                        
-                        //for (let j = 0; j < $scope.Projects.length; i++) {
                             $scope.Projects[res2.Pointer].MainPhoto = res2.Photo;
                             var circle = angular.element(document.querySelector("#progressCircle" + res2.ProjectFK));
                             circle.remove();
-                        //}
-                        //}
                     });
                 }
             });

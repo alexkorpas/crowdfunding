@@ -47,11 +47,11 @@ md-toast {
 .failure .md-toast-content {
     background-color: maroon!important;
 }
-.transform {
+.transform, .transform-nopointer {
     transition:0.4s;  
 }
 .transform:hover {
-    border:1px solid blue!important;
+    outline:1px solid blue!important;
     cursor:pointer;
 }
 

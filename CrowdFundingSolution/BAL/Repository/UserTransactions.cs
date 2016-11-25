@@ -42,8 +42,7 @@ namespace BAL
         {
             try
             {
-                var db = new backup_CrowdFundingViva1Entities();
-                var s = await db.AspNetUsers.Where(w => w.UserName == email).FirstOrDefaultAsync();
+                var s = await context.AspNetUsers.Where(w => w.UserName == email).FirstOrDefaultAsync();
                 var result = new AspNetUsersDTO
                 {
                     Id = s.Id,

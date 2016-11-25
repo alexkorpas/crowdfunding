@@ -8,7 +8,7 @@
     <div class="container mt">
         <md-content class="transparent">
             <div ng-repeat="package in Packages" >
-                <md-card ng-click="" style="width:530px; float:left; height:415px;  background-color:#eaf0ff; border:1px solid rgba(0,0,0,0)" class="transform">
+                <md-card style="width:530px; float:left; height:415px;  background-color:#eaf0ff; border:1px solid rgba(0,0,0,0)" class="transform" ng-click="showNumInput(package.Id)">
                     <md-card-content style="padding:30px 40px 20px 40px;"><!-- style="padding:30px 40px 20px 40px;"-->
                         <p>
                             <md-icon md-font-icon="fa fa-euro fa-2x" style="color:#4980ff;" /><span style="font-size:25px; position:relative;  top:3px; color:#4980ff">{{package.Amount}} or more</span>
@@ -19,10 +19,10 @@
                         <p style="margin-top:45px; color:rgba(0,0,0,0.7); height:100px">
                             {{package.Rewards}}
                         </p>
-                        <div layout-gt-sm="row">
+                        <div layout-gt-sm="row" id="div{{package.Id}}" style="display:none;">
                             <md-input-container class="md-block" flex-gt-sm="">
                                 <label>Goal</label>
-                                <input required="" ng-model="package.AmountPledged" type="number" min="{{package.Amount}}">
+                                <input id="input{{package.Id}}" required="" ng-model="package.AmountPledged" type="number" min="{{package.Amount}}">
                                 <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
                             </md-input-container>
                             <md-button class="md-raised" style="height:40px; width:200px;" ng-click="backIt(package.AmountPledged)">Continue</md-button>

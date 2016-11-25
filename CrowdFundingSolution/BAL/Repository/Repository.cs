@@ -11,14 +11,8 @@ namespace BAL
     {
         protected backup_CrowdFundingViva1Entities context;
 
-        public CrowdFundingTransactions()
-        {
-            context = new backup_CrowdFundingViva1Entities();
-        }
+        public CrowdFundingTransactions() { context = new backup_CrowdFundingViva1Entities(); }
 
-        public void Dispose()
-        {
-            context.Dispose();
-        }
+        public void Dispose() { context.Dispose(); }
     }
 }

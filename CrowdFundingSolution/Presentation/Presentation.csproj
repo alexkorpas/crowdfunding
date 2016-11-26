@@ -137,6 +137,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\spin.gif" />
+    <Content Include="Content\Images\viva_logo.png" />
     <Content Include="Content\loading-bar.css" />
     <Content Include="Content\loading-bar.min.css" />
     <Content Include="Content\materialize\css\materialize.css" />

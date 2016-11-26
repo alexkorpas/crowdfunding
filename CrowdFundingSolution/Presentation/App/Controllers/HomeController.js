@@ -9,7 +9,10 @@ CrowdFundingApp.controller('HomeController', ['$scope', '$state', 'ngDialog', '$
         $scope.search = function (field) {
             console.log(field);
             $state.go("Home.Projects",{Search:field});
-        }        
+        }
+        $scope.test = function () {
+            alert("hedas");
+        };
     }
-
+    
 ]);

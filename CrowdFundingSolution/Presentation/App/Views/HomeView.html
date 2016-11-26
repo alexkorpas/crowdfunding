@@ -1,4 +1,4 @@
-﻿<div class="navbar navbar-default navbar-fixed-top">
+﻿<!--<div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -16,10 +16,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><form ng-submit="search(field)"><input type="search" placeholder="Search" name="field" ng-model="field"></form></li>
                 <li><a ui-sref="Home.EditProject"><i class="fa fa-plus" /> Create a Project</a></li>
-                <!-- Guest's Options -->
                 <li ng-show="!isLogged"><a ui-sref="Home.Register"><i class="fa fa-user-plus" /> Sign Up</a></li>
                 <li ng-show="!isLogged"><a ui-sref="Home.Login"><i class="fa fa-sign-in" /> Login</a></li>
-                <!-- User's Options -->
                 <li ng-show="isLogged"><a href=""><i class="fa fa-rocket" /> My Projects</a></li>
                 <li ng-show="isLogged"><a href=""><i class="fa fa-money" /> My funds</a></li>
                 <li ng-show="isLogged"><a ui-sref="Home.Profile"><i class="fa fa-user" /> Profile</a></li>
@@ -27,8 +25,28 @@
             </ul>
         </div>
     </div>
-</div>
-    <div id="contentUI" ui-view=""></div>
+</div>-->
+    <div>
+        <div style="width:100%; text-align:center">
+            <a ui-sref="Home.HomePage" ng-click="currentNavItem='HomePage'"><img src="../../Content/Images/viva_logo.png" style="position:absolute; height:47px; margin:0 auto; z-index:1000000" /></a>
+        </div>
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-sref="Home.HomePage" name="HomePage" style="display:none">Home</md-nav-item>
+            <md-nav-item md-nav-sref="Home.Projects" name="Projects">Explore</md-nav-item>
+            <md-nav-item md-nav-sref="Home.EditProject" name="CreateProject" style="float:right">Start a project</md-nav-item>
+            <span flex></span>
+            <md-nav-item md-nav-click="" name="Search"><i class="fa fa-search fa-lg"></i><!--<md-icon md-font-icon="fa fa-search fa-lg" style="color:white;"/>--></md-nav-item>
+            <md-nav-item ng-show="!isLogged" md-nav-sref="Home.Register" name="Register" style="float:right">Register</md-nav-item>
+            <md-nav-item ng-show="!isLogged" md-nav-sref="Home.Login" name="Login" style="float:right">Login</md-nav-item>
+            <md-nav-item ng-show="isLogged" md-nav-sref="Home.Profile" name="MyProfile" style="float:right">My Profile</md-nav-item>
+            <md-nav-item ng-show="isLogged" md-nav-click="logout()" name="SignOut" style="float:right">Sign Out</md-nav-item>
+            <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
+            <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
+            <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
+            -->
+        </md-nav-bar>
+    </div>
+    <div id="contentUI" ng-keydown="test()" ui-view=""></div>
 
     <footer id="footerwrap">
         <div class="container">
@@ -63,12 +81,12 @@
             </div>
         </div>
     </footer>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', 'li', function () {
-                var x = document.getElementsByClassName("active");
-                $(x[0]).removeClass('active');
-                $(this).addClass('active');
-            });
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on('click', 'li', function () {
+            var x = document.getElementsByClassName("active");
+            $(x[0]).removeClass('active');
+            $(this).addClass('active');
         });
-    </script>
+    });
+</script>

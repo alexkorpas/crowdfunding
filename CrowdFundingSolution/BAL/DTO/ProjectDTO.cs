@@ -25,10 +25,9 @@ namespace BAL
         public DateTime? BlockedDate { get; set; }
         public int? StateFK { get; set; }
         public string Website { get; set; }
+        public decimal? Gathered { get; set; }
+        public int? BackerCount { get; set; }
 
-        public virtual decimal Progress { get; set; }
-        public virtual int Backers { get; set; }
-        public virtual decimal AmountGathered { get; set; }
         public virtual string Left { get; set; }
 
     } // End class

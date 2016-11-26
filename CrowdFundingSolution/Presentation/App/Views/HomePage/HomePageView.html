@@ -1,0 +1,14 @@
+﻿<md-content layout-padding style="background-color: azure">
+    <md-grid-list md-cols-gt-md="12" md-cols="3" md-cols-md="8"
+                  md-row-height-gt-md="1:1" md-row-height="4:3"
+                  md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+        <md-grid-tile ng-repeat="category in Categories"
+                      ng-style="{ 'background-image': getImage(category.Title), 'background-position':'50% 50%', 'background-size':'cover', 'background-repeat': 'no-repeat' }"                      
+                      md-colspan-gt-sm="{{category.colspan}}"
+                      md-rowspan-gt-sm="{{category.rowspan}}"
+                      ng-mouseenter="options=true"
+                      ng-mouseleave="options=false">
+            <div ng-show="options" style="color:white; font-size:30px;background-color:rgba(0, 148, 255,0.3); padding:15px; height:100%; width:100%; cursor:pointer">{{category.Title}}</div>
+        </md-grid-tile>
+    </md-grid-list>
+</md-content>

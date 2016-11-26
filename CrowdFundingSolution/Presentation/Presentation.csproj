@@ -93,6 +93,7 @@
     <Content Include="App\Views\Projects\ProjectPage.html" />
     <Content Include="App\Views\Projects\ProjectsView.html" />
     <Content Include="App\Views\Register\RegisterView.html" />
+    <Content Include="App\Views\SearchDialog.html" />
     <Content Include="Content\angular-material.css" />
     <Content Include="Content\angular-material.layout-attributes.css" />
     <Content Include="Content\angular-material.layout-attributes.min.css" />

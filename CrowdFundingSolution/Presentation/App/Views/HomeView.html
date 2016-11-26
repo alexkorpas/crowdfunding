@@ -28,14 +28,14 @@
 </div>-->
     <div>
         <div style="width:100%; text-align:center">
-            <a ui-sref="Home.HomePage" ng-click="currentNavItem='HomePage'"><img src="../../Content/Images/viva_logo.png" style="position:absolute; height:47px; margin:0 auto; z-index:1000000" /></a>
+            <a ui-sref="Home.HomePage" ng-click="currentNavItem='HomePage'"><img src="../../Content/Images/viva_logo.png" style="position:fixed; top:5px; height:47px; margin:0 auto; z-index:11000" /></a>
         </div>
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
             <md-nav-item md-nav-sref="Home.HomePage" name="HomePage" style="display:none">Home</md-nav-item>
             <md-nav-item md-nav-sref="Home.Projects" name="Projects">Explore</md-nav-item>
             <md-nav-item md-nav-sref="Home.EditProject" name="CreateProject" style="float:right">Start a project</md-nav-item>
             <span flex></span>
-            <md-nav-item md-nav-click="" name="Search"><i class="fa fa-search fa-lg"></i><!--<md-icon md-font-icon="fa fa-search fa-lg" style="color:white;"/>--></md-nav-item>
+            <md-nav-item md-nav-click="searchBtn()" name="Search"><i class="fa fa-search fa-lg"></i><!--<md-icon md-font-icon="fa fa-search fa-lg" style="color:white;"/>--></md-nav-item>
             <md-nav-item ng-show="!isLogged" md-nav-sref="Home.Register" name="Register" style="float:right">Register</md-nav-item>
             <md-nav-item ng-show="!isLogged" md-nav-sref="Home.Login" name="Login" style="float:right">Login</md-nav-item>
             <md-nav-item ng-show="isLogged" md-nav-sref="Home.Profile" name="MyProfile" style="float:right">My Profile</md-nav-item>

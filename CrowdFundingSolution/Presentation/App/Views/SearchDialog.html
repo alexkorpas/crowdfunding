@@ -1,0 +1,23 @@
+﻿<md-content style="height:100%; width:100%;">
+    <div>
+        <section>
+            <md-subheader class="md-primary" ><div style="max-width:1000px; margin:0 auto; font-size:25px; height:40px; padding-top:15px;">Browse</div></md-subheader><br/><br/><br/><br />
+            <md-input-container class="md-block" flex-gt-sm="" style="max-width:1000px; margin:0 auto;">
+                <label style="font-size:50px!important;height:60px;padding-top:20px;">Search</label>
+                <input id="searchInput" style="font-size:43px!important;height:43px;padding:5px;" ng-model="keyWord">
+            </md-input-container>
+        </section>
+        <section>
+            <md-subheader class="md-primary"><div style="max-width:1000px; margin:0 auto; font-size:25px; height:40px; padding-top:15px;">Categories</div></md-subheader>
+            <md-list flex="" style="max-width:1000px; margin:0 auto;">
+                <md-list-item class="md-3-line" ng-repeat="category in SelectCategories" ng-click="searchCategory()" style="height:100px;">
+                    <div class="md-list-item-text" layout="column">
+                        <div style="font-size:43px;">
+                            {{category.Title}}
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </section>
+    </div>
+</md-content>

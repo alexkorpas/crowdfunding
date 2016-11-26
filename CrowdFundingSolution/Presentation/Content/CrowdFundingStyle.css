@@ -6,9 +6,9 @@ html, body {
     background-color: azure;
     font-family: 'Lato', sans-serif;    
 }
-/*html {
+html {
     overflow-y:scroll;
-}*/
+}
 /*body{
     overflow-y: hidden!important;
 }*/
@@ -55,11 +55,53 @@ md-toast {
     cursor:pointer;
 }
 
+.search .ngdialog-content {
+    width:100%!important;
+    height:100%!important;
+    overflow-x: hidden;
+    /*padding-top: 20vh!important;*/
+}
+.search.ngdialog.ngdialog-theme-default {
+    padding: 0px!important;
+    z-index:12000;
+}
+.search .ngdialog-close {
+    /*display:none!important;*/
+    z-index:14000;
+    right:9px!important;
+}
+.search .ngdialog-close:before {
+    /*display:none!important;*/
+    color:rgb(63,81,181)!important;
+    height: 72px!important;
+    width: 72px!important;
+    line-height: 56px!important;
+    font-size: 50px!important;
+}
+.search .ngdialog-close:hover:before, .search .ngdialog-close:active:before {
+    /*display:none!important;*/
+    color:white!important;
+}
+
 md-nav-bar md-nav-ink-bar {
 }
+.md-button._md-nav-button{
+    line-height:38px!important;
+}
+md-nav-bar {
+    position:fixed;
+    width:100%;
+    z-index:10000;
+    opacity:0.95;
+    background:#3f5270;
+    height:60px;
+}
+.md-nav-bar {
+    height:60px;
+}
 ._md-nav-bar-list {
-    /*background:#384452;*/    
-        background:#3f5270;
+    /*background:#3f5270;*/
+    /*opacity:0.95;*/
 }
 ._md-nav-button-text {
     color:white;
@@ -110,7 +152,7 @@ md-nav-bar md-nav-ink-bar {
 }*/
 
 #contentUI {
-    padding: 0px 0 246px 0;
+    padding: 60px 0 246px 0;
     min-height: 100%;
 }
 

@@ -26,6 +26,29 @@ namespace BAL
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
 
+        public async Task<TransactionResult> DeleteProjectFundingLevel(ProjectFundingLevelDTO projectFundingLevelDTO, string user)
+        {
+            try
+            {
+                AspNetUsers _user = await context.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();
+
+                Project _project = null;
+                if (projectFundingLevelDTO.ProjectFK != null)
+                    _project = await context.Project.FindAsync(projectFundingLevelDTO.ProjectFK);
+
+                if (_project.AspNetUsers != _user)
+                    return new TransactionResult(TransResult.Fail, "This is not your project", null);
+
+                ProjectFundingLevel projectFundingLevel = await context.ProjectFundingLevel.FindAsync(projectFundingLevelDTO.Id); 
+
+                projectFundingLevel.IsActive = false;
+                await context.SaveChangesAsync();
+
+                return new TransactionResult(TransResult.Success, "Success", null);
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        }
+
         public async Task<TransactionResult> SaveProjectFundingTransaction(ProjectFundingLevelDTO projectFundingLevelDTO, string user)
         {
             try

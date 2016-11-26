@@ -63,5 +63,25 @@ namespace Service
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<HttpResponseMessage> DeleteProjectFunding(JObject jobj)
+        {
+            if (jobj == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
+            try
+            {
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var user = User.Identity.Name;
+                    var transaction = await repository.DeleteProjectFundingLevel(jobj.ToObject<ProjectFundingLevelDTO>(), user);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Id);
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        }
+
     }
 }

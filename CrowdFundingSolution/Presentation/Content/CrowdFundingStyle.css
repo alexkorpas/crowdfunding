@@ -80,7 +80,9 @@ md-toast {
 }
 .search .ngdialog-close:hover:before, .search .ngdialog-close:active:before {
     /*display:none!important;*/
-    color:white!important;
+    /*color:white!important;*/
+    color:none!important;
+    background:none!important;
 }
 
 md-nav-bar md-nav-ink-bar {

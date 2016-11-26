@@ -26,7 +26,7 @@ CrowdFundingApp.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('Home.Projects', {
-            url: "/Projects/:Search",
+            url: "/Projects/:Search/:CategoryId",
             templateUrl: "/App/Views/Projects/ProjectsView.html",
             controller: "ProjectsController",
             data: {

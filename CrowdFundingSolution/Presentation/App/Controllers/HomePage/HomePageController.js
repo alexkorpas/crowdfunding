@@ -2,7 +2,6 @@
 CrowdFundingApp.controller('HomePageController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', '$rootScope',
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, $rootScope) {
         $scope.flag = 1;
-        //$rootScope.currentNavItem = "HomePage";
         baseService.httpGetAnonymous("api/Project/GetProjectCategories", null).then(function (res) {
             res = $scope.shuffle(res);
             for (var i = 0; i < res.length; i++) {
@@ -11,9 +10,6 @@ CrowdFundingApp.controller('HomePageController', ['$scope', '$state', 'ngDialog'
             }
             $scope.Categories = $scope.shuffle(res);
         });
-        //$scope.setSpan = function (n) {
-        //    if
-        //};
         $scope.getImage = function (title) {
             return 'url("../../../Content/Categories/image'+title+'.jpg")';
         };
@@ -44,5 +40,8 @@ CrowdFundingApp.controller('HomePageController', ['$scope', '$state', 'ngDialog'
             }
 
             return array;
+        };
+        $scope.searchCategory = function (id) {
+            $state.go("Home.Projects", { CategoryId: id });
         };
     }]);

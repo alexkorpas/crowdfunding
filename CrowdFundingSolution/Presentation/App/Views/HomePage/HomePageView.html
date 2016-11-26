@@ -7,7 +7,8 @@
                       md-colspan-gt-sm="{{category.colspan}}"
                       md-rowspan-gt-sm="{{category.rowspan}}"
                       ng-mouseenter="options=true"
-                      ng-mouseleave="options=false">
+                      ng-mouseleave="options=false"
+                      ng-click="searchCategory(category.Id)">
             <div ng-show="options" style="color:white; font-size:30px;background-color:rgba(0, 148, 255,0.3); padding:15px; height:100%; width:100%; cursor:pointer">{{category.Title}}</div>
         </md-grid-tile>
     </md-grid-list>

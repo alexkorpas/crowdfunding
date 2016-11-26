@@ -5,7 +5,7 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
         $scope.pointer = 0;
         $scope.Projects = [];        
         $scope.reload = function () {            
-            baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: $scope.page - 1, Search: $stateParams.Search }).then(function (res) {
+            baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: $scope.page - 1, Search: $stateParams.Search, CategoryId: $stateParams.CategoryId }).then(function (res) {
                 $scope.page++;
                 for (let i = 0; i < res.length; i++) {
                     $scope.Projects.push(res[i]);

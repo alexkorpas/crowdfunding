@@ -1,6 +1,6 @@
 ﻿'use strict';
-CrowdFundingApp.controller('BackItController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', '$q', 'servers', '$mdToast',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, $q, servers, $mdToast) {
+CrowdFundingApp.controller('BackItController', ['$rootScope','$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', '$q', 'servers', '$mdToast',
+    function ($rootScope,$scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, $q, servers, $mdToast) {
         //$scope.$on('$viewContentLoaded', function () {
         setTimeout(function(){ 
             VivaPayments.cards.setup({
@@ -33,7 +33,7 @@ CrowdFundingApp.controller('BackItController', ['$scope', '$state', 'ngDialog', 
             $scope.pay = function () {
                 //var deferred = $q.defer();
                 $scope.backIt.closeDialog();
-                baseService.httpPostPayment("api/Payment/Pay", { ourToken: $scope.hidToken, amountPledged: $scope.AmountPledged, projectId: $stateParams.Id }).then(function (res) {
+                baseService.httpPostPayment("api/Payment/Pay", { ourToken: $scope.hidToken, amountPledged: $scope.AmountPledged, projectId: $stateParams.Id, userId: $rootScope.LoggedUser.Id }).then(function (res) {
                     $mdToast.show(
                       $mdToast.simple()
                         .textContent("Transasction Successful")

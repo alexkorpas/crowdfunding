@@ -21,7 +21,7 @@ namespace Service
         private string _PaymentsCreateOrderUrl = "/api/orders";
 
         [HttpPost]
-        public HttpResponseMessage Pay(string ourToken, int amountPledged, int projectId)
+        public HttpResponseMessage Pay(string ourToken, int amountPledged, int projectId, string userId)
         {
             var context = new CrowdFundingVivaTeam1Entities();
             using (var dbTran = context.Database.BeginTransaction())
@@ -33,6 +33,7 @@ namespace Service
                     payment.Amount = amountPledged;
                     payment.PaymentDate = DateTime.Now;
                     payment.ProjectFK = projectId;
+                    payment.AspNetUsers = context.AspNetUsers.Find(userId);
                     payment.PaymentMethod = "";
 
                     context.Payment.Add(payment);

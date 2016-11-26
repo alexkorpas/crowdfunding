@@ -1,10 +1,10 @@
 ﻿'use strict';
-CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', 'CFConfig',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, CFConfig) {
+CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', 'CFConfig', '$rootScope',
+    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, CFConfig, $rootScope) {
         //baseService.httpGet("api/User/GetLoggedInUser",null).then(function (res) {
-        $scope.User = CFConfig.LOGUSER;
+        //$rootScope.LoggedUser <--- Aυτός Κόρπας
             $scope.save = function () {
-                baseService.httpPost("api/User/UpdateUser", $scope.User).then(function (res) {
+                baseService.httpPost("api/User/UpdateUser", $rootScope.LoggedUser).then(function (res) {
                     $mdToast.show(
                       $mdToast.simple()
                         .textContent("Profile saved")

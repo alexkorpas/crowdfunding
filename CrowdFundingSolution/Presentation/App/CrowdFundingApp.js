@@ -121,6 +121,7 @@ CrowdFundingApp.run(function ($rootScope, $state, $location, CFHelpers, CFConfig
             if (CFConfig.LOGUSER == "NULL") {
                 baseService.httpGet("api/User/GetLoggedInUser", null).then(function (res) {
                     CFConfig.LOGUSER = res;
+                    $rootScope.LoggedUser = res;
                 });
             }
             $rootScope.isLogged = true;

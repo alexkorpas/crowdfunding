@@ -25,6 +25,11 @@ namespace DAL
         public Nullable<System.DateTime> BlockedDate { get; set; }
         public bool IsAdmin { get; set; }
         public string About { get; set; }
+        public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Nullable<System.DateTime> JoinDate { get; set; }
+        public string Phone { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
     }

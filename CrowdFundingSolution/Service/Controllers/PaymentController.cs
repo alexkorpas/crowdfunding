@@ -23,7 +23,7 @@ namespace Service
         [HttpPost]
         public HttpResponseMessage Pay(string ourToken, int amountPledged, int projectId)
         {
-            var context = new backup_CrowdFundingViva1Entities();
+            var context = new CrowdFundingVivaTeam1Entities();
             using (var dbTran = context.Database.BeginTransaction())
             {
                 try
@@ -38,7 +38,8 @@ namespace Service
                     context.Payment.Add(payment);
 
                     var project = context.Project.Find(projectId);
-                    project.GoalMin = project.GoalMin == null ? (decimal)amountPledged : project.GoalMin+ (decimal)amountPledged;
+                    project.Gathered = project.Gathered == null ? (decimal)amountPledged : project.Gathered + (decimal)amountPledged;
+                    project.BackerCount = project.BackerCount == null ? 1 : project.BackerCount + 1;
 
                     context.SaveChanges();
 
@@ -73,7 +74,7 @@ namespace Service
                             //    res.Data.TransactionId));
                             //payment.tra
                             //save
-                            payment.PaymentMethod = res.Data.TransactionId.ToString();
+                            payment.TransactionId = res.Data.TransactionId.ToString();
                             context.SaveChanges();
                             dbTran.Commit();
                         return Request.CreateResponse(HttpStatusCode.OK, string.Format("Transaction was successful. TransactionId is {0}", res.Data.TransactionId));
@@ -149,7 +150,7 @@ namespace Service
 
         public bool TestConnection()
         {
-            using (var db = new backup_CrowdFundingViva1Entities())
+            using (var db = new CrowdFundingVivaTeam1Entities())
             {
                 DbConnection conn = db.Database.Connection;
                 try

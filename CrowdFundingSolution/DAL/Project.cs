@@ -40,6 +40,8 @@ namespace DAL
         public Nullable<System.DateTime> BlockedDate { get; set; }
         public Nullable<int> StateFK { get; set; }
         public string Website { get; set; }
+        public Nullable<decimal> Gathered { get; set; }
+        public Nullable<int> BackerCount { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

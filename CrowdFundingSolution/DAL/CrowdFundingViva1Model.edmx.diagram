@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dfbeed1365634df290333941187b090a" Name="Diagram1">
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.AspNetRoles" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.AspNetUsers" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.Payment" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.Project" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.ProjectCategory" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.ProjectFundingLevel" Width="1.5" PointX="10.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.ProjectPhoto" Width="1.5" PointX="10.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.ProjectState" Width="1.5" PointX="6" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.UserInfo" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_Payment_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_Project_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_UserInfo_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_Payment_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_Project_ProjectCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_Project_ProjectPhotos" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_Project_ProjectStates" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_ProjectFundingLevel_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_ProjectPhoto_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

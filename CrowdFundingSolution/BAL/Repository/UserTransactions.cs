@@ -11,7 +11,7 @@ namespace BAL
     {
         public UserInfoDTO ReadUserById(int id)
         {
-            var db = new backup_CrowdFundingViva1Entities();
+            var db = new CrowdFundingVivaTeam1Entities();
             UserInfoDTO result = new UserInfoDTO();
             UserInfo s = db.UserInfo.Find(id);
             result = new UserInfoDTO
@@ -59,7 +59,7 @@ namespace BAL
         {
             try
             {
-                using (var db = new backup_CrowdFundingViva1Entities())
+                using (var db = new CrowdFundingVivaTeam1Entities())
                 {
                     var s = await (from us in db.AspNetUsers
                              where us.Email == email

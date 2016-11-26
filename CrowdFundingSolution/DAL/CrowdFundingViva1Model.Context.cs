@@ -13,10 +13,10 @@ namespace DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class backup_CrowdFundingViva1Entities : DbContext
+    public partial class CrowdFundingVivaTeam1Entities : DbContext
     {
-        public backup_CrowdFundingViva1Entities()
-            : base("name=backup_CrowdFundingViva1Entities")
+        public CrowdFundingVivaTeam1Entities()
+            : base("name=CrowdFundingVivaTeam1Entities")
         {
         }
     
@@ -30,11 +30,11 @@ namespace DAL
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
+        public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<ProjectCategory> ProjectCategory { get; set; }
         public virtual DbSet<ProjectFundingLevel> ProjectFundingLevel { get; set; }
         public virtual DbSet<ProjectPhoto> ProjectPhoto { get; set; }
         public virtual DbSet<ProjectState> ProjectState { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
-        public virtual DbSet<Project> Project { get; set; }
     }
 }

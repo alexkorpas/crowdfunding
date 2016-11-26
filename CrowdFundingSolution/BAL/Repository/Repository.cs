@@ -9,9 +9,9 @@ namespace BAL
 {
    public partial class CrowdFundingTransactions : IDisposable
     {
-        protected backup_CrowdFundingViva1Entities context;
+        protected CrowdFundingVivaTeam1Entities context;
 
-        public CrowdFundingTransactions() { context = new backup_CrowdFundingViva1Entities(); }
+        public CrowdFundingTransactions() { context = new CrowdFundingVivaTeam1Entities(); }
 
         public void Dispose() { context.Dispose(); }
     }

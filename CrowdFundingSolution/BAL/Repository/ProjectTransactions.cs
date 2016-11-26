@@ -13,7 +13,7 @@ namespace BAL
         {
             try
             {
-                var db = new backup_CrowdFundingViva1Entities();
+                var db = new CrowdFundingVivaTeam1Entities();
                 int result;
                 //var transaction = await ReadProjects(new TransactionCriteria { Search = keyword });
                 if (keyword != null) {

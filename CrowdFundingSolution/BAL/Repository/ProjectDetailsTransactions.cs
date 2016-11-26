@@ -88,7 +88,7 @@ namespace BAL
         // be recalculated every time projects are loaded.
         public async Task<ProjectDTO> GetProjectAmountAndProgress(ProjectDTO item)
         {
-            var db = new backup_CrowdFundingViva1Entities();
+            var db = new CrowdFundingVivaTeam1Entities();
             List<PaymentDTO> resultList = new List<PaymentDTO>();
             resultList = await db.Payment
                 .Where(s => s.ProjectFK == item.Id)

@@ -23,6 +23,7 @@ namespace DAL
         public string PaymentMethod { get; set; }
         public Nullable<decimal> RefundedAmount { get; set; }
         public Nullable<System.DateTime> RefundedDate { get; set; }
+        public string TransactionId { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual Project Project { get; set; }

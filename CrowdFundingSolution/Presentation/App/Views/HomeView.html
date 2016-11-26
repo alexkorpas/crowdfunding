@@ -26,10 +26,13 @@
         </div>
     </div>
 </div>-->
+<!--<div style="width:100px; text-align:center; position:fixed; margin:0 auto; background:none">-->
+<div style="width:100vw; margin:0 auto; text-align: center;">
+    <a ui-sref="Home.HomePage" ng-click="currentNavItem='HomePage'"><img id="imgLogo" src="../../Content/Images/viva_logo.png" style="position:fixed; top:5px; left:47vw; width:97px; z-index:11000;" /></a>
+</div>
+    <!--</div>-->
     <div>
-        <div style="width:100%; text-align:center">
-            <a ui-sref="Home.HomePage" ng-click="currentNavItem='HomePage'"><img id="imgLogo" src="../../Content/Images/viva_logo.png" style="position:fixed; top:5px; height:47px; margin:0 auto; z-index:11000" /></a>
-        </div>
+
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
             <md-nav-item md-nav-sref="Home.HomePage" name="HomePage" style="display:none">Home</md-nav-item>
             <md-nav-item md-nav-sref="Home.Projects" name="Projects">Explore</md-nav-item>
@@ -46,8 +49,8 @@
             -->
         </md-nav-bar>
     </div>
+    <shortcut></shortcut>
     <div id="contentUI" ui-view=""></div>
-
     <footer id="footerwrap">
         <div class="container">
             <div class="row">
@@ -81,12 +84,12 @@
             </div>
         </div>
     </footer>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(document).on('click', 'li', function () {
-            var x = document.getElementsByClassName("active");
-            $(x[0]).removeClass('active');
-            $(this).addClass('active');
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click', 'li', function () {
+                var x = document.getElementsByClassName("active");
+                $(x[0]).removeClass('active');
+                $(this).addClass('active');
+            });
         });
-    });
-</script>
+    </script>

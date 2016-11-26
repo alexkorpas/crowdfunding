@@ -2,12 +2,28 @@
 CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService', '$mdToast','$window',
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $mdToast, $window) {        
         $scope.page = 1;
+        $scope.shown = false;
         $scope.pointer = 0;
-        $scope.Projects = [];        
+        $scope.Projects = [];
+        $scope.selectedCategory = $stateParams.CategoryId;
+        $scope.keyword = $stateParams.Search;
+        if ($scope.keyword != undefined && $scope.keyword != '' && $scope.keyword != null)
+            $scope.shown = true;
+        baseService.httpGetAnonymous("api/Project/GetProjectCategories", null).then(function (res) {
+            $scope.BrowseCategories = res;
+            res.splice(0, 0, {Id:'',Title:'All'});
+        });
+        if ($scope.keyword != null && $scope.keyword != undefined && $scope.keyword != "")
+            $scope.browseTitle = $scope.keyword;
         $scope.reload = function () {            
-            baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: $scope.page - 1, Search: $stateParams.Search, CategoryId: $stateParams.CategoryId }).then(function (res) {
+            baseService.httpGetAnonymous("api/Project/GetProjects/", { Page: $scope.page - 1, Search: $scope.keyword, CategoryId: $scope.selectedCategory }).then(function (res) {
+                if ($scope.selectedCategory != null && $scope.selectedCategory != undefined && $scope.selectedCategory != "") {
+                    if(res.length > 0)
+                        $scope.selectedCategory = res[0].CategoryFK;
+                }
                 $scope.page++;
                 for (let i = 0; i < res.length; i++) {
+                    res[i].progress = Math.round((res[i].Gathered / res[i].Goal) * 100);
                     $scope.Projects.push(res[i]);
                     $scope.pointer++;
                     baseService.httpGetAnonymous("api/Photos/GetProjectMainImage/", { id: res[i].Id, pointer: $scope.pointer-1 }).then(function (res2) {
@@ -27,7 +43,8 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
                   $mdToast.simple()
                     .textContent("Added to favorites")
                     .position('top right')
-                    .hideDelay(3000)
+                    .hideDelay(30000)
+                    .toastClass('success')
                     );
         };
         $scope.scroll = function () {
@@ -39,4 +56,18 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
             });
         };
         $scope.scroll();
+        $scope.clearSearchTerm = function () {
+            $scope.searchTerm = '';
+        };
+        $element.find('input').on('keydown', function (ev) {
+            ev.stopPropagation();
+        });
+        $scope.categorySelected = function (id) {
+            $state.go("Home.Projects", { CategoryId: id });
+        };
+        $scope.titleSearch = function () {
+            $state.go("Home.Projects", { Search: $scope.keyword });
+        };
+        $scope.determinateProgress = function (gathered, goal) {
+        };
     }]);

@@ -36,6 +36,7 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                     .textContent("Project saved")
                     .position('top right')
                     .hideDelay(3000)
+                    .toastClass('success')
                     );
                 if ($scope.project.Id == undefined) {
                     $scope.project.Id = res;

@@ -4,38 +4,43 @@
 html, body {
     height: 100%;
     background-color: azure;
-    font-family: 'Lato', sans-serif;    
+    font-family: 'Lato', sans-serif;  
 }
-html {
-    overflow-y:scroll;
+/*html {
+    overflow:hidden!important;
 }
-/*body{
-    overflow-y: hidden!important;
+body{
+    overflow:scroll;
 }*/
 body.md-toast-animating { overflow: auto!important; }
 /*Scrollbar*/
 ::-webkit-scrollbar {
 	width: 10px;
 	height: 10px;
+    z-index:1500000;
 }
 ::-webkit-scrollbar-track {
 	background-color: rgba(113,112,107,0);
 	-webkit-border-radius: 5px;
     border-radius: 5px;
+    z-index:1500000;
 }
 ::-webkit-scrollbar-thumb:vertical {
 	background-color: rgba(0,0,0,.3);
 	-webkit-border-radius: 6px;
     border-radius: 6px;
+    z-index:1500000;
 }
 ::-webkit-scrollbar-thumb:vertical:hover,
 ::-webkit-scrollbar-thumb:horizontal:hover {
-	background: rgba(0,0,0,.6);;
+	background: rgba(0,0,0,.6);
+    z-index:1500000;
 }
 ::-webkit-scrollbar-thumb:horizontal {
 	background-color: rgba(0,0,0,.2);
 	-webkit-border-radius: 6px;
     border-radius: 6px;
+    z-index:1500000;
 }
 md-toast {
     z-index:10000!important;
@@ -46,6 +51,12 @@ md-toast {
 }
 .failure .md-toast-content {
     background-color: maroon!important;
+}
+.failure {
+    top:62px!important;
+}
+.success {
+    top:62px!important;
 }
 .transform, .transform-nopointer {
     transition:0.4s;  
@@ -84,6 +95,42 @@ md-toast {
     color:none!important;
     background:none!important;
 }
+/*.mySelect md-select-menu {
+  margin-top: 45px;
+}*/
+.selectdemoSelectHeader {
+  /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */ 
+  top: 135px!important;
+  
+}
+.demo-header-searchbox:active, .demo-header-searchbox:focus, .demo-header-searchbox:hover {
+    border: none!important;
+  outline: none!important;
+  box-shadow:none!important;
+}
+.selectdemoSelectHeader .demo-header-searchbox {
+  border: none!important;
+  outline: none!important;
+  height: 100%!important;
+  width: 100%!important;
+  padding: 0px 0px 0px 40px!important; }
+.selectdemoSelectHeader .demo-select-header {
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12)!important;
+  padding-left: 10.667px!important;
+  height: 48px!important;
+  cursor: pointer!important;
+  position: relative!important;
+  display: flex!important;
+  align-items: center!important;
+  width: auto!important;
+  border: none!important;
+  outline: none!important;
+}
+.selectdemoSelectHeader md-content._md {
+  max-height: 240px!important;
+  border: none!important;
+  outline: none!important;    
+}
 
 md-nav-bar md-nav-ink-bar {
 }
@@ -93,10 +140,10 @@ md-nav-bar md-nav-ink-bar {
 md-nav-bar {
     position:fixed;
     width:100%;
-    z-index:10000;
     opacity:0.95;
     background:#3f5270;
     height:60px;
+    z-index:10000;
 }
 .md-nav-bar {
     height:60px;

@@ -39,6 +39,7 @@ CrowdFundingApp.controller('BackItController', ['$rootScope','$scope', '$state',
                         .textContent("Transasction Successful")
                         .position('top right')
                         .hideDelay(3000)
+                        .toastClass('success')
                         );
                 }, function (error) {
                     $mdToast.show(

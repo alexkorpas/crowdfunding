@@ -8,7 +8,33 @@
         <md-content class="transparent">
             <md-tabs md-dynamic-height md-border-bottom>
                 <md-tab label="My Projects">
-                    <md-content class="md-padding transparent">
+                    <md-content class="md-padding transparent" layout="row" layout-align="center" layout-wrap>
+                        <div class="test">
+                            <md-card style="width: 350px; height:500px; background-color:#f9fafc;" class="transform-nopointer">
+                                <div id="progressCircle{{row.Id}}" style="height:197px">
+                                    <md-progress-circular class="md-hue-2" md-diameter="70" style="margin:0 auto; top:50px"></md-progress-circular>
+                                </div>
+                                <img data-ng-src="data:image/jpeg;base64,{{row.MainPhoto}}" alt="" class="md-card-image" ng-click="goToState(row.Id)" style="outline:none!important" />
+                                <md-card-content>
+                                    <div style="height:250px">
+                                        <p><span class="md-headline">{{row.Title}}</span></p>
+                                        <p>
+                                            <md-button class="md-icon-button" aria-label="Favorite" ng-click="addToFavorites(row.Id)" style="outline:none!important">
+                                                <md-icon md-font-icon="fa fa-heart" style="color:gray" />
+                                            </md-button>
+                                            <md-button class="md-icon-button" aria-label="Settings" style="outline:none!important">
+                                                <md-icon md-font-icon="fa fa-share" style="color:gray" />
+                                            </md-button>
+                                            <md-button class="md-icon-button" aria-label="Share" ng-click="goToState(row.Id)" style="outline:none!important">
+                                                <md-icon md-font-icon="fa fa-search" style="color:gray" />
+                                            </md-button>
+                                        </p>
+                                        <p>{{row.ShortDescription}}</p>
+                                    </div>
+                                    <p><md-progress-linear md-mode="determinate" value="50"></md-progress-linear></p>
+                                </md-card-content>
+                            </md-card>
+                        </div>
                     </md-content>
                 </md-tab>
                 <md-tab label="My Funds">
@@ -53,15 +79,13 @@
                                 <label>Re-enter your Password</label>
                                 <input ng-model="User.Password" type="text">
                             </md-input-container>
-                            <md-button class="md-raised" ng-click="">Save Changes</md-button>
+                            <md-button class="md-raised" ng-click="save()">Save Changes</md-button>
                         </md-content>
                     </div>
                 </md-tab>
-
             </md-tabs>
         </md-content>
     </div>
-
 
 </div>
 <!--<div class="container" style="padding-top: 30px;">

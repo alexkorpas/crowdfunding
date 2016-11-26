@@ -59,7 +59,9 @@ namespace BAL
                         DeletedDate = s.DeletedDate,
                         BlockedDate = s.BlockedDate,
                         StateFK = s.StateFK,
-                        Website = s.Website
+                        Website = s.Website,
+                        Gathered = s.Gathered,
+                        BackerCount = s.BackerCount
                     });
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }
@@ -94,7 +96,9 @@ namespace BAL
                     DeletedDate = s.DeletedDate,
                     BlockedDate = s.BlockedDate,
                     StateFK = s.StateFK,
-                    Website = s.Website
+                    Website = s.Website,
+                    Gathered = s.Gathered,
+                    BackerCount = s.BackerCount
                 }).ToListAsync(); // Query Execute __________________________________            
                 return new TransactionResult(TransResult.Success, string.Empty, result);
             }
@@ -135,16 +139,16 @@ namespace BAL
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
 
-        public async Task<List<ProjectDTO>> PrepareProjects(List<ProjectDTO> list)
-        {
-            foreach (var i in list)
-            {
-                await GetProjectAmountAndProgress(i);
-                GetRemainingTime(i);
-            }
+        //public async Task<List<ProjectDTO>> PrepareProjects(List<ProjectDTO> list)
+        //{
+        //    foreach (var i in list)
+        //    {
+        //        await GetProjectAmountAndProgress(i);
+        //        GetRemainingTime(i);
+        //    }
 
-            return list;
-        }
+        //    return list;
+        //}
 
         public async Task<TransactionResult> SaveProjectTransaction(ProjectDTO projectDTO, string user)
         {
@@ -240,7 +244,9 @@ namespace BAL
                         DeletedDate = s.DeletedDate,
                         BlockedDate = s.BlockedDate,
                         StateFK = s.StateFK,
-                        Website = s.Website
+                        Website = s.Website,
+                        Gathered = s.Gathered,
+                        BackerCount = s.BackerCount
                     }).ToListAsync();
 
                 return new TransactionResult(TransResult.Success, string.Empty, result);

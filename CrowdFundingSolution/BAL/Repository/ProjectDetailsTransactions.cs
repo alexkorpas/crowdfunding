@@ -86,38 +86,38 @@ namespace BAL
 
         // To be rewritten. It should save the result on the database for 20 mins so that it will not
         // be recalculated every time projects are loaded.
-        public async Task<ProjectDTO> GetProjectAmountAndProgress(ProjectDTO item)
-        {
-            var db = new CrowdFundingVivaTeam1Entities();
-            List<PaymentDTO> resultList = new List<PaymentDTO>();
-            resultList = await db.Payment
-                .Where(s => s.ProjectFK == item.Id)
-                .Select(s => new PaymentDTO
-                {
-                    Amount = s.Amount,
-                    RefundedAmount = s.RefundedAmount
-                }).ToListAsync();
+        //public async Task<ProjectDTO> GetProjectAmountAndProgress(ProjectDTO item)
+        //{
+        //    var db = new CrowdFundingVivaTeam1Entities();
+        //    List<PaymentDTO> resultList = new List<PaymentDTO>();
+        //    resultList = await db.Payment
+        //        .Where(s => s.ProjectFK == item.Id)
+        //        .Select(s => new PaymentDTO
+        //        {
+        //            Amount = s.Amount,
+        //            RefundedAmount = s.RefundedAmount
+        //        }).ToListAsync();
 
-            decimal sum = 0;
-            int backers = 0;
-            foreach (var s in resultList) {
-                if (s.RefundedAmount != null)
-                {
-                    sum += s.Amount - (decimal)(s.RefundedAmount);
-                } else
-                {
-                    sum += s.Amount;
-                }
+        //    decimal sum = 0;
+        //    int backers = 0;
+        //    foreach (var s in resultList) {
+        //        if (s.RefundedAmount != null)
+        //        {
+        //            sum += s.Amount - (decimal)(s.RefundedAmount);
+        //        } else
+        //        {
+        //            sum += s.Amount;
+        //        }
 
-                if (s.RefundedAmount != s.Amount) backers += 1;
-            }
+        //        if (s.RefundedAmount != s.Amount) backers += 1;
+        //    }
 
-            item.AmountGathered = sum;
-            item.Progress = Math.Round((sum / item.Goal) * 100, 2);
-            item.Backers = backers;
+        //    item.AmountGathered = sum;
+        //    item.Progress = Math.Round((sum / item.Goal) * 100, 2);
+        //    item.Backers = backers;
 
-            return item;
-        }
+        //    return item;
+        //}
         // Need to remove hardcoded strings
         public ProjectDTO GetRemainingTime(ProjectDTO item)
         {

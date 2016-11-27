@@ -45,4 +45,7 @@ CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog',
                 });
             };
         });
+        $scope.editProject = function (id) {
+            $state.go("Home.EditProject", { id: id });
+        };
     }]);

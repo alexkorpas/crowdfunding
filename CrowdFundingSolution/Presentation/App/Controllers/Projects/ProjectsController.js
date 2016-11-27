@@ -43,16 +43,17 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
                   $mdToast.simple()
                     .textContent("Added to favorites")
                     .position('top right')
-                    .hideDelay(30000)
+                    .hideDelay(3000)
                     .toastClass('success')
                     );
         };
         $scope.scroll = function () {
             angular.element($window).bind("scroll", function () {
-                if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-                    if ($scope.page>2)
-                    $scope.reload();
-                }
+                if ($scope.currentNavItem == 'Projects')
+                    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+                        if ($scope.page>2)
+                        $scope.reload();
+                    }
             });
         };
         $scope.scroll();

@@ -67,18 +67,8 @@ namespace BAL
 
                     s.FirstName = userInfoDTO.FirstName;
                     s.LastName = userInfoDTO.LastName;
-                    s.UserName = userInfoDTO.UserName;
-                    s.Email = userInfoDTO.Email;
                     s.PhoneNumber = userInfoDTO.PhoneNumber;
 
-                    //AspNetUsersDTO updatedUser = new AspNetUsersDTO
-                    //{
-                    //    FirstName = s.FirstName,
-                    //    LastName = s.LastName,
-                    //    UserName = s.UserName,
-                    //    Email = s.Email,
-                    //    PhoneNumber = "6977777777"
-                    //};
                     await db.SaveChangesAsync();
 
                     return new TransactionResult(TransResult.Success, "Success", null);

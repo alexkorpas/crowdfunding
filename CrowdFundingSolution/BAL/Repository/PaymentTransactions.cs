@@ -37,7 +37,10 @@ namespace BAL
                         PaymentDate = s.PaymentDate,
                         PaymentMethod = s.PaymentMethod,
                         RefundedAmount = s.RefundedAmount,
-                        RefundedDate = s.RefundedDate
+                        RefundedDate = s.RefundedDate,
+                        ProjectTitle = s.Project != null ? s.Project.Title : null,
+                        ProjectGathered = s.Project != null ? s.Project.Gathered : 0,
+                        ProjectGoal = s.Project != null ? s.Project.Goal : 0
                     });
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }
@@ -58,7 +61,10 @@ namespace BAL
                     PaymentDate = s.PaymentDate,
                     PaymentMethod = s.PaymentMethod,
                     RefundedAmount = s.RefundedAmount,
-                    RefundedDate = s.RefundedDate
+                    RefundedDate = s.RefundedDate,
+                    ProjectTitle = s.Project != null ? s.Project.Title : null,
+                    ProjectGathered = s.Project != null ? s.Project.Gathered : 0,
+                    ProjectGoal = s.Project != null ? s.Project.Goal : 0
                 }).ToList(); // Query Execute __________________________________            
                 return new TransactionResult(TransResult.Success, string.Empty, result);
             }

@@ -18,5 +18,9 @@ namespace BAL
         public string PaymentMethod { get; set; }
         public decimal? RefundedAmount { get; set; }
         public DateTime? RefundedDate{ get; set; }
+        public string ProjectTitle { get; set; }
+        public decimal? ProjectGathered { get; set; }
+        public decimal ProjectGoal { get; set; }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BAL;
 using DAL;
+using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 using System;
@@ -149,21 +150,20 @@ namespace Service
             public DateTime TimeStamp { get; set; }
         }
 
-        public bool TestConnection()
-        {
-            using (var db = new CrowdFundingVivaTeam1Entities())
-            {
-                DbConnection conn = db.Database.Connection;
-                try
-                {
-                    conn.Open();   // check the database connection
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
+        [Authorize]
+        public HttpResponseMessage GetPaymentDetails(string transId) {
+            var cl = new RestClient(_BaseApiUrl);
+            cl.Authenticator = new HttpBasicAuthenticator(
+                                    _MerchantId.ToString(),
+                                    _ApiKey);
+
+            var req = new RestRequest(_PaymentsUrl + "/" + transId, Method.GET);
+            var res = cl.Execute<TransactionDetails>(req);
+
+            if (res.StatusCode == HttpStatusCode.OK)
+                return Request.CreateResponse(HttpStatusCode.OK, res);
+            else
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, string.Format("Transaction failed"));
         }
 
         [HttpGet]
@@ -184,5 +184,10 @@ namespace Service
             }
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
+    }
+
+    public class TransactionDetails
+    {
+        public object Transactions { get; set; }
     }
 }

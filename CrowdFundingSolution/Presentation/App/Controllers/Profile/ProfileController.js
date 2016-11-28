@@ -1,6 +1,6 @@
 ﻿'use strict';
-CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', 'CFConfig', '$rootScope',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, CFConfig, $rootScope) {
+CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', 'CFConfig', '$rootScope', '$base64',
+    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, CFConfig, $rootScope, $base64) {
         $scope.Projects = [];
         $scope.Payments = [];
 
@@ -58,4 +58,7 @@ CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog',
         $scope.editProject = function (id) {
             $state.go("Home.EditProject", { id: id });
         };
+        baseService.httpGet("api/Payment/GetPaymentDetails", { transId: '8760f4a9-a807-4012-af74-e3535042eb18' }).then(function (res) {
+            var test = res;
+        });
     }]);

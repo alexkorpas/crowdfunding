@@ -62,39 +62,19 @@
                                     <md-button class="md-raised" ng-click="uploadPhoto()" style="width:210px;">Change Profile Picture</md-button>
                                 </div>
                             </div>
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-icon-float md-block" flex-gt-sm="">
-                                    <label>First Name</label>
-                                    <input ng-model="LoggedUser.FirstName" type="text">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block" flex-gt-sm="">
-                                    <label>Last Name</label>
-                                    <input ng-model="LoggedUser.LastName" type="text">
-                                </md-input-container>
-                            </div>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>First Name</label>
+                                <input ng-model="LoggedUser.FirstName" type="text" flex-gt-sm="">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float md-block" flex-gt-sm="">
+                                <label>Last Name</label>
+                                <input ng-model="LoggedUser.LastName" type="text">
+                            </md-input-container>
                             <md-input-container class="md-icon-float md-block">
                                 <label>Phone Number</label>
                                 <input ng-model="LoggedUser.PhoneNumber" type="text">
                             </md-input-container>
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Email</label>
-                                <input ng-model="LoggedUser.Email" type="text">
-                            </md-input-container>
-                            <md-input-container class="md-icon-float md-block">
-                                <label>User Name</label>
-                                <input ng-model="LoggedUser.UserName" type="text">
-                            </md-input-container>
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-icon-float md-block" flex-gt-sm="">
-                                    <label>Password</label>
-                                    <input ng-model="LoggedUser.Password" type="password">
-                                </md-input-container>
-                                <md-input-container class="md-icon-float md-block" flex-gt-sm="">
-                                    <label>Re-enter your Password</label>
-                                    <input ng-model="LoggedUser.Password" type="password">
-                                </md-input-container>
-                            </div>
-                            <md-button class="md-raised" ng-click="save()">Save Changes</md-button>
+                            <md-button class="md-raised" style="width:210px;" ng-click="save()">Save Changes</md-button>
                         </md-content>
                     </div>
                 </md-tab>

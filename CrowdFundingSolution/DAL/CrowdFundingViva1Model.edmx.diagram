@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.ProjectPhoto" Width="1.5" PointX="10.5" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.ProjectState" Width="1.5" PointX="6" PointY="18.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.UserInfo" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrowdFundingVivaTeam1Model.ProjectUpdate" Width="1.5" PointX="10.5" PointY="16.25" />
         <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_Payment_AspNetUsers" ManuallyRouted="false" />
@@ -28,6 +29,7 @@
         <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_ProjectFundingLevel_Projects" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_ProjectPhoto_Projects" ManuallyRouted="false" />
         <AssociationConnector Association="CrowdFundingVivaTeam1Model.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="CrowdFundingVivaTeam1Model.FK_ProjectUpdate_Projects" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

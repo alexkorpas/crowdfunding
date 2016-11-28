@@ -3,13 +3,13 @@ CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog',
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, CFConfig, $rootScope) {
         $scope.Projects = [];
         $scope.Payments = [];
-        $scope.pointer = 0
 
         baseService.httpGet("api/User/GetLoggedInUser", null).then(function (res) {
             //$rootScope.LoggedUser; //<--- Aυτός Κόρπας
             $scope.User = res;
 
             baseService.httpGetAnonymous("api/Project/GetProjects", { UserId: $scope.User.Id }).then(function (res) {
+                $scope.pointer = 0;
                 for (let i = 0; i < res.length; i++) {
                     res[i].progress = Math.round((res[i].Gathered / res[i].Goal) * 100);
                     $scope.Projects.push(res[i]);
@@ -23,7 +23,17 @@ CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog',
             });
 
             baseService.httpGet("api/Payment/GetPayments", { UserId: $scope.User.Id }).then(function (res) {
-                $scope.Payments = res;
+                $scope.pointer = 0;
+                for (let i = 0; i < res.length; i++) {
+                    res[i].progress = Math.round((res[i].Gathered / res[i].Goal) * 100);
+                    $scope.Payments.push(res[i]);
+                    $scope.pointer++;
+                    baseService.httpGetAnonymous("api/Photos/GetProjectMainImage/", { id: res[i].ProjectFK, pointer: $scope.pointer - 1 }).then(function (res2) {
+                        $scope.Payments[res2.Pointer].MainPhoto = res2.Photo;
+                        var circle = angular.element(document.querySelector("#progressCircle" + res2.ProjectFK));
+                        circle.remove();
+                    });
+                };
             });
 
             $scope.save = function () {

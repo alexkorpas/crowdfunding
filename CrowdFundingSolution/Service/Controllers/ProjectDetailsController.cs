@@ -83,5 +83,42 @@ namespace Service
             catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         }
 
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetProjectUpdates(int id)
+        {
+            try
+            {
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var transaction = await repository.ReadProjectUpdates(id);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<HttpResponseMessage> SaveProjectUpdate(JObject jobj)
+        {
+            if (jobj == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
+            try
+            {
+                using (var repository = new CrowdFundingTransactions())
+                {
+                    var user = User.Identity.Name;
+                    var transaction = await repository.SaveProjectUpdateTransaction(jobj.ToObject<ProjectUpdateDTO>(), user);
+                    if (transaction.Result == TransResult.Success)
+                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Id);
+                    else
+                        return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, transaction.Message);
+                }
+            }
+            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        }
+
     }
 }

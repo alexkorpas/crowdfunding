@@ -98,7 +98,7 @@
                             <md-card-content>
                                 <form ng-submit="saveCard()" id="projectform">
                                     <md-input-container class="md-block" flex-gt-sm="">
-                                        <label>Ammount or more</label>
+                                        <label>Amount or more</label>
                                         <md-icon md-font-icon="fa fa-euro fa-2x" style="color:gray;" />
                                         <input required="" ng-model="card.Amount" type="number">
                                     </md-input-container>
@@ -114,6 +114,34 @@
                                 </form>
                             </md-card-content>
                         </md-card>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Updates" ng-disabled="!(project.Id != undefined)">
+                    <md-content class="md-padding transparent">
+                        <md-card style="width:530px; float:left; height:250px">
+                            <md-card-content>
+                                <form ng-submit="saveUpdate()" id="projectform">
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Message</label>
+                                        <textarea required="" name="updateMessage" ng-model="update.Message" md-maxlength="500" rows="4"></textarea>
+                                    </md-input-container>
+                                    <md-button type="submit" class="md-raised" style="width:97%">Save New Update</md-button>
+                                </form>
+                            </md-card-content>
+                        </md-card>
+                        <div ng-repeat="update in Updates">
+                            <md-card style="width:530px; float:left; height:250px;  background-color:#eaf0ff" class="transform">
+                                <md-card-content style="padding:30px 40px 20px 40px;">
+                                    <p>
+                                        <md-icon md-font-icon="fa fa-newspaper-o fa-2x" style="color:#4980ff;" />
+                                        <span style="font-size:25px; position:relative;  top:3px; color:#4980ff"> {{update.Date | date:'dd/MM/yyyy - h:mma'}}</span>
+                                    </p>
+                                    <p style="margin-top:45px">{{update.Message}}</p>
+                                    <!--<md-button type="submit" class="md-raised md-primary" style="width:210px;">Save Card</md-button>-->
+                                    <!--</form>-->
+                                </md-card-content>
+                            </md-card>
+                        </div>
                     </md-content>
                 </md-tab>
             </md-tabs>

@@ -107,6 +107,63 @@ namespace BAL
             return resultList;
         }
 
+        public async Task<TransactionResult> ReadProjectUpdates(int Id)
+        {
+            try
+            {
+                List<ProjectUpdateDTO> result = await context.ProjectUpdate
+                    .Where(w => w.ProjectFK == Id).Select(s => new ProjectUpdateDTO
+                    {
+                        Id = s.Id,
+                        Message = s.Message,
+                        Date = s.Date
+                    }).OrderByDescending(s => s.Date).ToListAsync();
+                return new TransactionResult(TransResult.Success, string.Empty, result);
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        }
+
+        public async Task<TransactionResult> SaveProjectUpdateTransaction(ProjectUpdateDTO projectUpdateDTO, string user)
+        {
+            try
+            {
+                AspNetUsers _user = await context.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();
+
+                Project _project = null;
+                if (projectUpdateDTO.ProjectFK != null)
+                    _project = await context.Project.FindAsync(projectUpdateDTO.ProjectFK);
+
+                if (_project.AspNetUsers != _user)
+                    return new TransactionResult(TransResult.Fail, "This is not your project", null);
+
+                if (projectUpdateDTO.Id == null || projectUpdateDTO.Id == 0)
+                {
+                    ProjectUpdate projectUpdate = new ProjectUpdate()
+                    {
+                        Project = _project,
+                        Message = projectUpdateDTO.Message,
+                        Date = DateTime.Now
+                    };
+                    context.ProjectUpdate.Add(projectUpdate);
+                    await context.SaveChangesAsync();
+
+                    return new TransactionResult(TransResult.Success, "Success", null, projectUpdate.Id);
+                }
+                else
+                {
+                    ProjectUpdate projectUpdate = await context.ProjectUpdate.FindAsync(projectUpdateDTO.Id);
+                    projectUpdate.Project = _project;
+                    projectUpdate.Message = projectUpdateDTO.Message;
+                    projectUpdate.Date = DateTime.Now;
+                    await context.SaveChangesAsync();
+
+                    return new TransactionResult(TransResult.Success, "Success", null);
+                }
+
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        }
+
         // To be rewritten. It should save the result on the database for 20 mins so that it will not
         // be recalculated every time projects are loaded.
         //public async Task<ProjectDTO> GetProjectAmountAndProgress(ProjectDTO item)

@@ -2,6 +2,7 @@
 CrowdFundingApp.controller('ProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService', '$log',
 function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $log) {
     $scope.activated = false;
+    $scope.Updates = [];
 
     baseService.httpGetAnonymous("api/Project/GetProjects", { Id: $stateParams.Id }).then(function (res) {
         $scope.Project = res[0];
@@ -9,6 +10,11 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
         $scope.Project.CreatedDate = new Date(res[0].CreatedDate);
         $scope.Project.UpdatedDate = new Date(res[0].UpdatedDate);
     });
+
+    baseService.httpGetAnonymous("api/ProjectDetails/GetProjectupdates", { Id: $stateParams.Id }).then(function (res) {
+        $scope.Updates = res;
+    });
+
     $scope.carouselOptions = {
         //sourceProp: 'Photo',
         visible: 3,

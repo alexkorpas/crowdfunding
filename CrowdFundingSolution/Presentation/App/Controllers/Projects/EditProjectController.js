@@ -3,6 +3,7 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
     function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $mdToast, servers) {
         $scope.project = {};
         $scope.card = {};
+        $scope.update = {};
         if ($stateParams.id != "" && $stateParams.id != null && $stateParams.id != undefined)
             baseService.httpGetAnonymous("api/Project/GetProjects", { Id: $stateParams.id }).then(function (res) {                
                 $scope.project = res[0];
@@ -10,6 +11,7 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                 $scope.card.ProjectFK = $scope.project.Id;
                 $scope.loadImages();
                 $scope.loadPackages();
+                $scope.loadUpdates();
             });
         baseService.httpGetAnonymous("api/Project/GetProjectCategories", null).then(function (res) {
             $scope.Categories = res;
@@ -133,5 +135,33 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
         };
         $scope.isNotMain = function (id) {
             return !($scope.project.MainPhotoFK == id);
+        };
+
+        $scope.loadUpdates = function () {
+            baseService.httpGetAnonymous("api/ProjectDetails/GetProjectUpdates", { Id: $scope.project.Id }).then(function (res) {
+                $scope.Updates = res;
+            });
+        };
+
+        $scope.saveUpdate = function () {
+            $scope.update.ProjectFK = $scope.project.Id;
+            baseService.httpPost("api/ProjectDetails/SaveProjectUpdate", $scope.update).then(function (res) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent("Project Update saved")
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass('success')
+                    );
+                $scope.loadUpdates();
+            }, function (error) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(error.Message)
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass('failure')
+                    );
+            });
         };
     }]);

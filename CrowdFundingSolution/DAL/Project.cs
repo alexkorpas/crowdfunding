@@ -20,6 +20,7 @@ namespace DAL
             this.Payment = new HashSet<Payment>();
             this.ProjectFundingLevel = new HashSet<ProjectFundingLevel>();
             this.ProjectPhoto1 = new HashSet<ProjectPhoto>();
+            this.ProjectUpdate = new HashSet<ProjectUpdate>();
         }
     
         public int Id { get; set; }
@@ -53,5 +54,7 @@ namespace DAL
         public virtual ICollection<ProjectFundingLevel> ProjectFundingLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectPhoto> ProjectPhoto1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProjectUpdate> ProjectUpdate { get; set; }
     }
 }

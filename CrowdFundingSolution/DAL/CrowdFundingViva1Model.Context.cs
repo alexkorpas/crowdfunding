@@ -36,5 +36,6 @@ namespace DAL
         public virtual DbSet<ProjectPhoto> ProjectPhoto { get; set; }
         public virtual DbSet<ProjectState> ProjectState { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
+        public virtual DbSet<ProjectUpdate> ProjectUpdate { get; set; }
     }
 }

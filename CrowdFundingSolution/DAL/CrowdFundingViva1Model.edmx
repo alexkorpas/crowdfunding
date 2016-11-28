@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CrowdFundingVivaTeam1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CrowdFundingVivaTeam1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -135,6 +135,15 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ProjectUpdate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectFK" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -309,6 +318,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProjectUpdate_Projects">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectUpdate" Type="Self.ProjectUpdate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectUpdate">
+              <PropertyRef Name="ProjectFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserInfo_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
@@ -333,6 +354,7 @@
           <EntitySet Name="ProjectFundingLevel" EntityType="Self.ProjectFundingLevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectPhoto" EntityType="Self.ProjectPhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectState" EntityType="Self.ProjectState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectUpdate" EntityType="Self.ProjectUpdate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -382,13 +404,17 @@
             <End Role="Project" EntitySet="Project" />
             <End Role="ProjectPhoto" EntitySet="ProjectPhoto" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProjectUpdate_Projects" Association="Self.FK_ProjectUpdate_Projects">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectUpdate" EntitySet="ProjectUpdate" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserInfo_AspNetUsers" Association="Self.FK_UserInfo_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UserInfo" EntitySet="UserInfo" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
-    </edmx:StorageModels>
+	</edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CrowdFundingVivaTeam1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -496,6 +522,7 @@
           <NavigationProperty Name="ProjectState" Relationship="Self.FK_Project_ProjectStates" FromRole="Project" ToRole="ProjectState" />
           <NavigationProperty Name="ProjectFundingLevel" Relationship="Self.FK_ProjectFundingLevel_Projects" FromRole="Project" ToRole="ProjectFundingLevel" />
           <NavigationProperty Name="ProjectPhoto1" Relationship="Self.FK_ProjectPhoto_Projects" FromRole="Project" ToRole="ProjectPhoto" />
+          <NavigationProperty Name="ProjectUpdate" Relationship="CrowdFundingVivaTeam1Model.FK_ProjectUpdate_Projects" FromRole="Project" ToRole="ProjectUpdate" />
         </EntityType>
         <EntityType Name="ProjectCategory">
           <Key>
@@ -760,7 +787,34 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="ProjectUpdate" EntityType="CrowdFundingVivaTeam1Model.ProjectUpdate" />
+          <AssociationSet Name="FK_ProjectUpdate_Projects" Association="CrowdFundingVivaTeam1Model.FK_ProjectUpdate_Projects">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectUpdate" EntitySet="ProjectUpdate" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ProjectUpdate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectFK" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Project" Relationship="CrowdFundingVivaTeam1Model.FK_ProjectUpdate_Projects" FromRole="ProjectUpdate" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_ProjectUpdate_Projects">
+          <End Type="CrowdFundingVivaTeam1Model.Project" Role="Project" Multiplicity="1" />
+          <End Type="CrowdFundingVivaTeam1Model.ProjectUpdate" Role="ProjectUpdate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectUpdate">
+              <PropertyRef Name="ProjectFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -928,6 +982,16 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ProjectUpdate">
+            <EntityTypeMapping TypeName="CrowdFundingVivaTeam1Model.ProjectUpdate">
+              <MappingFragment StoreEntitySet="ProjectUpdate">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ProjectFK" ColumnName="ProjectFK" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

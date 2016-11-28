@@ -49,7 +49,7 @@ CrowdFundingApp.controller('ProjectsController', ['$scope', '$state', 'ngDialog'
         };
         $scope.scroll = function () {
             angular.element($window).bind("scroll", function () {
-                if ($scope.currentNavItem == 'Projects')
+                if ($state.current.name == 'Home.Projects')
                     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                         if ($scope.page>2)
                         $scope.reload();

@@ -6,17 +6,23 @@ CrowdFundingApp.controller('PackageController', ['$scope', '$state', 'ngDialog',
             for (let i = 0; i < res.length; i++)
                 $scope.Packages[i].AmountPledged = angular.copy($scope.Packages[i].Amount);
         });
-        $scope.backIt = function (amount) {
-            $scope.AmountPledged = amount;
-            var dialog = ngDialog.open({ // ngDialog
-                template: 'App/Views/BackIt/BackItForm.html',
-                className: 'ngdialog-theme-default',
-                controller: 'BackItController',
-                scope: $scope
-            });
-            $scope.backIt.closeDialog = function () {
-                dialog.close();
-            };
+        $scope.backIt = function (amountPledged,amount) {
+            if (amount <= amountPledged) {
+                console.log("lalaal");
+                $scope.AmountPledged = amountPledged;
+                var dialog = ngDialog.open({ // ngDialog
+                    template: 'App/Views/BackIt/BackItForm.html',
+                    className: 'ngdialog-theme-default',
+                    controller: 'BackItController',
+                    scope: $scope
+                });
+                $scope.backIt.closeDialog = function () {
+                    dialog.close();
+                };
+            }
+            else {
+                return false;
+            }
         };
         $scope.isOpen = false;
 
@@ -35,5 +41,14 @@ CrowdFundingApp.controller('PackageController', ['$scope', '$state', 'ngDialog',
             var input = angular.element(document.querySelector("#input" + id));
             div.show();
             input.focus();
+        };
+        $scope.check = function () {
+            console.log("lalaal");
+            if ($scope.package.amount < $scope.package.AmountPledged) {
+                return true;
+            }
+            else {
+                return false;
+            }
         };
     }]);

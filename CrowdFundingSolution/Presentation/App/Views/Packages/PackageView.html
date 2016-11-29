@@ -19,14 +19,14 @@
                         <p style="margin-top:45px; color:rgba(0,0,0,0.7); height:100px">
                             {{package.Rewards}}
                         </p>
-                        <form ng-submit="backIt(package.AmountPledged,package.Amount)">
+                        <form ng-submit="backIt(package.AmountPledged)">
                             <div layout-gt-sm="row" id="div{{package.Id}}" style="display:none;">
                                 <md-input-container class="md-block" flex-gt-sm="">
                                     <label>Goal</label>
                                     <input id="input{{package.Id}}" required="" ng-model="package.AmountPledged" type="number" min="{{package.Amount}}"/>
                                     <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
                                 </md-input-container>
-                                <md-button class="md-raised" style="height:40px; width:200px;" type="submit"  name="minAmount">Continue</md-button>
+                                <md-button class="md-raised" style="height:40px; width:200px;" type="submit">Continue</md-button>
                             </div>
                         </form>
                     </md-card-content>

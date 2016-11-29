@@ -1,10 +1,32 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
-    <h1>hello</h1>
-</body>
-</html>
+﻿<div class="panel-heading" style="margin:0; border-radius:0!important">Payment Info</div>
+<div layout="column" style="padding:40px 20px 20px 20px; color: black;">
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-xs>
+            <label>Amount</label>
+            <input ng-model="info.Amount" disabled><md-icon md-font-icon="fa fa-euro" />
+        </md-input-container>
+        <!--<md-input-container class="md-block" flex-gt-xs>
+            <label>Date</label>
+            <input ng-model="info.ClearanceDate" disabled>
+        </md-input-container>-->
+        <div flex-gt-xs>
+            <md-datepicker ng-model="info.ClearanceDate" md-placeholder="Enter date" disabled></md-datepicker>
+        </div>
+    </div>
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>CardHolder Name</label>
+        <input ng-model="info.CreditCard.CardHolderName" disabled>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Card Number</label>
+        <input ng-model="info.CreditCard.Number" disabled>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Card Type</label>
+        <input ng-model="info.CreditCard.CardType.Name" disabled>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-xs>
+        <label>Country</label>
+        <input ng-model="info.CreditCard.CountryCode" disabled>
+    </md-input-container>
+</div>

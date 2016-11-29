@@ -65,7 +65,9 @@ md-toast {
     outline:1px solid blue!important;
     cursor:pointer;
 }
-
+.panel-heading {
+        font-family: 'Raleway', sans-serif;
+    }
 .search .ngdialog-content {
     width:100%!important;
     height:100%!important;

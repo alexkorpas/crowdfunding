@@ -61,29 +61,10 @@ CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog',
         $scope.goToProject = function (id) {
             $state.go("Home.Project", { Id: id });
         };
-        $scope.openOffscreen = function () {
-            $mdDialog.show(
-              $mdDialog.alert()
-                .clickOutsideToClose(true)
-                .title('Opening from offscreen')
-                .textContent('Closing to offscreen')
-                .ariaLabel('Offscreen Demo')
-                .ok('Amazing!')
-                // Or you can specify the rect to do the transition from
-                .openFrom({
-                    top: -50,
-                    width: 30,
-                    height: 80
-                })
-                .closeTo({
-                    left: 1500
-                })
-            );
-        };
         $scope.showInfo = function (transId) {
             $scope.TransId = transId;
             var dialog = ngDialog.open({ // ngDialog
-                template: 'App/Views/Profile/ProfileView.html',
+                template: 'App/Views/Profile/PaymentInfoView.html',
                 className: 'ngdialog-theme-default',
                 controller: 'PaymentInfoController',
                 scope: $scope

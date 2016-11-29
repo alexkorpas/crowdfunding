@@ -37,29 +37,30 @@
                 </md-tab>
                 <md-tab label="My Funds">
                     <md-content class="md-padding transparent">
-                        <div ng-repeat="row in Payments">
-                            <md-card class="transform-nopointer" style="width: 350px; height:400px; background-color:#f9fafc;">
-                                <!--<div id="progressCircle{{row.Id}}" style="height:197px">
-                                    <md-progress-circular class="md-hue-2" md-diameter="70" style="margin:0 auto; top:50px"></md-progress-circular>
-                                </div>-->
-                                <img data-ng-src="data:image/jpeg;base64,{{row.MainPhoto}}" alt="" class="md-card-image" ng-click="goToProject(row.ProjectFK)" style="outline:none!important" />
-                                <md-card-title>
-                                    <md-card-title-text>
-                                        <span class="md-headline">{{row.ProjectTitle}}</span>
-                                        <span class="md-subhead" style="font-size:20px; position:relative;  top:3px; color:#4980ff">Gifted {{row.Amount}} <md-icon md-font-icon="fa fa-euro" style="color:#4980ff;" /></span>
-                                    </md-card-title-text>
-                                </md-card-title>
-                                <md-card-actions layout="row" layout-align="start center">
-                                    <md-card-icon-actions>
-                                        <md-button class="md-icon-button" aria-label="icon"  ng-click="showInfo('8760f4a9-a807-4012-af74-e3535042eb18')">
-                                            <md-icon md-font-icon="fa fa-info fa-2x" aria-label="Info"></md-icon>
-                                        </md-button>
-                                    </md-card-icon-actions>
-                                </md-card-actions>            
-                                <md-progress-linear md-mode="determinate" value="{{(row.ProjectGathered / row.ProjectGoal)*100}}"></md-progress-linear>         
-                            </md-card>
-                        </div>
-                    </md-content>
+                        <md-content class="md-padding transparent" layout="row" layout-align="center" layout-wrap>
+                            <div ng-repeat="row in Payments">
+                                <md-card class="transform-nopointer" style="width: 350px; height:400px; background-color:#f9fafc;">
+                                    <!--<div id="progressCircle{{row.Id}}" style="height:197px">
+                    <md-progress-circular class="md-hue-2" md-diameter="70" style="margin:0 auto; top:50px"></md-progress-circular>
+                </div>-->
+                                    <img data-ng-src="data:image/jpeg;base64,{{row.MainPhoto}}" alt="" class="md-card-image" ng-click="goToProject(row.ProjectFK)" style="outline:none!important" />
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <span class="md-headline">{{row.ProjectTitle}}</span>
+                                            <span class="md-subhead" style="font-size:20px; position:relative;  top:3px; color:#4980ff">Gifted {{row.Amount}} <md-icon md-font-icon="fa fa-euro" style="color:#4980ff;" /></span>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-actions layout="row" layout-align="start center">
+                                        <md-card-icon-actions>
+                                            <md-button class="md-icon-button" aria-label="icon" ng-click="showInfo('8760f4a9-a807-4012-af74-e3535042eb18')">
+                                                <md-icon md-font-icon="fa fa-info fa-2x" aria-label="Info"></md-icon>
+                                            </md-button>
+                                        </md-card-icon-actions>
+                                    </md-card-actions>
+                                    <md-progress-linear md-mode="determinate" value="{{(row.ProjectGathered / row.ProjectGoal)*100}}"></md-progress-linear>
+                                </md-card>
+                            </div>
+                        </md-content>
                 </md-tab>
                 <md-tab label="My profile">
                     <div layout="column" layout-padding ng-cloak>

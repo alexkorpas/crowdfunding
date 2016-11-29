@@ -70,6 +70,7 @@
     <Content Include="App\Controllers\HomeController.js" />
     <Content Include="App\Controllers\HomePage\HomePageController.js" />
     <Content Include="App\Controllers\Login\LoginController.js" />
+    <Content Include="App\Controllers\Profile\PaymentInfoController.js" />
     <Content Include="App\Controllers\Projects\EditProjectController.js" />
     <Content Include="App\Controllers\Packages\PackageControler.js" />
     <Content Include="App\Controllers\Projects\ProjectController.js" />
@@ -86,6 +87,7 @@
     <Content Include="App\Views\HomePage\HomePageView.html" />
     <Content Include="App\Views\HomeView.html" />
     <Content Include="App\Views\Login\LoginView.html" />
+    <Content Include="App\Views\Profile\PaymentInfoView.html" />
     <Content Include="App\Views\Pagination\PaginationIndexView.html" />
     <Content Include="App\Views\Profile\ProfileView.html" />
     <Content Include="App\Views\Projects\EditProject.html" />

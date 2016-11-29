@@ -1,6 +1,6 @@
 ﻿'use strict';
-CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', 'CFConfig', '$rootScope', '$base64',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, CFConfig, $rootScope, $base64) {
+CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'authService', 'baseService', 'CFHelpers', 'CFConfig', '$rootScope', '$base64', '$mdDialog',
+    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, authService, baseService, CFHelpers, CFConfig, $rootScope, $base64, $mdDialog) {
         $scope.Projects = [];
         $scope.Payments = [];
 
@@ -58,7 +58,50 @@ CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog',
         $scope.editProject = function (id) {
             $state.go("Home.EditProject", { id: id });
         };
-        baseService.httpGet("api/Payment/GetPaymentDetails", { transId: '8760f4a9-a807-4012-af74-e3535042eb18' }).then(function (res) {
-            var test = res;
-        });
+        $scope.goToProject = function (id) {
+            $state.go("Home.Project", { Id: id });
+        };
+        $scope.openOffscreen = function () {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .clickOutsideToClose(true)
+                .title('Opening from offscreen')
+                .textContent('Closing to offscreen')
+                .ariaLabel('Offscreen Demo')
+                .ok('Amazing!')
+                // Or you can specify the rect to do the transition from
+                .openFrom({
+                    top: -50,
+                    width: 30,
+                    height: 80
+                })
+                .closeTo({
+                    left: 1500
+                })
+            );
+        };
+        $scope.showInfo = function (transId) {
+            $scope.TransId = transId;
+            var dialog = ngDialog.open({ // ngDialog
+                template: 'App/Views/Profile/ProfileView.html',
+                className: 'ngdialog-theme-default',
+                controller: 'PaymentInfoController',
+                scope: $scope
+            });
+            $scope.showInfo.closeDialog = function () {
+                dialog.close();
+            };
+        };
+        //$scope.showInfo = function (ev) {
+        //    $mdDialog.show({
+        //        controller: 'PaymentInfoController',
+        //        templateUrl: 'App/Views/Profile/PaymentInfoView.html',
+        //        parent: angular.element(document.body),
+        //        targetEvent: ev,
+        //        clickOutsideToClose: true
+        //    });
+        //}
+        //baseService.httpGet("api/Payment/GetPaymentDetails", { transId: '8760f4a9-a807-4012-af74-e3535042eb18' }).then(function (res) {
+        //    var test = res;
+        //});
     }]);

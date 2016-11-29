@@ -28,9 +28,9 @@
                                         </p>
                                         <p>{{row.ShortDescription}}</p>
                                     </div>
-                                    <p><md-progress-linear md-mode="determinate" value="{{row.progress}}"></md-progress-linear></p>
                                     <span style="font-weight:bold;  margin-right:3px">{{row.progress}}% </span> funded <div style="float:right"><span style="font-weight:bold; margin-left:15px; margin-right:3px">&euro;{{row.Gathered}} </span> gathered</div>
                                 </md-card-content>
+                                <md-progress-linear md-mode="determinate" value="{{row.progress}}"></md-progress-linear>
                             </md-card>
                         </div>
                     </md-content>
@@ -52,7 +52,7 @@
                                     </md-card-title>
                                     <md-card-actions layout="row" layout-align="start center">
                                         <md-card-icon-actions>
-                                            <md-button class="md-icon-button" aria-label="icon" ng-click="showInfo('8760f4a9-a807-4012-af74-e3535042eb18')">
+                                            <md-button class="md-icon-button" aria-label="icon" ng-click="showInfo(row.TransactionId)">
                                                 <md-icon md-font-icon="fa fa-info fa-2x" aria-label="Info"></md-icon>
                                             </md-button>
                                         </md-card-icon-actions>

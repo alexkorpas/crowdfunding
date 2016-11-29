@@ -7,16 +7,17 @@
     <div class="container mt">
         <div class="row">
             
-            <!--<carousel3d ng-model="Photos"
+            <carousel3d ng-model="Photos"
                         options="carouselOptions">
                 <md-progress-circular id="progressCircle" class="md-hue-2" md-diameter="70" style="margin:0 auto; top:150px"></md-progress-circular>                    
                 <carousel3d-slide ng-repeat="photo in Photos track by $index" style="outline:none!important">
                     <figure>
-                        <img data-ng-src="data:image/jpeg;base64,{{photo.Photo}}" />                        
+                        <iframe ng-src="{{videoUrl}}" ng-show="photo.Video"></iframe>
+                        <img data-ng-src="data:image/jpeg;base64,{{photo.Photo}}" ng-show="!photo.Video" />                        
                     </figure>                   
                 </carousel3d-slide>
 
-            </carousel3d>-->
+            </carousel3d>
             <!--<div carousel3d ng-model="Photos">
                 <div carousel3d-slide ng-repeat="image in Photos track by $index">
                     <figure>
@@ -25,7 +26,7 @@
                     </figure>
                 </div>
             </div>-->
-            <div class="col-lg-8 centered">
+            <!--<div class="col-lg-8 centered">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -44,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>-->            
             <div class="col-lg-8 spacing">
                 <div ng-cloak>
                     <md-content class="transparent">

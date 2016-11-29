@@ -18,7 +18,7 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
 
     $scope.carouselOptions = {
         //sourceProp: 'Photo',
-        visible: 3,
+        visible: 1,
         //perspective: 35,
         startSlide: 0,
         border: 2,
@@ -26,7 +26,8 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
         width: 622,
         height: 350,
         //space: 220,
-        loop: true
+        loop: true,
+        controls: true
     };
         //$scope.removeSlide = removeSlide;
         //$scope.addSlide = addSlide;
@@ -66,7 +67,7 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
             //image.src = 'data:image/jpeg;base64,' + res[0].Photo;
             var test = angular.element(document.querySelector("#progressCircle"));
             test.remove();
-            //res.push({Photo: $scope.videoUrl, Video: true});
+            res.push({Photo: $scope.videoUrl, Video: true});
             $scope.Photos = res;
             $scope.activated = true;;
         });

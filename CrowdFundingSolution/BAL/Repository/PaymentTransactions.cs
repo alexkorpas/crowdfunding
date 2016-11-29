@@ -40,7 +40,8 @@ namespace BAL
                         RefundedDate = s.RefundedDate,
                         ProjectTitle = s.Project != null ? s.Project.Title : null,
                         ProjectGathered = s.Project != null ? s.Project.Gathered : 0,
-                        ProjectGoal = s.Project != null ? s.Project.Goal : 0
+                        ProjectGoal = s.Project != null ? s.Project.Goal : 0,
+                        TransactionId = s.TransactionId
                     });
                     return new TransactionResult(TransResult.Success, string.Empty, result);
                 }
@@ -64,7 +65,8 @@ namespace BAL
                     RefundedDate = s.RefundedDate,
                     ProjectTitle = s.Project != null ? s.Project.Title : null,
                     ProjectGathered = s.Project != null ? s.Project.Gathered : 0,
-                    ProjectGoal = s.Project != null ? s.Project.Goal : 0
+                    ProjectGoal = s.Project != null ? s.Project.Goal : 0,
+                    TransactionId = s.TransactionId
                 }).ToList(); // Query Execute __________________________________            
                 return new TransactionResult(TransResult.Success, string.Empty, result);
             }

@@ -119,9 +119,11 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
         };
 
         // Called when the editor is completely ready.
-        $scope.onReady = function () {
-            // ...
-        };
+        //$scope.onReady = function () {
+        //    // ...
+            
+        //};
+
         $scope.GetContents = function () {
             var test = CKEDITOR.instances.editor1.getData();
             baseService.httpPost("api/ProjectDetails/SaveProjectDescription", { id: $scope.project.Id, desc: test }).then(function (res) {
@@ -142,6 +144,7 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                     );
             });
         };
+        
         // ____________________________________________________________________________________
         $scope.makeDefault = function (id) {
             baseService.httpPost("api/Photos/SetMainPhoto?Id=" + id, null).then(function (res) {

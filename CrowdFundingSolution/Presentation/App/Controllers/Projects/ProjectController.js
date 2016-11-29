@@ -6,6 +6,7 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
 
     baseService.httpGetAnonymous("api/Project/GetProjects", { Id: $stateParams.Id }).then(function (res) {
         $scope.videoUrl = $sce.trustAsResourceUrl(res[0].Video);
+        $scope.MytrustedHtml = $sce.trustAsHtml(res[0].Description);
         $scope.Project = res[0];
         $scope.Project.DueDate = new Date(res[0].DueDate);
         $scope.Project.CreatedDate = new Date(res[0].CreatedDate);

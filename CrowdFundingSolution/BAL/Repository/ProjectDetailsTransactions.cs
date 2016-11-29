@@ -107,6 +107,25 @@ namespace BAL
             return resultList;
         }
 
+        public async Task<TransactionResult> SaveProjectDescTransaction(int id, string desc, string user)
+        {
+            try
+            {
+                AspNetUsers _user = await context.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();
+
+                Project _project = await context.Project.FindAsync(id);
+
+                if (_project.AspNetUsers != _user)
+                    return new TransactionResult(TransResult.Fail, "This is not your project", null);
+
+                _project.Description = desc;
+                await context.SaveChangesAsync();
+
+                return new TransactionResult(TransResult.Success, "Success", null);
+            }
+            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        }
+
         public async Task<TransactionResult> ReadProjectUpdates(int Id)
         {
             try

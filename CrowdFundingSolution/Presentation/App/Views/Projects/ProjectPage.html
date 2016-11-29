@@ -52,7 +52,8 @@
                         <md-tabs md-dynamic-height md-border-bottom>
                             <md-tab label="Description">
                                 <md-content class="md-padding transparent">
-                                    <p>{{Project.Description}}</p>
+                                    <div ng-bind-html="MytrustedHtml"></div>
+                                    <!--<p>{{Project.Description}}</p>-->
                                 </md-content>
                             </md-tab>
                             <md-tab label="Updates">

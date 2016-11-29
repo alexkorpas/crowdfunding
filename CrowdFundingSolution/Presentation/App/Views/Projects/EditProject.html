@@ -144,6 +144,12 @@
                         </div>
                     </md-content>
                 </md-tab>
+                <md-tab label="Editor" ng-disabled="!(project.Id != undefined)">
+                    <md-content class="md-padding transparent">
+                        <div ckeditor="options" ng-model="content" ready="onReady()"></div>
+                        <md-button  class="md-raised" style="width:97%" ng-click="GetContents()">Save New Card</md-button>
+                    </md-content>
+                </md-tab>
             </md-tabs>
 
         </md-content>

@@ -111,6 +111,38 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                     );
             });
         };
+        // _____________________________________________________________________________
+        $scope.options = {
+            language: 'en',
+            allowedContent: true,
+            entities: false
+        };
+
+        // Called when the editor is completely ready.
+        $scope.onReady = function () {
+            // ...
+        };
+        $scope.GetContents = function () {
+            var test = CKEDITOR.instances.editor1.getData();
+            baseService.httpPost("api/ProjectDetails/SaveProjectDescription", { id: $scope.project.Id, desc: test }).then(function (res) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent("Main photo changed")
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass('success')
+                    );
+            }, function (error) {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent(error.Message)
+                    .position('top right')
+                    .hideDelay(3000)
+                    .toastClass('failure')
+                    );
+            });
+        };
+        // ____________________________________________________________________________________
         $scope.makeDefault = function (id) {
             baseService.httpPost("api/Photos/SetMainPhoto?Id=" + id, null).then(function (res) {
                 $scope.project.MainPhotoFK == id;
@@ -119,6 +151,7 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
                     .textContent("Main photo changed")
                     .position('top right')
                     .hideDelay(3000)
+                    .toastClass('success')
                     );                
                 $scope.loadImages();
                 //var btnDef = angular.element(document.querySelector("#btnDef" + id));

@@ -21,6 +21,7 @@ namespace BAL
         public string ProjectTitle { get; set; }
         public decimal? ProjectGathered { get; set; }
         public decimal ProjectGoal { get; set; }
+        public string TransactionId { get; set; }
 
     }
 }

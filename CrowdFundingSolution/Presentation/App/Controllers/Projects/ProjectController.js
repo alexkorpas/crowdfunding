@@ -1,10 +1,11 @@
 ﻿'use strict';
-CrowdFundingApp.controller('ProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService', '$log',
-function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $log) {
+CrowdFundingApp.controller('ProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService', '$log', '$sce',
+function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $log, $sce) {
     $scope.activated = false;
     $scope.Updates = [];
 
     baseService.httpGetAnonymous("api/Project/GetProjects", { Id: $stateParams.Id }).then(function (res) {
+        $scope.videoUrl = $sce.trustAsResourceUrl(res[0].Video);
         $scope.Project = res[0];
         $scope.Project.DueDate = new Date(res[0].DueDate);
         $scope.Project.CreatedDate = new Date(res[0].CreatedDate);
@@ -65,6 +66,7 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
             //image.src = 'data:image/jpeg;base64,' + res[0].Photo;
             var test = angular.element(document.querySelector("#progressCircle"));
             test.remove();
+            //res.push({Photo: $scope.videoUrl, Video: true});
             $scope.Photos = res;
             $scope.activated = true;;
         });

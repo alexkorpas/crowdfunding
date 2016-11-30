@@ -6,19 +6,20 @@
 <div id="main-content">
     <div class="container mt">
         <div class="row">
+            <section>
             <div class="col-lg-8" style="position: relative;">
                 <div style="padding-bottom: 56.25%;"></div>
                 <iframe ng-src="{{videoUrl}}" class="img-responsive" style="width:100%; height:100%; position: absolute; top: 0;  bottom: 0;  left: 0;  right: 0; border: hidden" allowfullscreen></iframe>
             </div>
             <div class="col-lg-4 ">
-                <div style="margin-left: 8px">
+                <div style="margin-left: 8px; height:355px">
                     <div>
                         <span class="details-title">{{Project.BackerCount}}</span>
                         <span class="details-subtitle"> backers</span>
                     </div>
                     <div>
-                        <span class="details-title">{{Project.Gathered}}  &euro;</span>
-                        <span class="details-subtitle">/{{Project.Goal}} &euro; gathered</span>
+                        <span class="details-title">{{Project.Gathered | currency: "€":0}}</span>
+                        <span class="details-subtitle">gathered of <b>{{Project.Goal | currency: "€":0}}</b> goal </span>
                     </div>
                     <div>
                         <span class="details-title">{{Project.Left}}5</span>
@@ -26,7 +27,7 @@
 
                     </div>
                 </div>
-                <md-button class="md-raised md-primary" style="font-size: 24px; width:200px; height: 50px" ng-click="goToState(Project.Id)">Back It!</md-button>
+                <md-button class="md-raised md-primary" style="font-size: 24px; width:50%; height: 50px; border-top:50px;" ng-click="goToState(Project.Id)">Back It!</md-button>
             </div>
 
             <!--<carousel3d ng-model="Photos" options="carouselOptions">
@@ -64,30 +65,32 @@
                     </div>
                 </div>
             </div>-->
-
-            <div class="col-lg-8 spacing">
-                <div ng-cloak>
-                    <md-content class="transparent">
-                        <md-tabs md-dynamic-height md-border-bottom>
-                            <md-tab label="Description">
-                                <md-content class="md-padding transparent">
-                                    <div ng-bind
-                                    <div ng-bind-html="MytrustedHtml"></div>
-                                    <!--<p>{{Project.Description}}</p>-->
-                                </md-content>
-                            </md-tab>
-                            <md-tab label="Updates">
-                                <div ng-repeat="update in Updates">
+                </section>
+            <section>
+                <!--<md-subheader class="md-primary"><div style="max-width:1000px; margin:0 auto; font-size:25px; height:40px; padding-top:15px;">Categories</div></md-subheader>-->
+                <div class="col-lg-8 spacing">
+                    <div ng-cloak>
+                        <md-content class="transparent">
+                            <md-tabs md-dynamic-height md-border-bottom>
+                                <md-tab label="Campaign">
                                     <md-content class="md-padding transparent">
-                                        <p>{{update.Date | date:'dd/MM/yyyy - h:mma'}}:</p>
-                                        <p style="padding-left: 2em;">{{update.Message}}</p>
+                                        <h3>About this project</h3><br />
+                                        <div ng-bind-html="MytrustedHtml"></div>
+                                        <!--<p>{{Project.Description}}</p>-->
                                     </md-content>
-                                </div>
-                            </md-tab>
-                            <md-tab label="Comments">
-                                <md-content class="md-padding transparent">
-                                    <div id="disqus_thread" value="{{Project.Id}}"></div>
-                                    <script>
+                                     </md-tab>
+                                <md-tab label="Updates">
+                                    <div ng-repeat="update in Updates">
+                                        <md-content class="md-padding transparent">
+                                            <p>{{update.Date | date:'dd/MM/yyyy - h:mma'}}:</p>
+                                            <p style="padding-left: 2em;">{{update.Message}}</p>
+                                        </md-content>
+                                    </div>
+                                </md-tab>
+                                <md-tab label="Comments">
+                                    <md-content class="md-padding transparent">
+                                        <div id="disqus_thread" value="{{Project.Id}}"></div>
+                                        <script>
                                         /**
                                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
                                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -103,64 +106,65 @@
                                             s.setAttribute('data-timestamp', +new Date());
                                             (d.head || d.body).appendChild(s);
                                         })();
-                                    </script>
-                                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                                </md-content>
-                            </md-tab>
-                        </md-tabs>
-                    </md-content>
+                                        </script>
+                                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                    </md-content>
+                                </md-tab>
+                            </md-tabs>
+                        </md-content>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 spacing">
-                <div ng-cloak>
-                    <md-content class="transparent">
-                        <md-tabs md-dynamic-height md-border-bottom>
-                            <md-tab label="Details">
-                                <md-content class="md-padding transparent">
-                                    <!--<md-input-container class="md-block" flex-gt-sm="">
-                                        <label>Gathered</label>
-                                        <input ng-model="Project.Gathered" type="number" step="100" disabled>
-                                        <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
-                                    </md-input-container>
-                                    <md-input-container class="md-block" flex-gt-sm="">
-                                        <label>Goal</label>
-                                        <input ng-model="Project.Goal" type="number" step="100" disabled>
-                                        <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
-                                    </md-input-container>
-                                    <md-input-container style="height:35px">
-                                        <label>Last Updated</label>
-                                        <md-datepicker ng-model="Project.UpdatedDate" disabled></md-datepicker>
-                                    </md-input-container>
-                                    <md-input-container style="height:35px">
-                                        <label>Ends</label>
-                                        <md-datepicker ng-model="Project.DueDate" disabled></md-datepicker>
-                                    </md-input-container>-->
-                                    <md-input-container style="height:35px">
-                                        <label>Creator</label>
-                                        <md-icon md-font-icon="fa fa-user fa-2x" style="color:gray" />
-                                        <input ng-model="Project.Username" type="text" disabled>
-                                    </md-input-container>
-                                    <md-input-container style="height:35px">
-                                        <label>Created</label>
-                                        <md-icon md-font-icon="fa fa-calendar fa-2x" style="color:gray" />
-                                        <input ng-model="Project.CreatedDate" type="date" disabled>
-                                    </md-input-container>
-                                    <md-input-container style="height:35px">
-                                        <label>Last Updated</label>
-                                        <md-icon md-font-icon="fa fa-calendar fa-2x" style="color:gray" />
-                                        <input ng-model="Project.UpdatedDate" type="date" disabled>
-                                    </md-input-container>
-                                    <md-input-container style="height:35px">
-                                        <label>Ends</label>
-                                        <md-icon md-font-icon="fa fa-calendar fa-2x" style="color:gray" />
-                                        <input ng-model="Project.DueDate" type="date" disabled>
-                                    </md-input-container>
-                                </md-content>
-                            </md-tab>
-                        </md-tabs>
-                    </md-content>
+                <div class="col-lg-4 spacing">
+                    <div ng-cloak>
+                        <md-content class="transparent">
+                            <md-tabs md-dynamic-height md-border-bottom>
+                                <md-tab label="Info">
+                                    <md-content class="md-padding transparent">
+                                        <!--<md-input-container class="md-block" flex-gt-sm="">
+                                    <label>Gathered</label>
+                                    <input ng-model="Project.Gathered" type="number" step="100" disabled>
+                                    <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm="">
+                                    <label>Goal</label>
+                                    <input ng-model="Project.Goal" type="number" step="100" disabled>
+                                    <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
+                                </md-input-container>
+                                <md-input-container style="height:35px">
+                                    <label>Last Updated</label>
+                                    <md-datepicker ng-model="Project.UpdatedDate" disabled></md-datepicker>
+                                </md-input-container>
+                                <md-input-container style="height:35px">
+                                    <label>Ends</label>
+                                    <md-datepicker ng-model="Project.DueDate" disabled></md-datepicker>
+                                </md-input-container>-->
+                                        <md-input-container style="height:35px">
+                                            <label>Creator</label>
+                                            <md-icon md-font-icon="fa fa-user fa-2x" style="color:gray" />
+                                            <input ng-model="Project.Username" type="text" disabled>
+                                        </md-input-container>
+                                        <md-input-container style="height:35px">
+                                            <label>Created</label>
+                                            <md-icon md-font-icon="fa fa-calendar fa-2x" style="color:gray" />
+                                            <input ng-model="Project.CreatedDate" type="date" disabled>
+                                        </md-input-container>
+                                        <md-input-container style="height:35px">
+                                            <label>Last Updated</label>
+                                            <md-icon md-font-icon="fa fa-calendar fa-2x" style="color:gray" />
+                                            <input ng-model="Project.UpdatedDate" type="date" disabled>
+                                        </md-input-container>
+                                        <md-input-container style="height:35px">
+                                            <label>Ends</label>
+                                            <md-icon md-font-icon="fa fa-calendar fa-2x" style="color:gray" />
+                                            <input ng-model="Project.DueDate" type="date" disabled>
+                                        </md-input-container>
+                                    </md-content>
+                                </md-tab>
+                            </md-tabs>
+                        </md-content>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
 </div>

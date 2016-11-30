@@ -8,6 +8,8 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
         $scope.videoUrl = $sce.trustAsResourceUrl(res[0].Video);
         $scope.MytrustedHtml = $sce.trustAsHtml(res[0].Description);
         $scope.Project = res[0];
+        $scope.Project.BackerCount = res[0].BackerCount == null ? 0 : res[0].BackerCount;
+        $scope.Project.Gathered = res[0].Gathered == null ? 0 : res[0].Gathered;
         $scope.Project.DueDate = new Date(res[0].DueDate);
         $scope.Project.CreatedDate = new Date(res[0].CreatedDate);
         $scope.Project.UpdatedDate = new Date(res[0].UpdatedDate);

@@ -42,17 +42,17 @@
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-sm="">
                                     <label>Video Url</label>
-                                    <input ng-model="project.Video">
+                                    <input required="" ng-model="project.Video">
                                 </md-input-container>
                                 <md-input-container>
                                     <label>Due Date</label>
                                     <md-datepicker ng-model="project.DueDate"></md-datepicker>
                                 </md-input-container>
                             </div>
-                            <md-input-container class="md-block">
+                            <!--<md-input-container class="md-block">
                                 <label>Description</label>
                                 <textarea required="" name="shortDesc" ng-model="project.Description" md-maxlength="600" rows="6"></textarea>
-                            </md-input-container>
+                            </md-input-container>-->
                             <md-button type="submit" class="md-raised" style="width:210px;">Save Changes</md-button>
                         </form>
                     </md-content>
@@ -146,8 +146,10 @@
                 </md-tab>
                 <md-tab label="Editor" ng-disabled="!(project.Id != undefined)">
                     <md-content class="md-padding transparent">
-                        <div ckeditor="options" ng-model="content"></div>
-                        <md-button  class="md-raised" style="width:97%" ng-click="GetContents()">Save New Card</md-button>
+                        <div style="width:100%">
+                            <div ckeditor="options" ng-model="project.Description" ready="onReady()" style="margin:0 auto!important"></div>
+                            <md-button class="md-raised" style="width:66%; margin-left:0!important" ng-click="GetContents()">Save Project Campaign</md-button>
+                        </div>
                     </md-content>
                 </md-tab>
             </md-tabs>

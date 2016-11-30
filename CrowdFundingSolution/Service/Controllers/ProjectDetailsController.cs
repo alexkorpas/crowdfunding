@@ -28,15 +28,15 @@ namespace Service
 
         [Authorize]
         [HttpPost]
-        public async Task<HttpResponseMessage> SaveProjectDescription(int id, string desc)
+        public async Task<HttpResponseMessage> SaveProjectDescription(JObject jobj)
         {
-            //if (jobj == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
+            if (jobj == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Post data is null");
             try
             {
                 using (var repository = new CrowdFundingTransactions())
                 {
                     var user = User.Identity.Name;
-                    var transaction = await repository.SaveProjectDescTransaction(id, desc, user);
+                    var transaction = await repository.SaveProjectDescTransaction(jobj.ToObject<ProjectCampaingDTO>(), user);
                     if (transaction.Result == TransResult.Success)
                         return Request.CreateResponse(HttpStatusCode.OK, transaction.Id);
                     else

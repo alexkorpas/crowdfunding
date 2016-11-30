@@ -107,18 +107,18 @@ namespace BAL
             return resultList;
         }
 
-        public async Task<TransactionResult> SaveProjectDescTransaction(int id, string desc, string user)
+        public async Task<TransactionResult> SaveProjectDescTransaction(ProjectCampaingDTO projectCampaingDTO, string user)
         {
             try
             {
                 AspNetUsers _user = await context.AspNetUsers.Where(u => u.UserName == user).FirstOrDefaultAsync();
 
-                Project _project = await context.Project.FindAsync(id);
+                Project _project = await context.Project.FindAsync(projectCampaingDTO.Id);
 
                 if (_project.AspNetUsers != _user)
                     return new TransactionResult(TransResult.Fail, "This is not your project", null);
 
-                _project.Description = desc;
+                _project.Description = projectCampaingDTO.Description;
                 await context.SaveChangesAsync();
 
                 return new TransactionResult(TransResult.Success, "Success", null);

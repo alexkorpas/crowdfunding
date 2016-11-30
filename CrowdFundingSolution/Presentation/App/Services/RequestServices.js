@@ -99,8 +99,6 @@ services.factory('baseService', ['$http', '$q', '$state', 'localStorageService',
         var _httpPost = function (URI, params) {
             var config = _prepareRequest();
             var deferred = $q.defer();
-            if(params != null)
-                config.params = params;
             $http.post(servers.CF_SERVER + URI, params, config
                     ).success(function (data) {
                         deferred.resolve(data)

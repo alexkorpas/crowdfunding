@@ -1,12 +1,22 @@
 ﻿'use strict';
-CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService', '$mdToast', 'servers',
-    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $mdToast, servers) {
+CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService', '$mdToast', 'servers', '$sce',
+    function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $mdToast, servers, $sce) {
         $scope.project = {};
         $scope.card = {};
         $scope.update = {};
         if ($stateParams.id != "" && $stateParams.id != null && $stateParams.id != undefined)
             baseService.httpGetAnonymous("api/Project/GetProjects", { Id: $stateParams.id }).then(function (res) {                
                 $scope.project = res[0];
+                $scope.content = $scope.project.Description;
+
+                //if (CKEDITOR.status == 'loaded') {
+                //    CKEDITOR.instances.editor1.setData($scope.project.Description);
+                //} else {
+                //    CKEDITOR.on("instanceReady", function (event) {
+                //        CKEDITOR.instances.editor1.setData($scope.project.Description);
+                //    });
+                //}
+
                 $scope.project.DueDate = new Date(res[0].DueDate);
                 $scope.card.ProjectFK = $scope.project.Id;
                 $scope.loadImages();
@@ -115,21 +125,24 @@ CrowdFundingApp.controller('EditProjectController', ['$scope', '$state', 'ngDial
         $scope.options = {
             language: 'en',
             allowedContent: true,
-            entities: false
+            entities: false,
+            height: '80vh',
+            width: '66%'            
         };
 
         // Called when the editor is completely ready.
-        //$scope.onReady = function () {
-        //    // ...
-            
-        //};
+        $scope.onReady = function () {
+            // ...
+        };
+
+        
+        
 
         $scope.GetContents = function () {
-            var test = CKEDITOR.instances.editor1.getData();
-            baseService.httpPost("api/ProjectDetails/SaveProjectDescription", { id: $scope.project.Id, desc: test }).then(function (res) {
+            baseService.httpPost("api/ProjectDetails/SaveProjectDescription", { Id: $scope.project.Id, Description: $scope.project.Description }).then(function (res) {
                 $mdToast.show(
                   $mdToast.simple()
-                    .textContent("Main photo changed")
+                    .textContent("Project campaign page saved")
                     .position('top right')
                     .hideDelay(3000)
                     .toastClass('success')

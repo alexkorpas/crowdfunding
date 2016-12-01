@@ -3,36 +3,32 @@
         <h2>Select Package</h2>
     </div>
 </div>
-<div id="main-content" style="margin:0; padding:0;">
-    
-    <div class="container mt">
-        <md-content class="transparent">
-            <div ng-repeat="package in Packages" >
-                <md-card style="width:530px; float:left; height:415px;  background-color:#eaf0ff; border:1px solid rgba(0,0,0,0)" class="transform" ng-click="showNumInput(package.Id)">
-                    <md-card-content style="padding:30px 40px 20px 40px;"><!-- style="padding:30px 40px 20px 40px;"-->
-                        <p>
-                            <md-icon md-font-icon="fa fa-euro fa-2x" style="color:#4980ff;" /><span style="font-size:25px; position:relative;  top:3px; color:#4980ff" id="Amount">{{package.Amount}} or more</span>
-                        </p>
-                        <p style="margin-top:45px">
-                            <h2>{{package.Title}}</h2>
-                        </p>
-                        <p style="margin-top:45px; color:rgba(0,0,0,0.7); height:100px">
-                            {{package.Rewards}}
-                        </p>
-                        <form ng-submit="backIt(package.AmountPledged)">
-                            <div layout-gt-sm="row" id="div{{package.Id}}" style="display:none;">
-                                <md-input-container class="md-block" flex-gt-sm="">
-                                    <label>Goal</label>
-                                    <input id="input{{package.Id}}" required="" ng-model="package.AmountPledged" type="number" min="{{package.Amount}}"/>
-                                    <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
-                                </md-input-container>
-                                <md-button class="md-raised" style="height:40px; width:200px;" type="submit">Continue</md-button>
-                            </div>
-                        </form>
-                    </md-card-content>
-                </md-card>
-                </div>
-        </md-content>
+<div id="main-content">
+    <div class="container" layout-align="center">
+        <md-card style="width:360px; float:left; border:1px solid rgba(0,0,0,0)" class="transform" ng-click="showNumInput(package.Id)" ng-repeat="package in Packages">
+            <md-card-title>
+                <md-card-title-text>
+                    <span style="font-size:25px; position:relative;  top:3px; color:#4980ff" id="Amount" class="md-headline"><md-icon md-font-icon="fa fa-euro fa" style="color:#4980ff;" />{{package.Amount}} or more</span>
+                    <span class="md-headline">{{package.Title}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content style="height:115px;" layout-align="start start">
+                <p>
+                    {{package.Rewards}}
+                </p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="start center" style="height:95px;">
+                <form ng-submit="backIt(package.AmountPledged)">
+                    <div layout="row" id="div{{package.Id}}" style="display:none;">
+                        <md-input-container class="md-block" style="width:200px">
+                            <label>Goal</label>
+                            <input id="input{{package.Id}}" required="" ng-model="package.AmountPledged" type="number" min="{{package.Amount}}" />
+                            <md-icon md-font-icon="fa fa-eur fa-2x" style="color:gray" />
+                        </md-input-container>
+                        <md-button class="md-raised md-primary" style="height:40px; width:150px; margin-top:15px" type="submit">Continue</md-button>
+                    </div>
+                </form>
+            </md-card-actions>
+        </md-card>
     </div>
 </div>
-

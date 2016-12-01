@@ -1,19 +1,19 @@
 ﻿<div id="headerwrap">
     <div class="container">
         <div style="font-size:30px; color:white">
-            
-                Browse <!--<span style="border-bottom: 1px solid white; padding:0px 0px 3px 0px; margin-left:10px;">{{browseTitle}}</span>-->
-                <md-input-container style="top:-2px; font-size:30px">
-                    <md-select ng-model="selectedCategory" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader">
-                        <md-select-header class="demo-select-header">
-                            <input ng-model="searchTerm" type="search" class="demo-header-searchbox md-text">
-                        </md-select-header>
-                        <!--<md-optgroup label="vegetables">-->
-                        <md-option ng-value="category.Id" ng-click="categorySelected(category.Id)" ng-repeat="category in BrowseCategories |
+
+            Browse <!--<span style="border-bottom: 1px solid white; padding:0px 0px 3px 0px; margin-left:10px;">{{browseTitle}}</span>-->
+            <md-input-container style="top:-2px; font-size:30px">
+                <md-select ng-model="selectedCategory" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader">
+                    <md-select-header class="demo-select-header">
+                        <input ng-model="searchTerm" type="search" class="demo-header-searchbox md-text">
+                    </md-select-header>
+                    <!--<md-optgroup label="vegetables">-->
+                    <md-option ng-value="category.Id" ng-click="categorySelected(category.Id)" ng-repeat="category in BrowseCategories |
               filter:searchTerm">{{category.Title}}</md-option>
-                        <!--</md-optgroup>-->
-                    </md-select>
-                </md-input-container>
+                    <!--</md-optgroup>-->
+                </md-select>
+            </md-input-container>
             <form id="keyForm" ng-submit="titleSearch()" style="padding:0; margin:0;" ng-show="shown">
                 with keyword
                 <md-input-container flex-gt-sm="" style="top:10px;">
@@ -45,10 +45,10 @@
                                 <md-icon md-font-icon="fa fa-search" style="color:gray" />
                             </md-button>
                         </p>
-                        <p>{{row.ShortDescription}}</p>                        
+                        <p>{{row.ShortDescription}}</p>
                     </div>
-                    <p><md-progress-linear md-mode="determinate" value="{{row.progress}}"></md-progress-linear></p>
                     <span style="font-weight:bold;  margin-right:3px">{{row.progress}}% </span> funded <div style="float:right"><span style="font-weight:bold; margin-left:15px; margin-right:3px">&euro;{{row.Gathered}} </span> gathered</div>
+                    <md-progress-linear md-mode="determinate" value="{{row.progress}}"></md-progress-linear>
                 </md-card-content>
             </md-card>
         </div>

@@ -161,9 +161,17 @@ md-nav-bar {
     color:white;
 }
 
+.ngdialog {
+     z-index:9999999999;
+ }
+
 .ngdialog-content {
      padding:0!important;
  }
+
+ .ngdialog-theme-info > .ngdialog-content {
+    width: 350px!important;
+}
 
 .ngdialog-close {
     top:-1px!important;

@@ -65,7 +65,7 @@ CrowdFundingApp.controller('ProfileController', ['$scope', '$state', 'ngDialog',
             $scope.TransId = transId;
             var dialog = ngDialog.open({ // ngDialog
                 template: 'App/Views/Profile/PaymentInfoView.html',
-                className: 'ngdialog-theme-default',
+                className: 'ngdialog-theme-default ngdialog-theme-info',
                 controller: 'PaymentInfoController',
                 scope: $scope
             });

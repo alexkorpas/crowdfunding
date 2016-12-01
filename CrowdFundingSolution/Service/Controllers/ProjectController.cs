@@ -92,22 +92,22 @@ namespace Service
         //    catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
         //}
 
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetTrendingProjects()
-        {
-            try
-            {
-                using (var repository = new CrowdFundingTransactions())
-                {
-                    var transaction = await repository.ReadTrendingProjects();
-                    if (transaction.Result == TransResult.Success)
-                        return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
-                }
-            }
-            catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
-        }
+        //[HttpGet]
+        //public async Task<HttpResponseMessage> GetTrendingProjects()
+        //{
+        //    try
+        //    {
+        //        using (var repository = new CrowdFundingTransactions())
+        //        {
+        //            var transaction = await repository.ReadTrendingProjects();
+        //            if (transaction.Result == TransResult.Success)
+        //                return Request.CreateResponse(HttpStatusCode.OK, transaction.ReturnObject);
+        //            else
+        //                return Request.CreateResponse(HttpStatusCode.OK, transaction.Message);
+        //        }
+        //    }
+        //    catch (Exception e) { return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message); }
+        //}
 
         [Authorize]
         [HttpPost]

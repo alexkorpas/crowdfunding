@@ -1,4 +1,6 @@
-﻿namespace BAL
+﻿using System;
+
+namespace BAL
 {
     public class TransactionCriteria
     {
@@ -9,6 +11,8 @@
         public int? CategoryId { get; set; }
         public string Search { get; set; }
         public int? Page { get; set; }
+        public DateTime? AfterDate { get; set; }
+        public int? TrendingProjects { get; set; }
 
     }//End Class
 }//End Namespace

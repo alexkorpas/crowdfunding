@@ -77,6 +77,24 @@ namespace BAL
                     res = res.Where(s => s.Title.Contains(criteria.Search) || s.ShortDescription.Contains(criteria.Search));
                 if (criteria.Page != null)
                     res = res.OrderBy(s => s.Id).Skip((int)criteria.Page * 6).Take(6);
+                if (criteria.AfterDate != null && criteria.TrendingProjects == null)
+                    res = res.Where(s => ((DateTime)criteria.AfterDate).CompareTo(s.CreatedDate) < 0).Take(6);
+                if (criteria.TrendingProjects != null)
+                {
+                    if (criteria.AfterDate == null)
+                    {
+                        criteria.AfterDate = DateTime.Now.AddDays(-7);
+                    }
+
+                    res = res.Where(x => (
+                           from p in context.Payment
+                           where (((DateTime)criteria.AfterDate).CompareTo(p.PaymentDate) <= 0 && (p.Amount - p.RefundedAmount != 0))
+                           group p by p.ProjectFK into ProjectIDs
+                           let countPayments = ProjectIDs.Count()
+                           orderby countPayments descending 
+                           select ProjectIDs.Key).Take((int)criteria.TrendingProjects).Contains(x.Id));
+                }
+
                 result = await res.Select(s => new ProjectDTO
                 {
                     Id = s.Id,
@@ -210,50 +228,50 @@ namespace BAL
             catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
         }
 
-        public async Task<TransactionResult> ReadTrendingProjects()
-        {
-            try
-            {
-                double days = 7;
-                int projsToReturn = 5;
-                DateTime fromDay = DateTime.Now.AddDays(-days);
+        //public async Task<TransactionResult> ReadTrendingProjects()
+        //{
+        //    try
+        //    {
+        //        double days = 7;
+        //        int projsToReturn = 5;
+        //        DateTime fromDay = DateTime.Now.AddDays(-days);
 
-                var result = await context.Project.Where(
-                    x => (
-                        from p in context.Payment
-                        where (fromDay.CompareTo(p.PaymentDate) <= 0 && (p.Amount - p.RefundedAmount != 0))
-                        group p by p.ProjectFK into ProjectIDs
-                        let countPayments = ProjectIDs.Count()
-                        orderby countPayments descending
-                        select ProjectIDs.Key).Take(projsToReturn
-                        ).Contains(x.Id)
-                    ).Select(s => new ProjectDTO
-                    {
-                        Id = s.Id,
-                        Description = s.Description,
-                        UserFK = s.UserFK,
-                        Title = s.Title,
-                        ShortDescription = s.ShortDescription,
-                        Goal = s.Goal,
-                        GoalMin = s.GoalMin,
-                        MainPhotoFK = s.MainPhotoFK,
-                        Video = s.Video,
-                        CategoryFK = s.CategoryFK,
-                        DueDate = s.DueDate,
-                        IsActive = s.IsActive,
-                        CreatedDate = s.CreatedDate,
-                        UpdatedDate = s.UpdatedDate,
-                        DeletedDate = s.DeletedDate,
-                        BlockedDate = s.BlockedDate,
-                        StateFK = s.StateFK,
-                        Website = s.Website,
-                        Gathered = s.Gathered,
-                        BackerCount = s.BackerCount
-                    }).ToListAsync();
+        //        var result = await context.Project.Where(
+        //            x => (
+        //                from p in context.Payment
+        //                where (fromDay.CompareTo(p.PaymentDate) <= 0 && (p.Amount - p.RefundedAmount != 0))
+        //                group p by p.ProjectFK into ProjectIDs
+        //                let countPayments = ProjectIDs.Count()
+        //                orderby countPayments descending
+        //                select ProjectIDs.Key).Take(projsToReturn
+        //                ).Contains(x.Id)
+        //            ).Select(s => new ProjectDTO
+        //            {
+        //                Id = s.Id,
+        //                Description = s.Description,
+        //                UserFK = s.UserFK,
+        //                Title = s.Title,
+        //                ShortDescription = s.ShortDescription,
+        //                Goal = s.Goal,
+        //                GoalMin = s.GoalMin,
+        //                MainPhotoFK = s.MainPhotoFK,
+        //                Video = s.Video,
+        //                CategoryFK = s.CategoryFK,
+        //                DueDate = s.DueDate,
+        //                IsActive = s.IsActive,
+        //                CreatedDate = s.CreatedDate,
+        //                UpdatedDate = s.UpdatedDate,
+        //                DeletedDate = s.DeletedDate,
+        //                BlockedDate = s.BlockedDate,
+        //                StateFK = s.StateFK,
+        //                Website = s.Website,
+        //                Gathered = s.Gathered,
+        //                BackerCount = s.BackerCount
+        //            }).ToListAsync();
 
-                return new TransactionResult(TransResult.Success, string.Empty, result);
-            }
-            catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
-        }
+        //        return new TransactionResult(TransResult.Success, string.Empty, result);
+        //    }
+        //    catch (Exception ex) { return new TransactionResult(TransResult.Fail, ex.Message, ex); }
+        //}
     } // End class
 } // End namespace

@@ -77,8 +77,11 @@ namespace BAL
                     res = res.Where(s => s.Title.Contains(criteria.Search) || s.ShortDescription.Contains(criteria.Search));
                 if (criteria.Page != null)
                     res = res.OrderBy(s => s.Id).Skip((int)criteria.Page * 6).Take(6);
-                if (criteria.AfterDate != null && criteria.TrendingProjects == null)
-                    res = res.Where(s => ((DateTime)criteria.AfterDate).CompareTo(s.CreatedDate) < 0).Take(6);
+                if (criteria.NewestProject != null)
+                {
+                    if (criteria.NewestProject == 0) criteria.NewestProject = 6;
+                    res = res.OrderByDescending(s => s.CreatedDate).Take((int)criteria.NewestProject);
+                }
                 if (criteria.TrendingProjects != null)
                 {
                     if (criteria.AfterDate == null)

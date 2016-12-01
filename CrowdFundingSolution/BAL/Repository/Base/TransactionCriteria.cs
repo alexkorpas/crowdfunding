@@ -11,6 +11,7 @@ namespace BAL
         public int? CategoryId { get; set; }
         public string Search { get; set; }
         public int? Page { get; set; }
+        public int? NewestProject { get; set; }
         public DateTime? AfterDate { get; set; }
         public int? TrendingProjects { get; set; }
 

@@ -2,7 +2,10 @@
 CrowdFundingApp.controller('ProjectController', ['$scope', '$state', 'ngDialog', '$filter', '$element', '$http', '$stateParams', 'baseService', '$log', '$sce',
 function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, baseService, $log, $sce) {
     $scope.activated = false;
+    $scope.TimeLeft = 0;
+    $scope.TimeLeftMsg = "days left";
     $scope.Updates = [];
+    
 
     baseService.httpGetAnonymous("api/Project/GetProjects", { Id: $stateParams.Id }).then(function (res) {
         $scope.videoUrl = $sce.trustAsResourceUrl(res[0].Video);
@@ -13,7 +16,32 @@ function ($scope, $state, ngDialog, $filter, $element, $http, $stateParams, base
         $scope.Project.DueDate = new Date(res[0].DueDate);
         $scope.Project.CreatedDate = new Date(res[0].CreatedDate);
         $scope.Project.UpdatedDate = new Date(res[0].UpdatedDate);
+        $scope.calculateTimeLeft();
     });
+
+    $scope.calculateTimeLeft = function () {
+        var delta = Math.abs($scope.Project.DueDate - new Date()) / 1000;
+
+        var days = Math.floor(delta / 86400);       delta -= days * 86400;
+        var hours = Math.floor(delta / 3600) % 24;  delta -= hours * 3600;
+        var minutes = Math.floor(delta / 60) % 60;  delta -= minutes * 60;
+        var seconds = delta % 60;
+        
+        if (days > 0) {
+            $scope.TimeLeft = days
+            $scope.TimeLeftMsg = "day" + ((days>1)?"s":" ") + " left";
+        } else if (hours > 0) {
+            $scope.TimeLeft = hours
+            $scope.TimeLeftMsg = "hour" + ((hours > 1) ? "s" : " ") + " left";
+        } else if (minutes > 0) {
+            $scope.TimeLeft = minutes
+            $scope.TimeLeftMsg = "minute" + ( (minutes > 1) ? "s" : " ") + " left";
+        } else if (seconds > 0) {
+            $scope.TimeLeft = seconds
+            $scope.TimeLeftMsg = "second" + ( (seconds > 1) ? "s" : " ") + " left";
+        }
+        console.log("%s days, %s hours, %s minutes, %s seconds left", days, hours, minutes, seconds);
+    };
 
     baseService.httpGetAnonymous("api/ProjectDetails/GetProjectupdates", { Id: $stateParams.Id }).then(function (res) {
         $scope.Updates = res;

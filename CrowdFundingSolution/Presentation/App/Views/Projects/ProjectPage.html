@@ -22,8 +22,8 @@
                         <span class="details-subtitle">gathered of <b>{{Project.Goal | currency: "€":0}}</b> goal </span>
                     </div>
                     <div>
-                        <span class="details-title">{{Project.Left}}5</span>
-                        <span class="details-subtitle"> days left</span>
+                        <span class="details-title">{{TimeLeft}}</span>
+                        <span class="details-subtitle">{{TimeLeftMsg}}</span>
 
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                                 </md-tab>
                                 <md-tab label="Comments">
                                     <md-content class="md-padding transparent">
-                                        <div id="disqus_thread" value="{{Project.Id}}"></div>
+                                        <div id="disqus_thread" data-disqus-value="{{Project.Id}}"></div>
                                         <script>
                                         /**
                                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -100,7 +100,7 @@
                                                 //this.page.url = "wwwcrowdfundingvivateam1gr";
                                                 this.page.url = "";
                                                 this.page.shortname = "crowdfundingvivateam1";
-                                                this.page.identifier = document.getElementById("disqus_thread").getAttribute("value"); // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                                this.page.identifier = document.getElementById("disqus_thread").getAttribute("data-disqus-value"); // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                                                 //alert(this.page.identifier);
                                             };
 
